@@ -43,3 +43,15 @@ companies:
   - {name: Oracle,             ticker: ORCL,  sector: Information Technology,  ambiguous: true}
   - {name: IBM,                ticker: IBM,   sector: Information Technology}
   - {name: Boeing,             ticker: BA,    sector: Industrials}
+
+# Organisations spaCy tags as ORG that must never become company signals
+# (regulators, central banks, governments, exchanges, indices, news outlets). Used by SpacyEntityLinker.
+non_company_orgs: [
+  Fed, Federal Reserve, Federal Reserve Bank, SEC, Securities and Exchange Commission, FTC, Federal Trade Commission,
+  DOJ, Justice Department, Department of Justice, CFPB, FDIC, OCC, Treasury, Treasury Department, Congress, Senate,
+  House, White House, Supreme Court, ECB, European Central Bank, Bank of England, Bank of Japan, People's Bank of China,
+  IMF, World Bank, OPEC, NATO, EU, European Union, European Commission, UN, United Nations, WTO,
+  Nasdaq, NYSE, New York Stock Exchange, Dow, Dow Jones, S&P, S&P 500, Wall Street,
+  Reuters, Bloomberg, CNBC, AP, Associated Press, Financial Times, FT, Wall Street Journal, WSJ, MarketWatch,
+  Moody's, Fitch, S&P Global, Standard & Poor's
+]

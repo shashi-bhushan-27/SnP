@@ -146,6 +146,13 @@ def test_rules_report_no_evidence_instead_of_guessing(rules) -> None:
     assert result.confidence < 0.5
 
 
+def test_a_single_weak_cue_is_not_enough_evidence(rules) -> None:
+    (lone,) = rules.classify(["Action sequel tumbles at the weekend box office"])  # one weak Market Shock cue
+    assert not lone.matched and lone.event_type is EventType.OTHER
+    (two,) = rules.classify(["Tanker attacks raise fears in a key shipping lane"])  # two weak Geopolitical cues
+    assert two.matched and two.event_type is EventType.GEOPOLITICAL
+
+
 def test_rules_case_sensitive_acronyms_do_not_misfire(rules) -> None:
     # "fed" the verb and "sec" the unit must not look like the Fed / SEC
     (result,) = rules.classify(["The cat fed the dog a few sec ago"])

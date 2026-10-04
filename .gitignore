@@ -9,6 +9,7 @@ venv/
 
 # Secrets and local config
 .env
+.claude/
 
 # Data: only placeholders and the committed sample replay file are tracked
 data/*.db

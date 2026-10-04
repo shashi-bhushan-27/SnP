@@ -119,7 +119,8 @@ Text with neither an entity nor an event is dropped as irrelevant (counted as `s
 
 | File (`backend/config/`) | Controls |
 |---|---|
-| `companies.yaml` | tracked entities, aliases, sectors, ambiguous names |
+| `companies.yaml` | tracked entities, aliases, sectors, ambiguous names; organisations that are never companies |
+| `relevance.yaml` | commentary / listicle / advice headline patterns |
 | `event_rules.yaml` | regex cues per event type (strong / weak) |
 | `event_prototypes.yaml` | prototype sentences for the embedding classifier |
 | `impact.yaml` | impact weights, severity priors, exposure, source reliability |
@@ -145,5 +146,5 @@ Environment variables are listed in `.env.example`.
 
 ## Not built yet
 
-Dashboard, Module A, FinBERT/embedding evaluation, impact calibration, transaction-derived portfolio builder,
-semantic de-duplication, hosted deployment. See `docs/roadmap.md`.
+Evaluation harness, impact calibration, macro polarity rule, transaction-derived portfolio builder, semantic
+de-duplication, GDELT via raw GKG files, hosted deployment. Module A is out of scope (team decision). See `docs/roadmap.md`.

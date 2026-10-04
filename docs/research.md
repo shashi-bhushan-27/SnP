@@ -57,12 +57,25 @@ against the live page, API or a real call; anything I could not check is listed 
 - Near-duplicate detection is lexical (word 3-grams); paraphrases from different outlets are not merged.
 - Replay data is not live; the demo must say so.
 
-## 6. Not verified yet
+## 6. Learned from live data (5 Oct 2026)
 
-- The **live GDELT response format** (the test fixture is hand-written from the documentation; GDELT blocked the dev
-  machine with 429 while this was being written). Re-test from another network or after the block clears.
-- **FinBERT and bge-small run-time behaviour on real text**: the adapters are unit-tested with fakes; no model weights
-  were downloaded (about 440 MB and 130 MB).
-- FinBERT model size and license (the model card as fetched does not state them; it is a BERT-base-class model).
+| Observation | Evidence | Change made |
+|---|---|---|
+| NewsAPI's free plan really is delayed: the newest article was **24.0 h** old. | live request through `NewsApiSource` | Documented; replay stays the real-time demo path. |
+| A broad query searched over full content returns noise (NBA contracts, box office, politics). | 29 results, mostly off-topic | `searchIn=title,description` by default. |
+| A finance-domain filter (CNBC, Business Insider, Fortune, Bloomberg, ...) gives on-topic results, 1-3 days old. | 50 results, 4 publishers | `domains` list is the default in `sources.yaml`; outlets added to the reliability table. |
+| On 50 live articles the first engine produced 36 signals and **one false stress trigger** ("The spice of the matter" -> Macroeconomic 7.6 -> -$5.4M), plus listicles ("3 Canadian AI Stocks...") and a misattribution (a grocery chain closing stores -> Walmart, mentioned only in the body). | pipeline run, NewsAPI + FinBERT | Headline-first evidence, entity salience, commentary filter (`config/relevance.yaml`), and trigger confirmation (>= 2 outlets or a trusted source). Re-run on the same 50 articles: **15 signals, 0 false triggers**. |
+| FinBERT runs on CPU at **~30 ms/headline** (24 s first load); weights are `pytorch_model.bin` (~440 MB, no safetensors). | `scripts/smoke_models.py` | `SENTIMENT_BACKEND=finbert` verified. |
+| FinBERT misreads macro direction: *"CPI rises 0.5%, above forecasts"* -> **+0.86**; *"Fed signals further rate hikes"* -> neutral. | smoke test | Open: macro headlines need a polarity rule on top of FinBERT (rising inflation / higher rates = negative for markets). |
+| The lexicon baseline scores 92% on the synthetic sample. | smoke test | **Not meaningful**: the word list and the sample headlines were written together. Real evaluation needs the labelled tweet sets. |
+| GDELT DOC API still answers 429 from this network a day later; GDELT's raw 15-minute file feed (`data.gdeltproject.org/gdeltv2/lastupdate.txt`) is reachable. The GKG file (~2.5 MB zipped per 15 min) carries titles, organisations, tone and themes. | live requests | Option: a GKG-file adapter as the GDELT path (not built; downloads files every 15 min). |
+| figshare "Effects of Twitter sentiment on stock price returns" (CC BY 4.0, 377 KB): daily sentiment *counts* per DJIA-30 stock, 2013-06 to 2014-09, no tweet text. | figshare API | Usable for an impact/returns sanity check, not as NLP input. |
+| The Kaggle "financial news with ticker-level sentiment" page needs a login. | fetch attempt | Needs a manual download by the team. |
+
+## 7. Not verified yet
+
+- The **live GDELT DOC response format** (fixture hand-written from the docs; 429 from this network).
+- **bge-small embeddings and spaCy NER on real text** (adapters unit-tested with fakes; models not downloaded yet).
+- FinBERT license (not stated on the model card as fetched).
 - PostgreSQL and Docker paths (written, never run).
-- That the HF CSV files have exactly the column layout the dataset cards describe (the converter is unit-tested on that layout, but nothing was downloaded).
+- That the HF CSV files have exactly the column layout the dataset cards describe (converter unit-tested on that layout; nothing downloaded).

@@ -23,7 +23,10 @@ STRONG, WEAK = 1.0, 0.4
 class RuleEventClassifier:
     name = "rules"
 
-    def __init__(self, rules: Mapping[EventType, Mapping[str, Sequence[str]]]) -> None:
+    def __init__(self, rules: Mapping[EventType, Mapping[str, Sequence[str]]], min_score: float = 0.8) -> None:
+        # min_score 0.8 = one strong cue or two weak ones; a lone weak word ("plunge" in a box-office
+        # story) is not evidence of an event
+        self.min_score = min_score
         # insertion order is the tie-break priority
         self._rules = [
             (
@@ -49,7 +52,7 @@ class RuleEventClassifier:
             if score > 0:
                 scores[event] = score
 
-        if not scores:
+        if not scores or max(scores.values()) < self.min_score:
             return EventResult(
                 event_type=EventType.OTHER,
                 confidence=0.3,

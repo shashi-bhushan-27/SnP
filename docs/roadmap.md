@@ -12,8 +12,23 @@ top of unvalidated logic is worth less than a plain one on a defensible engine.
 - [x] Risk Engine baseline: dictionary linker, lexicon + FinBERT adapter, rules + embedding + hybrid events, explainable impact
 - [x] Module B baseline: sensitivity-based stress engine, scenario matrix, auto-trigger, API
 - [x] Tests (unit, pipeline, API, architecture) and CI
+- [x] Oct 5: FinBERT downloaded and verified (~30 ms/headline on CPU); NewsAPI verified live (24 h delay confirmed)
+- [x] Oct 5: first live-data run exposed false positives; relevance/salience rules + trigger confirmation fixed them
+- [x] Oct 5: Streamlit dashboard v1 (KPIs, risk feed with score breakdown, stress panel, charts, pipeline health)
+- [x] Oct 5: spaCy NER adapter (unit-tested with a fake model; spaCy itself not installed yet)
 
-## Plan
+Decisions taken: **Module B only**, **Streamlit** dashboard.
+
+## Next, in order
+
+1. Macro polarity rule on top of FinBERT (rising inflation / higher rates / weaker growth = negative).
+2. Evaluation harness on labelled data (needs the HF tweet sets, ~4 MB, approval pending).
+3. Impact calibration (event study with yfinance) and confidence calibration.
+4. Portfolio seeded from transaction data; review shock numbers.
+5. GDELT via the raw GKG 15-minute files (the DOC API is blocked from this network), if wanted.
+6. Demo polish: replay ordering for the 5-minute story, slides from measured numbers, rehearsal.
+
+## Original plan
 
 | Day | Focus | Outcome |
 |---|---|---|
@@ -25,12 +40,10 @@ top of unvalidated logic is worth less than a plain one on a defensible engine.
 | **Oct 10** | Freeze and rehearse | no new features; write the 7 slides from measured results; rehearse the 5-minute demo twice; record a fallback video |
 | **Oct 11** | Buffer | final test run, README check from a clean clone, tag the release, submit |
 
-## Decisions needed from the team
+## Decisions still open
 
-1. Module B only (recommended), or also Module A?
-2. Dashboard: Streamlit (fast) or React (polished)? See `frontend/README.md`.
-3. Scenario shock numbers in `config/scenarios.yaml`, especially the credit-spread leg (the brief said "+5%" without a unit).
-4. Hosted demo or local? A free NewsAPI key may not be used on a hosted service; GDELT may block shared cloud IPs.
+1. Scenario shock numbers in `config/scenarios.yaml`, especially the credit-spread leg (the brief said "+5%" without a unit).
+2. Hosted demo or local? A free NewsAPI key may not be used on a hosted service; GDELT may block shared cloud IPs.
 
 ## Risks
 

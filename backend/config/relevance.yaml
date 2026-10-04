@@ -1,0 +1,13 @@
+# Headlines that are opinion, advice, previews or listicles rather than reports of an event.
+# A matching headline is classified as Other (method "commentary") and, without a tracked entity,
+# dropped as irrelevant. Patterns are case-insensitive and applied to the TITLE only.
+# Found necessary on live NewsAPI data (Oct 2026): "3 Canadian AI Stocks...", "How to Protect Your
+# Portfolio...", "...Time to Sell or Load Up?" were all becoming high-impact signals.
+commentary_title_patterns:
+  - '^\s*(top\s+)?\d+\s+(\w+[\s-]+){0,4}(stocks?|shares|dividends?|etfs?|picks|reasons|things)\b'
+  - '^\s*how to\b'
+  - '^\s*(should you|is it time|is now|what to expect|here''s why|here is why)\b'
+  - '\b(stocks?|shares|etfs?) to (buy|watch|own|sell|hold)\b'
+  - '\b(hidden gems?|top picks|ranked by|buy the dip|load up)\b'
+  - '\bcramer\b'   # TV stock-picking segments (frequent in CNBC results)
+  - '\?\s*$'

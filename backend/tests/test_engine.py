@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from conftest import make_docs
 from prism.core.taxonomy import EventType
 
@@ -57,3 +59,72 @@ def test_more_corroboration_means_higher_impact(engine) -> None:
 
 def test_empty_batch(engine) -> None:
     assert engine.analyze([]) == []
+
+
+# ---------------------------------------------------------------- salience rules (from live NewsAPI data)
+def article(title: str, body: str):
+    from prism.core.contracts import RawDocument
+    from prism.etl.transform import to_document
+
+    return to_document(RawDocument(source="newsapi", title=title, body=body, url="https://example.com/x", language="en"))
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "3 Canadian AI Stocks With Revenue Growth Up To 176%",
+        "How to Protect Your Portfolio as the Fed Raises Interest Rates",
+        "Cameco Stock Is Down 24% Over the Past Three Months. Time to Sell or Load Up?",
+        "Top 3 Japanese Hidden Gem Stocks To Watch In October",
+        "4 Dividends That Have Not Been Raised in Years",
+    ],
+)
+def test_commentary_headlines_are_not_events(engine, title) -> None:
+    assert engine.is_commentary(title)
+    assert engine.analyze([article(title, "Inflation and rate hikes weigh on markets as recession fears grow.")]) == []
+
+
+def test_commentary_with_a_tracked_company_is_kept_but_marked_other(engine) -> None:
+    (signal,) = engine.analyze([article("Should You Buy Tesla Stock Before Earnings?", "Analysts are divided.")])
+    assert signal.ticker == "TSLA" and signal.event_type is EventType.OTHER
+    assert signal.explanation["event_method"] == "commentary"
+
+
+def test_event_only_in_the_body_does_not_make_a_market_signal(engine) -> None:
+    # live false positive: a food article whose body mentioned inflation became Macroeconomic 7.6
+    doc = article("The spice of the matter", "Prices have soared as inflation and interest rates squeeze cooks.")
+    assert engine.analyze([doc]) == []
+
+
+def test_entity_and_event_only_in_the_body_are_dropped(engine) -> None:
+    # live false positive: a grocery chain closing stores was attributed to Walmart (mentioned in the body)
+    doc = article(
+        "Discount grocery chain makes big changes after 42 store closures",
+        "The chain, which competes with Walmart, said the closures follow a probe by regulators.",
+    )
+    assert engine.analyze([doc]) == []
+
+
+def test_headline_company_with_body_event_is_kept_at_lower_confidence(engine) -> None:
+    title_only = article("Tesla faces regulatory investigation over autopilot", "")
+    body_event = article("Tesla in focus this week", "Regulators opened an investigation into the autopilot system.")
+    (strong,) = engine.analyze([title_only])
+    (weak,) = engine.analyze([body_event])
+    assert strong.event_type is weak.event_type is EventType.REGULATORY
+    assert weak.explanation["evidence"] == {"event": "body", "entity": "title"}
+    assert weak.explanation["event_method"].endswith("+body")
+    assert weak.confidence < strong.confidence
+
+
+def test_company_found_only_in_the_body_gets_capped_confidence(engine) -> None:
+    (signal,) = engine.analyze(
+        [article("Regulators open antitrust investigation into cloud pricing", "Microsoft said it would cooperate.")]
+    )
+    assert signal.ticker == "MSFT" and signal.explanation["evidence"] == {"event": "title", "entity": "body"}
+    assert signal.confidence <= 0.75
+
+
+def test_signal_carries_corroboration_and_source_reliability(engine) -> None:
+    (doc,) = make_docs("Stocks plunge in broad sell-off as volatility index spikes", publisher="reuters.com")
+    (signal,) = engine.analyze([doc.model_copy(update={"corroboration": 3})])
+    assert signal.corroboration == 3 and signal.source_reliability == 1.0

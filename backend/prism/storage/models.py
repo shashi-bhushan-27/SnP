@@ -56,6 +56,8 @@ class RiskSignalRow(Base):
     event_type: Mapped[str] = mapped_column(String(32), index=True)
     impact_score: Mapped[float] = mapped_column(Float, index=True)
     confidence: Mapped[float] = mapped_column(Float)
+    corroboration: Mapped[int] = mapped_column(Integer, default=1)
+    source_reliability: Mapped[float] = mapped_column(Float, default=0.5)
     headline: Mapped[str] = mapped_column(Text)
     url: Mapped[str | None] = mapped_column(String(1024), nullable=True)
     explanation: Mapped[dict] = mapped_column(JSON)

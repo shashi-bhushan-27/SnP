@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
+import yaml
 
 from prism.config import BACKEND_ROOT, REPO_ROOT, Settings
 from prism.core.contracts import Document, RawDocument, RiskSignal
@@ -38,6 +39,9 @@ def engine() -> RiskEngine:
         sentiment=LexiconSentiment(),
         events=RuleEventClassifier.from_yaml(CONFIG_DIR / "event_rules.yaml"),
         impact=WeightedImpactModel.from_yaml(CONFIG_DIR / "impact.yaml"),
+        commentary_patterns=yaml.safe_load((CONFIG_DIR / "relevance.yaml").read_text(encoding="utf-8"))[
+            "commentary_title_patterns"
+        ],
     )
 
 
@@ -48,11 +52,16 @@ def store() -> SqlStore:
 
 @pytest.fixture
 def settings(tmp_path: Path) -> Settings:
+    # _env_file=None: a developer's .env (API keys, finbert backend...) must never change test results
     return Settings(
+        _env_file=None,
         database_url="sqlite://",
         data_dir=tmp_path,
         enabled_sources="replay",
         replay_file=SAMPLE_REPLAY,
+        sentiment_backend="lexicon",
+        event_backend="rules",
+        newsapi_key=None,
         scheduler_enabled=False,
         write_signals_jsonl=True,
     )
@@ -71,6 +80,8 @@ def make_signal(
     sentiment: float = -0.8,
     confidence: float = 0.9,
     signal_id: str = "sig-1",
+    corroboration: int = 1,
+    reliability: float = 1.0,
 ) -> RiskSignal:
     return RiskSignal(
         id=signal_id,
@@ -83,5 +94,7 @@ def make_signal(
         event_type=event_type,
         impact_score=impact,
         confidence=confidence,
+        corroboration=corroboration,
+        source_reliability=reliability,
         headline="synthetic headline",
     )

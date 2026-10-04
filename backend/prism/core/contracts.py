@@ -113,6 +113,8 @@ class RiskSignal(BaseModel):
     event_type: EventType
     impact_score: float = Field(ge=1.0, le=10.0)
     confidence: float = Field(ge=0.0, le=1.0)
+    corroboration: int = Field(default=1, ge=1)  # distinct outlets reporting the story
+    source_reliability: float = Field(default=0.5, ge=0.0, le=1.0)
     headline: str
     url: str | None = None
     explanation: dict[str, Any] = Field(default_factory=dict)

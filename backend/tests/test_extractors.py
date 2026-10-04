@@ -166,10 +166,24 @@ def test_newsapi_parses_articles_and_sends_key_as_header() -> None:
     assert captured["headers"]["x-api-key"] == "secret-key"
     assert "apiKey" not in captured["params"] and captured["params"]["from"] == "2026-10-04T10:00:00"
     assert captured["params"]["sortBy"] == "publishedAt"
+    assert captured["params"]["searchIn"] == "title,description"
+    assert "domains" not in captured["params"]
     assert [d.title for d in result.documents] == ["Fed holds rates", "Chipmaker unveils processor"]  # oldest first
     assert result.documents[1].publisher == "Example Wire"
     assert "doubles throughput" in result.documents[1].body
     assert result.next_cursor == "2026-10-04T18:30:00"
+
+
+def test_newsapi_domain_filter_and_full_content_search() -> None:
+    captured = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        captured.update(request.url.params)
+        return httpx.Response(200, json=NEWSAPI_BODY)
+
+    newsapi(handler, search_in=None, domains=["cnbc.com", "ft.com"]).fetch(None, 10)
+    assert captured["domains"] == "cnbc.com,ft.com"
+    assert "searchIn" not in captured
 
 
 def test_newsapi_without_a_key_is_unavailable_and_makes_no_request() -> None:

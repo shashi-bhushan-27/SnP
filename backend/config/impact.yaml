@@ -40,7 +40,13 @@ source_reliability:
     wsj.com: 0.95
     ft.com: 0.95
     cnbc.com: 0.85
+    barrons.com: 0.85
     marketwatch.com: 0.8
+    fortune.com: 0.8
+    businessinsider.com: 0.75
+    investing.com: 0.7
+    forbes.com: 0.7
+    thestreet.com: 0.65
     finance.yahoo.com: 0.7
     seekingalpha.com: 0.6
 

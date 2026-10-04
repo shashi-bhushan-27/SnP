@@ -4,15 +4,36 @@ The engine turns one cleaned `Document` into zero or more `RiskSignal`s. It is a
 components, not one opaque model call, so every field can be explained and evaluated on its own.
 
 ```
-Document.text
-   |-- event classification  (per document)         -> event_type, confidence, top-3
-   |-- entity linking        (per document)         -> [company | market]
-   |-- sentiment             (per document x entity) -> score in [-1, 1], confidence
-   '-- impact                (per signal)           -> 1..10 with per-feature points
-                                                       -> confidence = geometric mean
+Document (title + text)
+   |-- relevance             commentary / listicle / advice headline?  -> Other
+   |-- event classification  headline first, body as discounted fallback -> event_type, confidence, top-3
+   |-- entity linking        headline first, body mentions capped        -> [company | market]
+   |-- salience gate         drop if subject and event are both body-only (or market-level and body-only)
+   |-- sentiment             per document x entity                       -> score in [-1, 1], confidence
+   '-- impact                per signal                                  -> 1..10 with per-feature points
+                                                                            -> confidence = geometric mean
 ```
 
+## 0. Relevance and salience (added after the first live-data run)
+
+On 50 live NewsAPI articles the first version produced 36 signals and one false stress trigger. The causes and
+the rules that fixed them (same 50 articles afterwards: 15 signals, 0 false triggers):
+
+| Problem | Rule |
+|---|---|
+| Event cues buried in the body ("The spice of the matter" whose body mentions inflation -> Macroeconomic 7.6) | Classify the **headline**; only if it has no evidence, classify the body at 0.7x confidence (`method ...+body`). A market-level signal with body-only evidence is dropped. |
+| Subject buried in the body (a grocery chain closing stores -> Walmart, which the body mentions) | Link entities in the **headline**; body-only mentions are capped at 0.6 confidence; if both the entity and the event are body-only, drop. |
+| Listicles, advice, questions ("3 Canadian AI Stocks...", "How to Protect Your Portfolio...", "...Time to Sell or Load Up?") | Commentary patterns on the headline (`config/relevance.yaml`) -> event Other; without a tracked entity the item is dropped. |
+| A single unknown site could trigger a portfolio stress test | Scenario triggers require confirmation: >= 2 distinct outlets **or** source reliability >= 0.9 (`scenarios.yaml`). |
+
+Each signal records where its evidence came from: `explanation.evidence = {"event": "title"|"body"|"commentary", "entity": "title"|"body"|"none"}`.
+
 ## 1. Entity linking (`nlp/entities`)
+
+Two backends behind the same protocol: `dictionary` (default) and `spacy` (`ENTITY_BACKEND=spacy`), which runs the
+dictionary first and adds spaCy ORG entities it does not know as ticker-less company mentions (confidence 0.6),
+ignoring regulators, central banks, exchanges and news outlets (`non_company_orgs` in `companies.yaml`).
+
 
 Closed-world dictionary over ~40 S&P 100 names (`config/companies.yaml`): canonical names, aliases (Google -> Alphabet),
 cashtags (`$TSLA`) and exchange tags (`(NASDAQ: MSFT)`). Matching is case-sensitive on word boundaries.
@@ -86,7 +107,9 @@ With FinBERT in place of the lexicon the sentiment and confidence would change; 
 
 ## 7. Known limitations
 
-- The lexicon baseline mislabels anything without a listed word as neutral; swap in FinBERT for real use.
+- FinBERT reads macro direction literally: "CPI rises above forecasts" scores +0.86 although higher inflation is bad
+  for markets. A macro polarity rule on top of FinBERT is the next fix.
+- The lexicon baseline mislabels anything without a listed word as neutral; it is the baseline, FinBERT is the default.
 - Single-label events; multi-event stories keep only the top class (top-3 is kept in the explanation).
 - The entity dictionary covers ~40 companies; unknown companies produce market-scope signals.
 - GDELT supplies headlines only, so GDELT-sourced signals have less context than NewsAPI-sourced ones.

@@ -20,6 +20,13 @@ class Trigger(BaseModel):
     min_impact: float = 7.0
     min_confidence: float = 0.5
     max_sentiment: float = 0.0  # only negative-leaning news stresses the book
+    # Confirmation: reported by >= min_sources distinct outlets OR by a source this trusted.
+    # Defaults (1, 0.0) accept every signal; scenarios.yaml tightens them.
+    min_sources: int = 1
+    trusted_reliability: float = 0.0
+
+    def confirmed(self, signal: RiskSignal) -> bool:
+        return signal.corroboration >= self.min_sources or signal.source_reliability >= self.trusted_reliability
 
 
 class Scenario(BaseModel):
@@ -56,5 +63,6 @@ class ScenarioBook:
             signal.impact_score > t.min_impact
             and signal.confidence >= t.min_confidence
             and signal.sentiment_score <= t.max_sentiment
+            and t.confirmed(signal)
         )
         return scenario if fires else None

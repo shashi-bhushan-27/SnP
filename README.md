@@ -35,11 +35,20 @@ python -m uvicorn prism.api.app:create_app --factory --reload
 Then open <http://127.0.0.1:8000/docs>. After an ETL run, try `GET /api/risk-signals?min_impact=7`,
 `GET /api/stress-runs` and `POST /api/stress-test` with `{"event_type": "Geopolitical", "impact_score": 9}`.
 
-Real models (FinBERT sentiment, embedding event classifier; about 570 MB downloaded on first use):
+Dashboard (second terminal, API running):
+
+```bash
+cd frontend
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Real models (FinBERT ~440 MB, optional bge-small ~130 MB and spaCy, downloaded on first use):
 
 ```bash
 pip install -r requirements-ml.txt
-# in .env (copy .env.example):  SENTIMENT_BACKEND=finbert   EVENT_BACKEND=hybrid
+# in .env (copy .env.example):  SENTIMENT_BACKEND=finbert   EVENT_BACKEND=hybrid   ENTITY_BACKEND=spacy
+python ../scripts/smoke_models.py      # lexicon vs FinBERT on labelled JSONL
 ```
 
 Live sources: set `ENABLED_SOURCES=replay,gdelt,newsapi`, add `NEWSAPI_KEY`, and `SCHEDULER_ENABLED=true`.
@@ -74,12 +83,15 @@ To add a source, model or downstream module, implement one protocol and register
 | Area | State |
 |---|---|
 | ETL (extract, transform, idempotent load, run reports, scheduler) | built, tested |
-| GDELT, NewsAPI adapters | built, tested against mocked HTTP; **GDELT live format not yet verified** (HTTP 429 from the dev machine) |
-| Risk Engine: entity linker, rules, lexicon baseline, impact, confidence | built, tested |
-| FinBERT and embedding classifier | adapters built and unit-tested with fakes; **real models not yet run or evaluated** |
-| Module B stress test (engine, scenarios, auto-trigger, API) | built, tested; shock numbers are illustrative |
+| NewsAPI adapter | built, tested, **verified live** (24 h delay confirmed; finance-domain filter on) |
+| GDELT DOC adapter | built, tested against mocked HTTP; **live format not verified** (HTTP 429 from the dev network) |
+| Risk Engine: entities, relevance/salience rules, events, impact, confidence | built, tested; rules tuned on 50 live articles |
+| FinBERT sentiment | **verified** (~30 ms/headline CPU); known weakness on macro direction |
+| Embedding event classifier, spaCy NER | adapters unit-tested with fakes; models not downloaded yet |
+| Module B stress test (engine, scenarios, confirmed auto-trigger, API) | built, tested; shock numbers are illustrative |
+| Streamlit dashboard | built, tested headless, checked in a browser |
 | PostgreSQL, Docker | written, **never run** |
-| Dashboard, Module A, evaluation harness, impact calibration | not started (`docs/roadmap.md`) |
+| Evaluation harness, impact calibration, transaction-seeded portfolio | not started (`docs/roadmap.md`) |
 
 ## Data and licensing notes
 

@@ -15,6 +15,13 @@ newsapi:
   query: '(stocks OR earnings OR "interest rates" OR inflation OR merger OR bankruptcy OR sanctions)'
   language: en
   page_size: 50
+  # Searching full article content pulls in sports/entertainment stories that mention "earnings";
+  # restrict matching to title + description and to finance outlets. Measured on live data (Oct 2026):
+  # without the domain list ~half the results were aggregator/entertainment noise; with it, results come
+  # from CNBC / Business Insider / Fortune / Bloomberg but are 1-3 days old. Set domains: [] to widen.
+  search_in: title,description
+  domains: [cnbc.com, marketwatch.com, finance.yahoo.com, reuters.com, bloomberg.com, wsj.com, ft.com,
+            apnews.com, fortune.com, businessinsider.com, forbes.com, investing.com, barrons.com, thestreet.com]
 
 replay:
   file: data/replay/sample_news.jsonl   # relative to the repo root

@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     # --- NLP backends (defaults run with no model downloads; use finbert/hybrid for real runs)
     sentiment_backend: Literal["lexicon", "finbert"] = "lexicon"
     event_backend: Literal["rules", "embedding", "hybrid"] = "rules"
+    entity_backend: Literal["dictionary", "spacy"] = "dictionary"
+    spacy_model: str = "en_core_web_sm"
     finbert_model: str = "ProsusAI/finbert"
     embedding_model: str = "BAAI/bge-small-en-v1.5"
 

@@ -4,3 +4,5 @@
 torch>=2.2
 transformers>=4.40
 sentence-transformers>=3.0
+# ENTITY_BACKEND=spacy also needs the English model: python -m spacy download en_core_web_sm  (~13 MB)
+spacy>=3.7

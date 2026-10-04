@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends
 from prism import __version__
 from prism.api.deps import get_container
 from prism.bootstrap import Container
+from prism.core.taxonomy import EventType
 
 router = APIRouter(tags=["health"])
 
@@ -19,4 +20,5 @@ def health(c: Container = Depends(get_container)) -> dict:
         "impact_model": c.engine.impact.name,
         "sources": list(c.pipeline.sources),
         "scheduler_running": c.scheduler is not None,
+        "event_types": [e.value for e in EventType],
     }

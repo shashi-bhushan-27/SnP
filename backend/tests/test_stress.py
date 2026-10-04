@@ -89,6 +89,14 @@ def test_low_confidence_signals_do_not_trigger(book) -> None:
     assert book.match(make_signal(confidence=0.5)) is not None
 
 
+def test_unconfirmed_single_source_stories_do_not_trigger(book) -> None:
+    # one article on an unknown site (reliability 0.5) is not enough...
+    assert book.match(make_signal(corroboration=1, reliability=0.5)) is None
+    # ...two independent outlets are, and so is one trusted outlet
+    assert book.match(make_signal(corroboration=2, reliability=0.5)) is not None
+    assert book.match(make_signal(corroboration=1, reliability=0.95)) is not None
+
+
 def test_positive_news_does_not_stress_the_portfolio(book) -> None:
     assert book.match(make_signal(sentiment=0.6)) is None
     assert book.match(make_signal(sentiment=-0.1)) is None

@@ -7,6 +7,7 @@ Free "Developer" plan: 100 requests/day, articles delayed 24 h, development use 
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from typing import Sequence
 
 import httpx
 
@@ -28,6 +29,8 @@ class NewsApiSource:
         *,
         language: str = "en",
         page_size: int = 50,
+        search_in: str | None = "title,description",
+        domains: Sequence[str] = (),
         client: httpx.Client | None = None,
         quota: QuotaGuard | None = None,
     ) -> None:
@@ -35,6 +38,8 @@ class NewsApiSource:
         self.query = query
         self.language = language
         self.page_size = page_size
+        self.search_in = search_in
+        self.domains = list(domains)
         self.quota = quota
         self._client = client or httpx.Client(timeout=30.0)
 
@@ -50,6 +55,10 @@ class NewsApiSource:
             "sortBy": "publishedAt",
             "pageSize": min(max(limit, 1), self.page_size, 100),
         }
+        if self.search_in:
+            params["searchIn"] = self.search_in  # matching inside full content drags in off-topic stories
+        if self.domains:
+            params["domains"] = ",".join(self.domains)
         if cursor:
             params["from"] = cursor
         try:

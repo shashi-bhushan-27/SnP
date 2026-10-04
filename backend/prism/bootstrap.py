@@ -13,14 +13,14 @@ from typing import Mapping
 import yaml
 
 from prism.config import REPO_ROOT, Settings, get_settings
-from prism.core.interfaces import EventClassifier, SentimentModel, SignalConsumer, Source
+from prism.core.interfaces import EntityLinker, EventClassifier, SentimentModel, SignalConsumer, Source
 from prism.etl.extract import GdeltSource, NewsApiSource, QuotaGuard, ReplaySource
 from prism.etl.load import JsonlSignalSink
 from prism.etl.pipeline import EtlPipeline
 from prism.etl.scheduler import PollingScheduler
 from prism.modules.stress import Portfolio, ScenarioBook, StressEngine, StressTrigger
 from prism.nlp.engine import RiskEngine
-from prism.nlp.entities import DictionaryEntityLinker
+from prism.nlp.entities import DictionaryEntityLinker, SpacyEntityLinker
 from prism.nlp.events import EmbeddingEventClassifier, HybridEventClassifier, RuleEventClassifier
 from prism.nlp.impact import WeightedImpactModel
 from prism.nlp.sentiment import FinBertSentiment, LexiconSentiment
@@ -62,12 +62,27 @@ def build_events(settings: Settings) -> EventClassifier:
     return HybridEventClassifier(rules, embedding)
 
 
+def build_entity_linker(settings: Settings) -> EntityLinker:
+    companies = settings.config_dir / "companies.yaml"
+    factories = {
+        "dictionary": lambda: DictionaryEntityLinker.from_yaml(companies),
+        "spacy": lambda: SpacyEntityLinker.from_yaml(companies, model=settings.spacy_model),
+    }
+    return factories[settings.entity_backend]()
+
+
+def load_commentary_patterns(settings: Settings) -> list[str]:
+    path = settings.config_dir / "relevance.yaml"
+    return yaml.safe_load(path.read_text(encoding="utf-8")).get("commentary_title_patterns", []) if path.exists() else []
+
+
 def build_engine(settings: Settings) -> RiskEngine:
     return RiskEngine(
-        entity_linker=DictionaryEntityLinker.from_yaml(settings.config_dir / "companies.yaml"),
+        entity_linker=build_entity_linker(settings),
         sentiment=build_sentiment(settings),
         events=build_events(settings),
         impact=WeightedImpactModel.from_yaml(settings.config_dir / "impact.yaml"),
+        commentary_patterns=load_commentary_patterns(settings),
     )
 
 
@@ -85,6 +100,8 @@ def build_sources(settings: Settings, store: SqlStore) -> dict[str, Source]:
             cfg["newsapi"]["query"],
             language=cfg["newsapi"]["language"],
             page_size=cfg["newsapi"]["page_size"],
+            search_in=cfg["newsapi"].get("search_in"),
+            domains=cfg["newsapi"].get("domains") or (),
             quota=QuotaGuard(store, "newsapi", settings.newsapi_daily_budget),
         ),
     }

@@ -1,36 +1,39 @@
-# Frontend
+# Dashboard (Streamlit)
 
-Nothing is built here yet. The dashboard is a pure client of the HTTP API (`backend/prism/api`), so
-the technology is a free choice that does not touch the backend.
+One page, "AI Financial Risk Cockpit", on top of the PRISM API. It holds no business logic: everything
+comes from the HTTP API, so it can be replaced without touching the backend.
 
-## Decision needed: Streamlit or React
+```bash
+# terminal 1 - the API (from backend/)
+python -m uvicorn prism.api.app:create_app --factory
 
-| | Streamlit + Plotly | React + TypeScript + Recharts/Plotly |
+# terminal 2 - the dashboard (from frontend/)
+pip install -r requirements.txt
+streamlit run app.py          # http://localhost:8501 ; API URL via the sidebar or PRISM_API_URL
+```
+
+## What is on the page
+
+| Section | Source | Notes |
 |---|---|---|
-| Time to a working dashboard | hours (Python, already installed) | 1-2 days |
-| Look and polish | good enough, limited layout control | full control |
-| Live refresh | `st.autorefresh` / fragments | polling or SSE |
-| Risk with a 7-day deadline | low | medium |
+| KPI strip | `GET /api/stats`, `/api/portfolio`, `/api/stress-runs` | "high-risk" = impact >= 7 **and** negative sentiment |
+| Live risk signals (select a row) | `GET /api/risk-signals` | impact / confidence as bars, sentiment signed |
+| Why this score? | `explanation.impact_points` of the selected signal | base 1.0 + five feature contributions = the score |
+| Portfolio stress test | latest auto-triggered run, or the sidebar what-if | before / after / P&L tiles, waterfall by asset class, asset table |
+| Risk over time, signals by event type | signals | each chart has a table view |
+| Pipeline health | `GET /api/pipeline/runs`, `/api/pipeline/rejects` | per-source counts and errors |
+| Try the Risk Engine | `POST /api/analyze` | paste headlines, one per line |
 
-Recommendation: **Streamlit first** (it can live in `frontend/app.py` and call the API with `httpx`); move to React only
-if the team has the capacity after the engine and evaluation are done. If React is chosen, enable CORS for the
-dev origin via `CORS_ORIGINS` (localhost:5173 and :3000 are allowed by default).
+Demo controls (sidebar): ingest the next replay batch, auto-stream replay every N seconds, what-if stress test.
 
-## What the single dashboard needs
+## Files
 
-All of it is already served by the API:
+- `app.py`: the Streamlit page (layout only)
+- `prism_client.py`: HTTP client + pure data shaping (unit-tested without Streamlit)
+- `prism_charts.py`: Plotly figures; colors from the validated reference palette (single series blue;
+  loss/negative red vs gain/positive blue; neutral gray), labels never clipped (`automargin`)
+- `.streamlit/config.toml`: light theme matching the chart palette
 
-| Panel | Endpoint |
-|---|---|
-| KPI strip: documents, signals, high-risk, avg impact | `GET /api/stats` |
-| Live risk feed (entity, event, sentiment, impact bar, confidence) | `GET /api/risk-signals?limit=50` (poll every few seconds) |
-| Why this score? (impact breakdown) | `explanation.impact_points` on each signal |
-| Latest stress test: before / after / loss | `GET /api/stress-runs?limit=1` |
-| Asset-level loss contribution | `by_asset` / `by_type` in the stress result |
-| Portfolio and scenario matrix | `GET /api/portfolio`, `GET /api/scenarios` |
-| Event distribution, risk over time | `signals_by_event` in `/api/stats`; `GET /api/risk-signals` grouped client-side |
-| Pipeline health (per-source status, latency) | `GET /api/pipeline/runs`, `GET /api/pipeline/rejects` |
-| "Try it": analyse pasted text | `POST /api/analyze` |
-| Demo button: replay next batch / trigger a scenario | `POST /api/pipeline/run`, `POST /api/stress-test` |
-
-Interactive API docs: `http://127.0.0.1:8000/docs` while the backend is running.
+Tests: `backend/tests/test_dashboard.py` (client, shaping, charts, and the page rendered headless with
+`streamlit.testing`). Verified in a browser at 1440x900 and at the narrow pane width: no truncated KPI values,
+no clipped chart labels.
