@@ -1,0 +1,20 @@
+# Source adapter settings. Secrets (NEWSAPI_KEY) come from the environment, never from here.
+#
+# Rate-limit notes (verified Oct 2026):
+#   GDELT DOC 2.0  ~1 request / 5 s per IP, and a 429 can block the IP for a minute or more.
+#                  The index refreshes every ~15 min, so polling faster than that adds nothing.
+#   NewsAPI free   100 requests/day, articles delayed 24 h, development use only.
+gdelt:
+  timespan: 1h
+  max_records: 75
+  queries:
+    - '("stock market" OR earnings OR "interest rates" OR inflation OR sanctions OR tariffs OR bankruptcy) sourcelang:english'
+    - '(Apple OR Microsoft OR Nvidia OR Tesla OR Amazon OR Alphabet OR Meta OR JPMorgan) sourcelang:english'
+
+newsapi:
+  query: '(stocks OR earnings OR "interest rates" OR inflation OR merger OR bankruptcy OR sanctions)'
+  language: en
+  page_size: 50
+
+replay:
+  file: data/replay/sample_news.jsonl   # relative to the repo root

@@ -1,0 +1,47 @@
+# Event -> stress scenario matrix for Module B.
+# A scenario fires when a signal's event_type matches AND
+#   impact_score > min_impact AND confidence >= min_confidence AND sentiment_score <= max_sentiment
+# (positive news should not stress a portfolio).
+#
+# Shock units:
+#   equity_pct          fractional move of equity prices      (-0.10 = -10%)
+#   rate_bps            parallel shift in interest rates      (+200  = +2.00 percentage points)
+#   credit_spread_bps   widening of credit spreads            (+150  = +1.50 percentage points)
+#
+# The values are illustrative first-pass assumptions, not calibrated parameters.
+scenarios:
+  - event_type: Geopolitical
+    name: Geopolitical escalation
+    description: Risk-off equity sell-off with higher rates and wider credit spreads.
+    trigger: {min_impact: 7.0, min_confidence: 0.5, max_sentiment: -0.2}
+    shock: {equity_pct: -0.10, rate_bps: 200, credit_spread_bps: 150}
+
+  - event_type: Macroeconomic
+    name: Macro / rates shock
+    description: Hawkish surprise - rates up sharply, equities and credit under pressure.
+    trigger: {min_impact: 7.0, min_confidence: 0.5, max_sentiment: -0.2}
+    shock: {equity_pct: -0.07, rate_bps: 300, credit_spread_bps: 100}
+
+  - event_type: Credit Event
+    name: Credit deterioration
+    description: Defaults / downgrades - spreads blow out, equities fall moderately.
+    trigger: {min_impact: 7.0, min_confidence: 0.5, max_sentiment: -0.2}
+    shock: {equity_pct: -0.08, rate_bps: 100, credit_spread_bps: 250}
+
+  - event_type: Regulatory
+    name: Regulatory action
+    description: Enforcement / new rules - modest equity and credit repricing.
+    trigger: {min_impact: 7.0, min_confidence: 0.5, max_sentiment: -0.2}
+    shock: {equity_pct: -0.06, rate_bps: 100, credit_spread_bps: 100}
+
+  - event_type: Market Shock
+    name: Market-wide sell-off
+    description: Broad market crash - largest equity drawdown in the matrix.
+    trigger: {min_impact: 7.0, min_confidence: 0.5, max_sentiment: -0.2}
+    shock: {equity_pct: -0.12, rate_bps: 200, credit_spread_bps: 200}
+
+  - event_type: Bankruptcy
+    name: Large counterparty failure
+    description: Failure of a major issuer - credit spreads gap wider.
+    trigger: {min_impact: 7.0, min_confidence: 0.5, max_sentiment: -0.2}
+    shock: {equity_pct: -0.09, rate_bps: 50, credit_spread_bps: 300}

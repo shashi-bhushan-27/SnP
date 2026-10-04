@@ -1,0 +1,7 @@
+-r requirements.txt
+pytest>=8.0
+# Optional extras used by evaluation, notebooks, data scripts and PostgreSQL
+pandas>=2.2
+yfinance>=0.2
+scikit-learn>=1.5
+psycopg2-binary>=2.9

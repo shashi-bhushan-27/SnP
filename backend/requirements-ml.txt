@@ -1,0 +1,6 @@
+# Optional: real NLP models (SENTIMENT_BACKEND=finbert, EVENT_BACKEND=embedding|hybrid)
+# ProsusAI/finbert ~440 MB, BAAI/bge-small-en-v1.5 ~130 MB, downloaded from Hugging Face on first use.
+-r requirements.txt
+torch>=2.2
+transformers>=4.40
+sentence-transformers>=3.0

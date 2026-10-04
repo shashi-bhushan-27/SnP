@@ -1,0 +1,19 @@
+# Default synthetic wholesale-banking portfolio (USD).
+# Every asset is valued with the same sensitivity model (see modules/stress/engine.py):
+#   dV = V*beta*equity_pct + V*(-duration*dy + 0.5*convexity*dy^2) - V*spread_duration*ds + dv01*rate_bps
+# where dy / ds are the rate / spread shocks in decimal form.
+#   beta             equity beta to the equity shock
+#   duration         modified duration (years) to the rate shock
+#   convexity        convexity term of the rate shock
+#   spread_duration  sensitivity to credit-spread widening (bonds and loans)
+#   dv01             USD value change per +1bp rate move (derivatives; signed)
+name: Synthetic Wholesale Book
+currency: USD
+assets:
+  - {id: LN-CORP-01,  name: Corporate Loans - Industrials,  asset_type: loan,       sector: Industrials,            value: 8000000,  duration: 0.25, spread_duration: 3.0}
+  - {id: LN-CORP-02,  name: Corporate Loans - Energy,       asset_type: loan,       sector: Energy,                value: 7000000,  duration: 0.25, spread_duration: 3.0}
+  - {id: LN-CORP-03,  name: Corporate Loans - Technology,   asset_type: loan,       sector: Information Technology, value: 5000000,  duration: 0.25, spread_duration: 3.0}
+  - {id: BD-GOV-01,   name: US Treasury Bonds,              asset_type: bond,       sector: Government,            value: 15000000, duration: 7.0,  convexity: 60}
+  - {id: BD-CORP-01,  name: Investment-Grade Corporate Bonds, asset_type: bond,    sector: Financials,            value: 10000000, duration: 5.0,  convexity: 35, spread_duration: 5.0}
+  - {id: EQ-01,       name: Listed Equity Portfolio,        asset_type: equity,     sector: Diversified,           value: 10000000, beta: 1.1}
+  - {id: DR-IRS-01,   name: Pay-Fixed Interest Rate Swaps,  asset_type: derivative, sector: Rates,                 value: 5000000,  dv01: 2500}

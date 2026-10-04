@@ -1,0 +1,25 @@
+{
+  "_comment": "DRAFT mapping from the 20 labels of zeroshot/twitter-financial-news-topic to PRISM event types. quality: exact = same concept, approx = overlapping concept, none = no PRISM equivalent (exclude from event F1). maps_to may list several acceptable PRISM types. Review before reporting numbers.",
+  "labels": {
+    "Analyst Update":              {"maps_to": [], "quality": "none"},
+    "Fed | Central Banks":         {"maps_to": ["Macroeconomic"], "quality": "exact"},
+    "Company | Product News":      {"maps_to": ["Product Launch"], "quality": "approx"},
+    "Treasuries | Corporate Debt": {"maps_to": ["Credit Event"], "quality": "approx"},
+    "Dividend":                    {"maps_to": ["Earnings"], "quality": "approx"},
+    "Earnings":                    {"maps_to": ["Earnings"], "quality": "exact"},
+    "Energy | Oil":                {"maps_to": [], "quality": "none"},
+    "Financials":                  {"maps_to": [], "quality": "none"},
+    "Currencies":                  {"maps_to": [], "quality": "none"},
+    "General News | Opinion":      {"maps_to": ["Other"], "quality": "approx"},
+    "Gold | Metals | Materials":   {"maps_to": [], "quality": "none"},
+    "IPO":                         {"maps_to": [], "quality": "none"},
+    "Legal | Regulation":          {"maps_to": ["Regulatory", "Legal"], "quality": "approx"},
+    "M&A | Investments":           {"maps_to": ["Merger/Acquisition"], "quality": "exact"},
+    "Macro":                       {"maps_to": ["Macroeconomic"], "quality": "exact"},
+    "Markets":                     {"maps_to": [], "quality": "none"},
+    "Politics":                    {"maps_to": ["Geopolitical"], "quality": "approx"},
+    "Personnel Change":            {"maps_to": ["Leadership Change"], "quality": "exact"},
+    "Stock Commentary":            {"maps_to": [], "quality": "none"},
+    "Stock Movement":              {"maps_to": [], "quality": "none"}
+  }
+}

@@ -1,0 +1,60 @@
+# Prototype sentences for EmbeddingEventClassifier (zero-shot, nearest-prototype).
+# Each class is described by a few canonical sentences; a text is assigned to the
+# class whose prototypes it is closest to in embedding space. Add or edit sentences
+# here to improve a class without retraining anything.
+Geopolitical:
+  - Escalating military tensions and new sanctions between major powers rattle global markets
+  - Trade war deepens as countries announce retaliatory tariffs and export bans
+  - Conflict disrupts oil shipping routes and raises fears of a wider regional war
+Macroeconomic:
+  - Central bank raises interest rates as inflation stays above target
+  - Weak GDP growth and rising unemployment fuel recession fears
+  - Consumer price index and jobs report surprise economists
+Credit Event:
+  - Rating agency downgrades the company's debt to junk status
+  - Borrower misses an interest payment and enters debt restructuring talks
+  - Credit spreads widen sharply as default risk rises
+Merger/Acquisition:
+  - Company agrees to acquire a rival in a multibillion dollar deal
+  - Two firms announce a merger to create an industry leader
+  - Private equity group launches a takeover bid for the listed company
+Product Launch:
+  - Company unveils its next-generation product at a launch event
+  - Firm introduces a new service for enterprise customers
+  - New device goes on sale after a global rollout
+Regulatory:
+  - Regulators open an antitrust investigation into the company
+  - Government agency fines the firm for compliance violations
+  - New rules and oversight proposed for the financial sector
+Earnings:
+  - Company reports quarterly earnings that beat analyst estimates
+  - Revenue and profit miss expectations and guidance is cut
+  - Firm raises full-year outlook after strong quarterly results
+Supply Chain:
+  - Supply chain disruption and component shortage halt factory production
+  - Port congestion and shipping delays hit deliveries
+  - Logistics bottlenecks push up costs for manufacturers
+Leadership Change:
+  - Chief executive steps down after a decade at the helm
+  - Board appoints a new CFO following an abrupt resignation
+  - Company names a new chairman in a leadership shake-up
+Cybersecurity:
+  - Hackers breach customer database in a major cyberattack
+  - Ransomware attack forces company systems offline
+  - Data breach exposes millions of user records
+Legal:
+  - Company sued in a class action lawsuit by shareholders
+  - Jury delivers a verdict in a patent infringement case
+  - Firm agrees to a legal settlement to end litigation
+Bankruptcy:
+  - Company files for Chapter 11 bankruptcy protection
+  - Lender declares insolvency and begins liquidation
+  - Retailer collapses into bankruptcy under heavy debt
+Market Shock:
+  - Stocks plunge in a broad sell-off as volatility spikes
+  - Markets crash and circuit breakers halt trading
+  - Panic selling wipes out billions in market value
+Other:
+  - Company announces sponsorship of a local community event
+  - Analyst commentary and general opinion without a specific event
+  - Startup raises a funding round from venture investors

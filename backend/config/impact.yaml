@@ -1,0 +1,48 @@
+# Impact score = 1 + 9 * sum(weight_i * feature_i), every feature in [0, 1] -> score in [1, 10].
+# Starting priors; calibrate against realised price reaction (see docs/nlp-risk-engine.md).
+weights:
+  severity: 0.35            # prior severity of the event type
+  sentiment_magnitude: 0.25 # |sentiment score|
+  exposure: 0.20            # how directly the entity is hit (scope)
+  source_reliability: 0.10  # who is reporting it
+  corroboration: 0.10       # how many distinct sources report it
+
+# 0-10 prior severity per event type (divided by 10 to give the feature)
+severity:
+  Bankruptcy: 10
+  Geopolitical: 9
+  Market Shock: 9
+  Credit Event: 8
+  Regulatory: 8
+  Macroeconomic: 8
+  Cybersecurity: 7
+  Merger/Acquisition: 7
+  Earnings: 7
+  Legal: 6
+  Supply Chain: 6
+  Leadership Change: 4
+  Product Launch: 4
+  Other: 2
+
+exposure:
+  company: 1.0
+  market: 0.8
+  sector: 0.6
+
+source_reliability:
+  default: 0.5
+  social: 0.4               # tweets / user-generated posts
+  social_domains: [twitter, twitter.com, x.com, stocktwits, stocktwits.com, reddit.com]
+  domains:
+    reuters.com: 1.0
+    apnews.com: 0.95
+    bloomberg.com: 1.0
+    wsj.com: 0.95
+    ft.com: 0.95
+    cnbc.com: 0.85
+    marketwatch.com: 0.8
+    finance.yahoo.com: 0.7
+    seekingalpha.com: 0.6
+
+corroboration:
+  saturation_sources: 5     # feature = (n_sources - 1) / (saturation - 1), capped at 1

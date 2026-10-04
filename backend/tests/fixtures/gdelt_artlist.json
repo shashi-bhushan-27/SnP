@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "url": "https://www.example-wire.com/markets/stocks-slide-on-tariff-fears",
+      "url_mobile": "",
+      "title": "Stocks slide as tariff fears rattle investors",
+      "seendate": "20261004T183000Z",
+      "socialimage": "",
+      "domain": "example-wire.com",
+      "language": "English",
+      "sourcecountry": "United States"
+    },
+    {
+      "url": "https://www.example-news.com/business/chipmaker-unveils-new-processor",
+      "url_mobile": "",
+      "title": "Chipmaker unveils new processor for data centers",
+      "seendate": "20261004T181500Z",
+      "socialimage": "",
+      "domain": "example-news.com",
+      "language": "English",
+      "sourcecountry": "United Kingdom"
+    }
+  ]
+}

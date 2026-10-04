@@ -1,0 +1,45 @@
+# Curated entity dictionary (S&P 100 subset). Used by DictionaryEntityLinker.
+#   name       canonical company name (also matched as an alias)
+#   aliases    extra surface forms (matched case-sensitively, on word boundaries)
+#   ambiguous  true -> alias is also an everyday word; only counted when the text
+#              contains finance context (shares, earnings, CEO, ...) or a ticker tag
+# Tickers are matched via cashtags ($AAPL) and exchange tags ((NASDAQ: AAPL)).
+companies:
+  - {name: Apple,              ticker: AAPL,  sector: Information Technology, aliases: [Apple Inc],                       ambiguous: true}
+  - {name: Microsoft,          ticker: MSFT,  sector: Information Technology, aliases: [Microsoft Corp]}
+  - {name: Alphabet,           ticker: GOOGL, sector: Communication Services, aliases: [Google]}
+  - {name: Amazon,             ticker: AMZN,  sector: Consumer Discretionary, aliases: [Amazon.com],                     ambiguous: true}
+  - {name: Nvidia,             ticker: NVDA,  sector: Information Technology, aliases: [NVIDIA]}
+  - {name: Meta,               ticker: META,  sector: Communication Services, aliases: [Meta Platforms, Facebook],        ambiguous: true}
+  - {name: Tesla,              ticker: TSLA,  sector: Consumer Discretionary}
+  - {name: Berkshire Hathaway, ticker: BRK.B, sector: Financials}
+  - {name: JPMorgan,           ticker: JPM,   sector: Financials,              aliases: [JPMorgan Chase, JP Morgan]}
+  - {name: Visa,               ticker: V,     sector: Financials,              ambiguous: true}
+  - {name: Mastercard,         ticker: MA,    sector: Financials}
+  - {name: Johnson & Johnson,  ticker: JNJ,   sector: Health Care,             aliases: [J&J]}
+  - {name: Eli Lilly,          ticker: LLY,   sector: Health Care}
+  - {name: Pfizer,             ticker: PFE,   sector: Health Care}
+  - {name: UnitedHealth,       ticker: UNH,   sector: Health Care,             aliases: [UnitedHealth Group]}
+  - {name: Walmart,            ticker: WMT,   sector: Consumer Staples}
+  - {name: Procter & Gamble,   ticker: PG,    sector: Consumer Staples,        aliases: [P&G]}
+  - {name: Coca-Cola,          ticker: KO,    sector: Consumer Staples,        aliases: [Coca Cola]}
+  - {name: PepsiCo,            ticker: PEP,   sector: Consumer Staples}
+  - {name: Costco,             ticker: COST,  sector: Consumer Staples}
+  - {name: Home Depot,         ticker: HD,    sector: Consumer Discretionary}
+  - {name: McDonald's,         ticker: MCD,   sector: Consumer Discretionary,  aliases: [McDonalds]}
+  - {name: Nike,               ticker: NKE,   sector: Consumer Discretionary}
+  - {name: Disney,             ticker: DIS,   sector: Communication Services,  aliases: [Walt Disney]}
+  - {name: Netflix,            ticker: NFLX,  sector: Communication Services}
+  - {name: Exxon Mobil,        ticker: XOM,   sector: Energy,                  aliases: [ExxonMobil, Exxon]}
+  - {name: Chevron,            ticker: CVX,   sector: Energy}
+  - {name: Bank of America,    ticker: BAC,   sector: Financials,              aliases: [BofA]}
+  - {name: Goldman Sachs,      ticker: GS,    sector: Financials}
+  - {name: Morgan Stanley,     ticker: MS,    sector: Financials}
+  - {name: Citigroup,          ticker: C,     sector: Financials,              aliases: [Citi]}
+  - {name: Wells Fargo,        ticker: WFC,   sector: Financials}
+  - {name: Intel,              ticker: INTC,  sector: Information Technology,  ambiguous: true}
+  - {name: AMD,                ticker: AMD,   sector: Information Technology,  aliases: [Advanced Micro Devices]}
+  - {name: Cisco,              ticker: CSCO,  sector: Information Technology}
+  - {name: Oracle,             ticker: ORCL,  sector: Information Technology,  ambiguous: true}
+  - {name: IBM,                ticker: IBM,   sector: Information Technology}
+  - {name: Boeing,             ticker: BA,    sector: Industrials}

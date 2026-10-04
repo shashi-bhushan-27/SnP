@@ -1,0 +1,186 @@
+# Keyword/regex rules for RuleEventClassifier. Patterns are case-insensitive;
+# use (?-i:...) to force case-sensitivity (e.g. the Fed, SEC).
+#   strong  precise cues, each distinct match scores 1.0
+#   weak    supporting cues, each distinct match scores 0.4
+# Key order = tie-break priority (most severe first). Keys must match EventType values.
+Bankruptcy:
+  strong:
+    - 'chapter\s*(7|11)\b'
+    - 'files? for (chapter \d+ )?bankruptcy'
+    - 'bankruptcy protection'
+    - 'insolven(t|cy)'
+    - 'declares? bankruptcy'
+  weak:
+    - 'bankrupt'
+    - 'liquidation'
+    - 'wind(s|ing)? down'
+Market Shock:
+  strong:
+    - 'sell-?off'
+    - 'market (crash|rout|turmoil)'
+    - 'circuit breakers?'
+    - 'flash crash'
+    - 'volatility (index|spikes?|surges?)'
+    - '(?-i:\bVIX\b)'
+    - 'stocks? (plunge|tumble|crash)'
+  weak:
+    - 'plunge[sd]?\b'
+    - 'tumble[sd]?\b'
+    - 'panic'
+    - '\brout\b'
+Geopolitical:
+  strong:
+    - 'sanctions?\b'
+    - 'tariffs?\b'
+    - 'trade war'
+    - 'invasion|invade'
+    - 'missile'
+    - 'ceasefire'
+    - 'embargo'
+    - 'geopolitical'
+    - 'tensions? (between|escalate|rise|mount)'
+    - 'escalat\w* tensions?'
+    - 'military'
+  weak:
+    - '\bwar\b'
+    - 'conflict'
+    - 'tanker'
+    - 'shipping lane'
+    - 'diplomatic'
+Credit Event:
+  strong:
+    - 'downgrade[sd]?\b.{0,40}\b(junk|rating|credit)'
+    - 'credit rating'
+    - 'rating agency'
+    - '\bdefault(s|ed)?\b'
+    - 'miss(ed|ing)\b.{0,20}payments?'
+    - 'debt restructuring'
+    - 'covenant'
+    - 'credit spreads?'
+  weak:
+    - 'junk'
+    - 'downgrade'
+    - 'bond yields?'
+    - 'refinanc'
+    - 'write-?downs?'
+    - 'loan loss'
+Regulatory:
+  strong:
+    - 'antitrust'
+    - '(?-i:\b(SEC|FTC|DOJ|CFPB|FCA|ESMA)\b)'
+    - 'regulators?\b'
+    - 'regulatory'
+    - 'investigation|\bprobe\b'
+    - 'compliance'
+  weak:
+    - 'fined?\b'
+    - '\bban(s|ned)?\b'
+    - 'oversight'
+    - 'licen[cs]e'
+Macroeconomic:
+  strong:
+    - 'inflation'
+    - '(?-i:\bCPI\b)|consumer price index'
+    - 'interest rates?'
+    - 'federal reserve|(?-i:\bFed\b)'
+    - 'rate (hike|cut)s?'
+    - '(?-i:\bGDP\b)'
+    - 'unemployment'
+    - 'jobs report|nonfarm payrolls'
+    - 'recession'
+    - 'central bank'
+    - '(?-i:\b(ECB|Bank of England|Bank of Japan)\b)'
+  weak:
+    - 'economy|economic'
+    - 'yield curve'
+    - 'treasury yields?'
+    - 'consumer (spending|confidence)'
+Cybersecurity:
+  strong:
+    - 'cyber-?\s?attack'
+    - 'data breach'
+    - 'ransomware'
+    - '\bhack(ed|ers?)?\b'
+    - 'breach(ed)?\b.{0,30}(database|customer|data|systems?)'
+  weak:
+    - 'outage'
+    - 'vulnerability'
+    - 'security incident'
+Supply Chain:
+  strong:
+    - 'supply[- ]chain'
+    - 'shortage'
+    - 'port (delays|congestion|strike)'
+    - 'logistics'
+    - 'shipping (delays|disruption)'
+  weak:
+    - 'factory'
+    - 'shipments?'
+    - 'production halt'
+    - 'delays?\b'
+Legal:
+  strong:
+    - 'lawsuit'
+    - '\bsues?\b|\bsued\b'
+    - 'class[- ]action'
+    - 'verdict'
+    - 'settle(s|d|ment)'
+    - 'patent infringement'
+    - '\bjury\b'
+  weak:
+    - 'court'
+    - 'judge'
+    - 'litigation'
+    - 'plaintiff'
+Merger/Acquisition:
+  strong:
+    - '\bacquir(e|es|ed|ing)\b'
+    - '\bacquisition\b'
+    - '\bmerger\b|\bmerges?\b'
+    - 'takeover'
+    - 'buyout'
+    - 'agrees? to buy'
+    - 'all-cash deal'
+  weak:
+    - 'stake in'
+    - 'deal valued'
+    - 'bid for'
+    - 'divest'
+Earnings:
+  strong:
+    - 'earnings'
+    - 'quarterly (results|revenue|profit)'
+    - '(?-i:\bEPS\b)'
+    - '\bguidance\b'
+    - 'profit warning'
+    - '(beats?|misses|tops?) (analyst |consensus |market )?(estimates|expectations|forecasts)'
+    - '(above|below) expectations'
+  weak:
+    - 'revenue'
+    - '\bprofit\b'
+    - 'full-year'
+    - '(?-i:\bQ[1-4]\b)'
+Leadership Change:
+  strong:
+    - 'steps? down'
+    - 'resign(s|ed|ation)'
+    - 'appoint(s|ed)'
+    - 'names? (a )?new (chief|ceo|cfo|president|chairman)'
+    - 'new chief executive'
+    - 'departure of'
+  weak:
+    - '(?-i:\bCEO\b)'
+    - '(?-i:\bCFO\b)'
+    - 'chairman'
+    - 'succession'
+Product Launch:
+  strong:
+    - 'launch(es|ed|ing)?\b'
+    - 'unveil(s|ed|ing)?\b'
+    - 'introduces?\b'
+    - 'rolls? out|rollout'
+    - 'new (product|model|device|chip|service)'
+  weak:
+    - 'release[sd]?\b'
+    - 'debut'
+    - 'next-generation'
