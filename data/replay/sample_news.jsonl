@@ -1,26 +1,26 @@
 {"publisher": "reuters.com", "text": "Apple posts record quarterly revenue as iPhone demand beats analyst estimates", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
 {"publisher": "bloomberg.com", "text": "Microsoft launches new AI assistant for enterprise customers, shares edge higher", "label_sentiment": "positive", "label_event": "Product Launch", "synthetic": true}
 {"publisher": "cnbc.com", "text": "Nvidia unveils next-generation data center chip, promises major performance gains", "label_sentiment": "positive", "label_event": "Product Launch", "synthetic": true}
+{"publisher": "bloomberg.com", "text": "JPMorgan reports quarterly profit above expectations, raises full-year guidance", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
+{"publisher": "cnbc.com", "text": "Tesla shares rise as quarterly deliveries beat analyst estimates", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
+{"publisher": "twitter", "text": "Lumen Labs raises $50 million Series B", "label_sentiment": "positive", "label_event": "Other", "synthetic": true}
+{"publisher": "reuters.com", "text": "Cobalt Energy shares surge after major offshore discovery", "label_sentiment": "positive", "label_event": "Other", "synthetic": true}
+{"publisher": "elpais.com", "language": "es", "text": "El banco central sube los tipos de interes por quinta vez consecutiva", "synthetic": true}
+{"publisher": "reuters.com", "text": "Consumer price index rises 0.5% in September, above economists' forecasts", "label_sentiment": "negative", "label_event": "Macroeconomic", "synthetic": true}
+{"publisher": "reuters.com", "text": "Global chip shortage deepens as port delays disrupt factory shipments", "label_sentiment": "negative", "label_event": "Supply Chain", "synthetic": true}
+{"publisher": "bloomberg.com", "text": "Veridian Pharma names new chief executive after abrupt departure of long-time CEO", "label_sentiment": "neutral", "label_event": "Leadership Change", "synthetic": true}
 {"publisher": "reuters.com", "text": "Federal Reserve signals further interest rate hikes as inflation stays stubbornly high", "label_sentiment": "negative", "label_event": "Macroeconomic", "synthetic": true}
 {"publisher": "wsj.com", "text": "Federal Reserve signals further interest rate hikes as inflation stays stubbornly high, officials say", "label_sentiment": "negative", "label_event": "Macroeconomic", "synthetic": true}
 {"publisher": "reuters.com", "text": "Escalating tensions between two major economies trigger new sanctions and tariffs, rattling global markets", "label_sentiment": "negative", "label_event": "Geopolitical", "synthetic": true}
 {"publisher": "ft.com", "text": "Escalating tensions between two major economies trigger new sanctions and tariffs, rattling global markets, analysts say", "label_sentiment": "negative", "label_event": "Geopolitical", "synthetic": true}
-{"publisher": "ft.com", "text": "Northbridge Capital files for Chapter 11 bankruptcy protection after missing bond payments", "label_sentiment": "negative", "label_event": "Bankruptcy", "synthetic": true}
-{"publisher": "bloomberg.com", "text": "Rating agency downgrades Helix Motors to junk, citing rising default risk and weak cash flow", "label_sentiment": "negative", "label_event": "Credit Event", "synthetic": true}
+{"publisher": "reuters.com", "text": "Tanker attacks raise fears of supply disruption in key shipping lane, oil prices spike", "label_sentiment": "negative", "label_event": "Geopolitical", "synthetic": true}
 {"publisher": "reuters.com", "text": "Regulators open antitrust investigation into cloud pricing practices at several large technology firms", "label_sentiment": "negative", "label_event": "Regulatory", "synthetic": true}
-{"publisher": "wsj.com", "text": "Orion Systems agrees to acquire Vantage Analytics in $2.1 billion all-cash deal", "label_sentiment": "neutral", "label_event": "Merger/Acquisition", "synthetic": true}
 {"publisher": "cnbc.com", "text": "Hackers breach customer database at Meridian Bank, ransomware group claims responsibility", "label_sentiment": "negative", "label_event": "Cybersecurity", "synthetic": true}
-{"publisher": "reuters.com", "text": "Global chip shortage deepens as port delays disrupt factory shipments", "label_sentiment": "negative", "label_event": "Supply Chain", "synthetic": true}
-{"publisher": "bloomberg.com", "text": "Veridian Pharma names new chief executive after abrupt departure of long-time CEO", "label_sentiment": "neutral", "label_event": "Leadership Change", "synthetic": true}
+{"publisher": "bloomberg.com", "text": "Rating agency downgrades Helix Motors to junk, citing rising default risk and weak cash flow", "label_sentiment": "negative", "label_event": "Credit Event", "synthetic": true}
+{"publisher": "ft.com", "text": "Northbridge Capital files for Chapter 11 bankruptcy protection after missing bond payments", "label_sentiment": "negative", "label_event": "Bankruptcy", "synthetic": true}
 {"publisher": "reuters.com", "text": "Stocks plunge in broad sell-off as volatility index spikes to highest level this year", "label_sentiment": "negative", "label_event": "Market Shock", "synthetic": true}
 {"publisher": "wsj.com", "text": "Jury orders Cobalt Energy to pay $800 million in patent infringement lawsuit verdict", "label_sentiment": "negative", "label_event": "Legal", "synthetic": true}
-{"publisher": "bloomberg.com", "text": "JPMorgan reports quarterly profit above expectations, raises full-year guidance", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
-{"publisher": "cnbc.com", "text": "Tesla shares rise as quarterly deliveries beat analyst estimates", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
-{"publisher": "reuters.com", "text": "Tanker attacks raise fears of supply disruption in key shipping lane, oil prices spike", "label_sentiment": "negative", "label_event": "Geopolitical", "synthetic": true}
-{"publisher": "reuters.com", "text": "Consumer price index rises 0.5% in September, above economists' forecasts", "label_sentiment": "negative", "label_event": "Macroeconomic", "synthetic": true}
-{"publisher": "bloomberg.com", "text": "Apple posts record quarterly revenue as iPhone demand beats analyst estimates", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
+{"publisher": "wsj.com", "text": "Orion Systems agrees to acquire Vantage Analytics in $2.1 billion all-cash deal", "label_sentiment": "neutral", "label_event": "Merger/Acquisition", "synthetic": true}
 {"publisher": "ft.com", "text": "GDP growth slows to 1.1% as unemployment edges up, recession fears grow", "label_sentiment": "negative", "label_event": "Macroeconomic", "synthetic": true}
-{"publisher": "reuters.com", "text": "Cobalt Energy shares surge after major offshore discovery", "label_sentiment": "positive", "label_event": "Other", "synthetic": true}
+{"publisher": "bloomberg.com", "text": "Apple posts record quarterly revenue as iPhone demand beats analyst estimates", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
 {"publisher": "twitter", "text": "$TSLA $NVDA looking strong into earnings, buyers stepping in", "label_sentiment": "positive", "label_event": "Earnings", "synthetic": true}
-{"publisher": "twitter", "text": "Lumen Labs raises $50 million Series B", "label_sentiment": "positive", "label_event": "Other", "synthetic": true}
-{"publisher": "elpais.com", "language": "es", "text": "El banco central sube los tipos de interes por quinta vez consecutiva", "synthetic": true}
