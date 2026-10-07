@@ -107,8 +107,11 @@ With FinBERT in place of the lexicon the sentiment and confidence would change; 
 
 ## 7. Known limitations
 
-- FinBERT reads macro direction literally: "CPI rises above forecasts" scores +0.86 although higher inflation is bad
-  for markets. A macro polarity rule on top of FinBERT is the next fix.
+- FinBERT reads macro direction literally ("inflation hits a 40-year high, beating forecasts" -> +0.90). A rule layer
+  (`config/macro_direction.yaml`, `MacroDirectionSentiment`) now sets the direction for hot/cooling inflation, hawkish
+  central banks, jumping yields and weakening growth: on 81 historical events the sentiment sign agrees with the
+  next-day S&P 500 move 82% of the time vs 77% for raw FinBERT (in-sample: the rules were written with these
+  headlines in view). It covers only the patterns listed; anything else is still read literally.
 - The lexicon baseline mislabels anything without a listed word as neutral; it is the baseline, FinBERT is the default.
 - Single-label events; multi-event stories keep only the top class (top-3 is kept in the explanation).
 - The entity dictionary covers ~40 companies; unknown companies produce market-scope signals.

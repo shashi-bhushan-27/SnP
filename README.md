@@ -110,7 +110,7 @@ source, model or downstream module, implement one protocol and register it in `b
 | Module B: history-calibrated scenarios, analogs, confirmed auto-trigger, hand-written matrix for comparison | built, back-tested |
 | Streamlit dashboard | built, tested headless, checked in a browser |
 | PostgreSQL, Docker | written, **never run** |
-| Known gaps | FinBERT misreads macro direction ("inflation hits a 40-year high" -> positive); 81-event library; 3 risk factors |
+| Known gaps | macro-direction rules cover a fixed list of patterns; 81-event library; 3 risk factors; impact score not calibrated against returns |
 
 ## Data and licensing notes
 
