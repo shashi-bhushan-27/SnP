@@ -17,16 +17,20 @@ top of unvalidated logic is worth less than a plain one on a defensible engine.
 - [x] Oct 5: Streamlit dashboard v1 (KPIs, risk feed with score breakdown, stress panel, charts, pipeline health)
 - [x] Oct 5: spaCy NER adapter (unit-tested with a fake model; spaCy itself not installed yet)
 
-Decisions taken: **Module B only**, **Streamlit** dashboard.
+- [x] Oct 8: evaluation harness + results on 6,500 labelled finance tweets
+- [x] Oct 8: **history-calibrated stress scenarios** (81-event library from Yahoo Finance + FRED, analog retrieval,
+      back-test, API, dashboard) - the novel part, see `docs/history-calibrated-stress.md`
+- [x] Oct 8: GDELT raw GKG source (verified live); real spaCy; quality fixes from live GDELT data
+- [x] Oct 8: pitch outline and demo script from measured numbers (`docs/pitch.md`)
+
+Decisions taken: **Module B only**, **Streamlit** dashboard, **history-calibrated** scenarios by default.
 
 ## Next, in order
 
-1. Macro polarity rule on top of FinBERT (rising inflation / higher rates / weaker growth = negative).
-2. Evaluation harness on labelled data (needs the HF tweet sets, ~4 MB, approval pending).
-3. Impact calibration (event study with yfinance) and confidence calibration.
-4. Portfolio seeded from transaction data; review shock numbers.
-5. GDELT via the raw GKG 15-minute files (the DOC API is blocked from this network), if wanted.
-6. Demo polish: replay ordering for the 5-minute story, slides from measured numbers, rehearsal.
+1. Macro direction rule on top of FinBERT (rising inflation / higher rates / weaker growth = negative).
+2. Order the replay file for the 5-minute story; record a fallback video; build the 7 slides from `docs/pitch.md`.
+3. Optional: grow the event library (more credit and regulatory events), sector-level shocks.
+4. Optional: impact calibration against event-study returns.
 
 ## Original plan
 

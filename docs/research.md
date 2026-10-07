@@ -72,10 +72,22 @@ against the live page, API or a real call; anything I could not check is listed 
 | figshare "Effects of Twitter sentiment on stock price returns" (CC BY 4.0, 377 KB): daily sentiment *counts* per DJIA-30 stock, 2013-06 to 2014-09, no tweet text. | figshare API | Usable for an impact/returns sanity check, not as NLP input. |
 | The Kaggle "financial news with ticker-level sentiment" page needs a login. | fetch attempt | Needs a manual download by the team. |
 
-## 7. Not verified yet
+## 7. Learned on 7-8 Oct 2026
 
-- The **live GDELT DOC response format** (fixture hand-written from the docs; 429 from this network).
-- **bge-small embeddings and spaCy NER on real text** (adapters unit-tested with fakes; models not downloaded yet).
+| Observation | Evidence | Change made |
+|---|---|---|
+| Hand-written stress shocks get the rates direction wrong: across 81 market-moving events (2008-2025) the 10-year yield fell after 100% of bankruptcies, 81% of geopolitical shocks, 73% of credit events. | `evaluation/results/analog_backtest.md` (S&P 500 from Yahoo Finance, DGS10 and BAA10Y from FRED) | History-calibrated scenarios became Module B's default ([history-calibrated-stress.md](history-calibrated-stress.md)). |
+| Calibrated severity: 1-in-10 historical outcome covers 85-89% of real outcomes with ~$0.4M excess; the hand-written matrix covers 95% with ~$4.7M excess. | purged leave-one-out + time-respecting back-test | Default `STRESS_QUANTILE=0.10`; dashboard offers 1-in-5/10/20. |
+| Analog retrieval by meaning does not beat the same-type average for point prediction (embeddings match topic, not direction: "inflation hotter" vs "inflation cools"). Sentiment-direction filtering did not help, because FinBERT scores "inflation hits a 40-year high" +0.90. | back-test + direction experiment | Analogs are shown as explanation; severity comes from the type's history. |
+| Literature: historical scenarios are valued because they are plausible ("they happened"), limited by short history; analog methods can mislead on surface similarity. | [FHFA WP 13-02](https://www.fhfa.gov/document/wp1302.pdf), [Man Group on regimes](https://www.man.com/insights/regimes-systematic-models-power-of-prediction), [analog forecasting](https://ar5iv.labs.arxiv.org/html/1412.3831) | Same-type pool + quantile, purged evaluation, analogs for explanation only. |
+| GDELT raw GKG files: `lastupdate.txt` lists slots up to ~1 h before the file is downloadable (404); http redirects to https; 27 columns, title in `<PAGE_TITLE>`; ~1,400 articles per 15 min, ~140 with finance themes. | live downloads | `GdeltGkgSource` walks slots and treats 404 as "not yet". |
+| spaCy `en_core_web_sm` mis-tags Title-Case headlines ("Circle Stock Falls", "Cornell", "Trump" as ORG). | 119 live GDELT articles | Untracked ORGs need a corporate suffix; untracked companies weigh 0.5 exposure. |
+| Without abstention the embedding classifier labels 86% of non-event tweets as events; min confidence 0.3 halves that with macro-F1 ~unchanged. | 4,117 labelled tweets | `HybridEventClassifier(embedding_min_confidence=0.3)`. |
+| Evaluation on labelled tweets: events macro-F1 0.81 hybrid / 0.78 embeddings / 0.62 rules (rules 93% precise but answer 51%); sentiment macro-F1 0.66 FinBERT vs 0.60 lexicon. | `evaluation/results/latest.md` | Hybrid + FinBERT are the defaults for real runs. |
+
+## 8. Not verified yet
+
+- The **live GDELT DOC API response format** (fixture hand-written from the docs; 429 from this network). The GKG
+  file route is verified live and is the recommended GDELT path.
 - FinBERT license (not stated on the model card as fetched).
 - PostgreSQL and Docker paths (written, never run).
-- That the HF CSV files have exactly the column layout the dataset cards describe (converter unit-tested on that layout; nothing downloaded).

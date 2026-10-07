@@ -17,6 +17,7 @@ flowchart LR
         G[GDELT DOC 2.0] --> X
         N[NewsAPI] --> X
         R[Replay JSONL] --> X
+        K[GDELT GKG files] --> X
         X[Source adapters<br/>cursor per source]
     end
     X -->|RawDocument| B[(raw_documents<br/>bronze)]
@@ -35,6 +36,7 @@ flowchart LR
     L -->|new signals| C
     subgraph DOWNSTREAM
         C[SignalConsumer] --> M[Stress tester<br/>Module B]
+        H[(Analog library<br/>81 past events)] --> M
         C --> J
     end
     M --> SR[(stress_runs)] --> API
@@ -124,9 +126,11 @@ Text with neither an entity nor an event is dropped as irrelevant (counted as `s
 | `event_rules.yaml` | regex cues per event type (strong / weak) |
 | `event_prototypes.yaml` | prototype sentences for the embedding classifier |
 | `impact.yaml` | impact weights, severity priors, exposure, source reliability |
-| `scenarios.yaml` | event type -> shock, and the trigger thresholds |
+| `scenarios.yaml` | trigger thresholds per event type, and the hand-written shocks (comparison / `SCENARIO_SOURCE=matrix`) |
+| `analog_events.yaml` | curated past events (date, outcome-free title, type) |
+| `analog_library.json` | computed market reactions of those events (built by `scripts/build_analog_library.py`) |
 | `portfolio.yaml` | the synthetic wholesale book and its sensitivities |
-| `sources.yaml` | GDELT queries, NewsAPI query, replay file |
+| `sources.yaml` | GDELT DOC queries, GKG theme filter, NewsAPI query and domains, replay file |
 
 Environment variables are listed in `.env.example`.
 
@@ -142,7 +146,15 @@ Environment variables are listed in `.env.example`.
 | `GET /api/news`, `GET /api/stats` | cleaned documents; dashboard KPIs |
 | `POST /api/pipeline/run`, `GET /api/pipeline/runs`, `GET /api/pipeline/rejects` | trigger an ETL run; run reports; rejected records |
 | `GET /api/portfolio`, `GET /api/scenarios` | the book and the shock matrix |
-| `POST /api/stress-test`, `GET /api/stress-runs` | on-demand what-if; stored runs (auto-triggered ones included) |
+| `POST /api/stress-test`, `GET /api/stress-runs` | on-demand what-if (`source` history/matrix, `quantile`, `headline`); stored runs |
+| `GET /api/analogs`, `GET /api/history/summary` | most similar past events for a headline; what history says per event type |
+
+## Module B: where the stress shock comes from
+
+By default (`SCENARIO_SOURCE=history`) the shock is the real market reaction of a past event of the same type,
+at the chosen percentile of this book's P&L (`STRESS_QUANTILE`, default 0.10), and the result carries the basis
+event, the pool's average outcome, every past outcome priced on today's book and the nearest analogs by meaning.
+The trigger thresholds still come from `scenarios.yaml`. See [history-calibrated-stress.md](history-calibrated-stress.md).
 
 ## Not built yet
 

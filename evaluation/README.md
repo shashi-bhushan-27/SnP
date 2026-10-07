@@ -1,7 +1,13 @@
 # Evaluation
 
-The deck is only allowed to show numbers that come from here. Nothing in this folder has been run yet
-(the harness is the next engine task, see `docs/roadmap.md`); this file is the plan and the data contract.
+The deck is only allowed to show numbers that come from here.
+
+| Script | Measures | Latest results |
+|---|---|---|
+| `run_eval.py` | sentiment (2,388 tweets) and event classification (1,099 / 2,829 tweets) for every backend | [`results/latest.md`](results/latest.md) |
+| `backtest_analogs.py` | stress-scenario accuracy, coverage and over-reserving on 81 historical events | [`results/analog_backtest.md`](results/analog_backtest.md) |
+
+Not evaluated yet: impact score against human labels or event-study returns (see below).
 
 ## What is evaluated
 
