@@ -53,5 +53,14 @@ non_company_orgs: [
   IMF, World Bank, OPEC, NATO, EU, European Union, European Commission, UN, United Nations, WTO,
   Nasdaq, NYSE, New York Stock Exchange, Dow, Dow Jones, S&P, S&P 500, Wall Street,
   Reuters, Bloomberg, CNBC, AP, Associated Press, Financial Times, FT, Wall Street Journal, WSJ, MarketWatch,
-  Moody's, Fitch, S&P Global, Standard & Poor's
+  Moody's, Fitch, S&P Global, Standard & Poor's,
+  RBA, RBI, Reserve Bank, Reserve Bank of Australia, Reserve Bank of India, BOJ, BOE, PBOC, SNB, Bundesbank, OPEC+
 ]
+
+# An untracked spaCy ORG becomes a company signal only if its last word is one of these
+# (filters Title-Case headline fragments, people and universities that the small model tags as ORG).
+corporate_suffixes: [Inc, Corp, Corporation, Co, Company, Ltd, Limited, PLC, LLC, AG, SA, NV, SE, Group, Holdings,
+  Bank, Bancorp, Capital, Partners, Financial, Insurance, Energy, Oil, Petroleum, Gas, Power, Utilities, Motors,
+  Pharma, Pharmaceuticals, Therapeutics, Biotech, Systems, Technologies, Technology, Labs, Semiconductor, Airlines,
+  Airways, Industries, Steel, Mining, Resources, Logistics, Shipping, Telecom, Communications, Media, Entertainment,
+  Retail, Foods, Brands, Realty, REIT, Trust, Exchange, Securities, Investments, Ventures]

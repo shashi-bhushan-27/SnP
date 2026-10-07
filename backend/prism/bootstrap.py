@@ -14,7 +14,7 @@ import yaml
 
 from prism.config import REPO_ROOT, Settings, get_settings
 from prism.core.interfaces import EntityLinker, EventClassifier, SentimentModel, SignalConsumer, Source, TextEncoder
-from prism.etl.extract import GdeltSource, NewsApiSource, QuotaGuard, ReplaySource
+from prism.etl.extract import GdeltGkgSource, GdeltSource, NewsApiSource, QuotaGuard, ReplaySource
 from prism.etl.load import JsonlSignalSink
 from prism.etl.pipeline import EtlPipeline
 from prism.etl.scheduler import PollingScheduler
@@ -117,6 +117,9 @@ def build_sources(settings: Settings, store: SqlStore) -> dict[str, Source]:
         "gdelt": lambda: GdeltSource(
             cfg["gdelt"]["queries"], timespan=cfg["gdelt"]["timespan"], max_records=cfg["gdelt"]["max_records"]
         ),
+        "gdelt_gkg": lambda: GdeltGkgSource(
+            cfg["gdelt_gkg"]["theme_prefixes"], max_files_per_fetch=cfg["gdelt_gkg"]["max_files_per_fetch"]
+        ),
         "newsapi": lambda: NewsApiSource(
             settings.newsapi_key,
             cfg["newsapi"]["query"],
@@ -188,6 +191,7 @@ def build_container(
     if settings.scheduler_enabled:
         poll = {
             "gdelt": settings.gdelt_poll_seconds,
+            "gdelt_gkg": settings.gdelt_gkg_poll_seconds,
             "newsapi": settings.newsapi_poll_seconds,
             "replay": settings.replay_poll_seconds,
         }

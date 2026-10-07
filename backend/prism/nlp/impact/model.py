@@ -57,7 +57,9 @@ class WeightedImpactModel:
         features = {
             "severity": self.severity.get(inp.event_type, 2.0) / 10.0,
             "sentiment_magnitude": abs(inp.sentiment_score),
-            "exposure": self.exposure.get(inp.scope, 0.5),
+            "exposure": self.exposure.get(
+                inp.scope if inp.tracked or inp.scope != "company" else "untracked_company", 0.5
+            ),
             "source_reliability": self.reliability(inp.source_domain),
             "corroboration": min(1.0, (inp.corroboration - 1) / (self._saturation - 1)),
         }

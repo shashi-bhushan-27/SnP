@@ -140,6 +140,7 @@ class RiskEngine:
                 event_type=event.event_type,
                 sentiment_score=sentiment.score,
                 scope=mention.scope,
+                tracked=mention.ticker is not None,
                 source=doc.source,
                 source_domain=doc.source_domain,
                 corroboration=doc.corroboration,

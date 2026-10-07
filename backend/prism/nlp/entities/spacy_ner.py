@@ -6,6 +6,11 @@ which then become company-scope signals without a ticker. Regulators, central ba
 outlets are tagged ORG by spaCy but are not companies, so they are ignored (`non_company_orgs` in
 config/companies.yaml).
 
+On live GDELT headlines (Title Case) the small English model tags fragments such as "Israeli Banks Fear
+Expanded U.K." or "Circle Stock Falls" as ORG, and also people and universities. So an untracked ORG is accepted
+only if its last word is a corporate suffix (Holdings, Bank, Energy, Inc ... `corporate_suffixes` in
+companies.yaml).
+
 spaCy and the model are imported lazily:
     pip install spacy && python -m spacy download en_core_web_sm
 """
@@ -40,6 +45,7 @@ class SpacyEntityLinker:
         ignore: Iterable[str] = (),
         max_untracked: int = 2,
         confidence: float = 0.6,
+        corporate_suffixes: Iterable[str] = (),
     ) -> None:
         self.dictionary = dictionary
         self.model = model
@@ -47,12 +53,16 @@ class SpacyEntityLinker:
         self.ignore = {name.lower() for name in ignore}
         self.max_untracked = max_untracked
         self.confidence = confidence
+        self.corporate_suffixes = {w.lower() for w in corporate_suffixes}
 
     @classmethod
     def from_yaml(cls, companies_path: Path | str, **kwargs: Any) -> SpacyEntityLinker:
         data = yaml.safe_load(Path(companies_path).read_text(encoding="utf-8"))
         return cls(
-            DictionaryEntityLinker.from_yaml(companies_path), ignore=data.get("non_company_orgs", []), **kwargs
+            DictionaryEntityLinker.from_yaml(companies_path),
+            ignore=data.get("non_company_orgs", []),
+            corporate_suffixes=data.get("corporate_suffixes", []),
+            **kwargs,
         )
 
     def _pipeline(self) -> Any:
@@ -72,6 +82,8 @@ class SpacyEntityLinker:
             name = clean_org(ent.text)
             key = name.lower()
             if len(name) < 3 or key in self.ignore or any(key in s or s in key for s in seen):
+                continue
+            if self.corporate_suffixes and key.split()[-1].strip(".,") not in self.corporate_suffixes:
                 continue
             mentions.append(
                 EntityMention(name=name, scope="company", matched_text=ent.text, confidence=self.confidence)

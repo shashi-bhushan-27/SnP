@@ -87,6 +87,7 @@ class ImpactInput(BaseModel):
     event_type: EventType
     sentiment_score: float = Field(ge=-1.0, le=1.0)
     scope: Scope = "company"
+    tracked: bool = True  # company in our universe (has a ticker); untracked companies weigh less
     source: str = ""
     source_domain: str | None = None
     corroboration: int = Field(default=1, ge=1)

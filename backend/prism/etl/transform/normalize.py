@@ -43,6 +43,15 @@ def clean_text(value: str | None) -> str:
     return _WS_RE.sub(" ", text).strip()
 
 
+def strip_site_suffix(title: str) -> str:
+    """Page titles often end with " | Site Name" (syndicated local copies differ only there)."""
+    if " | " in title:
+        head = title.split(" | ")[0].strip()
+        if len(head.split()) >= 4:
+            return head
+    return title
+
+
 def content_hash(text: str) -> str:
     """Hash of the lower-cased alphanumeric tokens: insensitive to punctuation, case and spacing."""
     return hashlib.sha1(" ".join(_TOKEN_RE.findall(text.lower())).encode("utf-8")).hexdigest()
@@ -57,7 +66,7 @@ def _domain(url: str | None) -> str | None:
 
 def to_document(raw: RawDocument) -> Document:
     body = clean_text(raw.body)
-    title = clean_text(raw.title) or body[:MAX_TITLE_CHARS]
+    title = strip_site_suffix(clean_text(raw.title)) or body[:MAX_TITLE_CHARS]
     text = body if (not body or title in body) else f"{title}. {body}"
     text = text or title
     if len(text) < MIN_CHARS:

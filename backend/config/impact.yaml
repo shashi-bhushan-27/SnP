@@ -26,6 +26,7 @@ severity:
 
 exposure:
   company: 1.0
+  untracked_company: 0.5   # a company outside our universe (e.g. found by spaCy NER)
   market: 0.8
   sector: 0.6
 

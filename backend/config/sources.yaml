@@ -11,6 +11,14 @@ gdelt:
     - '("stock market" OR earnings OR "interest rates" OR inflation OR sanctions OR tariffs OR bankruptcy) sourcelang:english'
     - '(Apple OR Microsoft OR Nvidia OR Tesla OR Amazon OR Alphabet OR Meta OR JPMorgan) sourcelang:english'
 
+gdelt_gkg:
+  # GDELT raw Global Knowledge Graph files (static 15-minute downloads, ~6 MB zipped, ~1,400 articles).
+  # Used instead of the DOC API when that one is rate-limited. Keep articles tagged with these themes:
+  theme_prefixes: [ECON_STOCKMARKET, ECON_INTEREST_RATES, ECON_INFLATION, ECON_DEBT, ECON_BANKRUPTCY,
+                   ECON_CENTRALBANK, ECON_CURRENCY, ECON_OILPRICE, ECON_EARNINGSREPORT, ECON_IPO, ECON_TRADE,
+                   ECON_FREETRADE, ECON_MERGERS, SANCTIONS, CYBER_ATTACK]
+  max_files_per_fetch: 4
+
 newsapi:
   query: '(stocks OR earnings OR "interest rates" OR inflation OR merger OR bankruptcy OR sanctions)'
   language: en

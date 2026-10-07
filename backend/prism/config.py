@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     embedding_model: str = "BAAI/bge-small-en-v1.5"
 
     # --- sources
-    enabled_sources: str = "replay"  # comma separated: replay,gdelt,newsapi
+    enabled_sources: str = "replay"  # comma separated: replay,gdelt,gdelt_gkg,newsapi
     newsapi_key: str | None = None
     newsapi_daily_budget: int = 80  # free plan allows 100/day; keep headroom
     replay_file: Path | None = None  # overrides config/sources.yaml
@@ -39,6 +39,7 @@ class Settings(BaseSettings):
     # --- scheduler (live polling)
     scheduler_enabled: bool = False
     gdelt_poll_seconds: int = 300
+    gdelt_gkg_poll_seconds: int = 900  # one GKG file per 15 minutes
     newsapi_poll_seconds: int = 1200
     replay_poll_seconds: int = 5
 
