@@ -1,0 +1,257 @@
+{
+  "generated_at": "2026-10-07T19:41:41+00:00",
+  "sentiment": {
+    "n": 2388,
+    "gold_distribution": {
+      "negative": 347,
+      "positive": 475,
+      "neutral": 1566
+    },
+    "models": {
+      "lexicon": {
+        "accuracy": 0.7102177554438861,
+        "macro_f1": 0.5959874741512176,
+        "per_class": {
+          "negative": {
+            "precision": 0.5742971887550201,
+            "recall": 0.41210374639769454,
+            "f1-score": 0.4798657718120805,
+            "support": 347.0
+          },
+          "neutral": {
+            "precision": 0.7570621468926554,
+            "recall": 0.855683269476373,
+            "f1-score": 0.8033573141486811,
+            "support": 1566.0
+          },
+          "positive": {
+            "precision": 0.5772357723577236,
+            "recall": 0.44842105263157894,
+            "f1-score": 0.504739336492891,
+            "support": 475.0
+          },
+          "accuracy": 0.7102177554438861,
+          "macro avg": {
+            "precision": 0.636198369335133,
+            "recall": 0.5720693561685488,
+            "f1-score": 0.5959874741512176,
+            "support": 2388.0
+          },
+          "weighted avg": {
+            "precision": 0.6947351082084628,
+            "recall": 0.7102177554438861,
+            "f1-score": 0.6969523289823072,
+            "support": 2388.0
+          }
+        },
+        "confusion": [
+          [
+            143,
+            183,
+            21
+          ],
+          [
+            91,
+            1340,
+            135
+          ],
+          [
+            15,
+            247,
+            213
+          ]
+        ],
+        "ms_per_text": 0.009889489111953285,
+        "mean_confidence": 0.461641541038526
+      },
+      "finbert": {
+        "accuracy": 0.6620603015075377,
+        "macro_f1": 0.6238302621207548,
+        "per_class": {
+          "negative": {
+            "precision": 0.4475873544093178,
+            "recall": 0.7752161383285303,
+            "f1-score": 0.5675105485232067,
+            "support": 347.0
+          },
+          "neutral": {
+            "precision": 0.8503401360544217,
+            "recall": 0.6385696040868455,
+            "f1-score": 0.7293946024799417,
+            "support": 1566.0
+          },
+          "positive": {
+            "precision": 0.5106382978723404,
+            "recall": 0.6568421052631579,
+            "f1-score": 0.574585635359116,
+            "support": 475.0
+          },
+          "accuracy": 0.6620603015075377,
+          "macro avg": {
+            "precision": 0.6028552627786933,
+            "recall": 0.6902092825595112,
+            "f1-score": 0.6238302621207548,
+            "support": 2388.0
+          },
+          "weighted avg": {
+            "precision": 0.724245668563911,
+            "recall": 0.6620603015075377,
+            "f1-score": 0.6750780086334681,
+            "support": 2388.0
+          }
+        },
+        "confusion": [
+          [
+            269,
+            60,
+            18
+          ],
+          [
+            285,
+            1000,
+            281
+          ],
+          [
+            47,
+            116,
+            312
+          ]
+        ],
+        "ms_per_text": 43.39744388609925,
+        "mean_confidence": 0.8218583470612915,
+        "argmax_accuracy": 0.7173366834170855,
+        "argmax_macro_f1": 0.6628522454214262
+      }
+    }
+  },
+  "events_exact": {
+    "n": 1099,
+    "qualities": [
+      "exact"
+    ],
+    "gold_distribution": {
+      "Earnings": 242,
+      "Macroeconomic": 629,
+      "Merger/Acquisition": 116,
+      "Leadership Change": 112
+    },
+    "models": {
+      "rules": {
+        "accuracy": 0.47952684258416745,
+        "macro_f1": 0.6210685958637158,
+        "answered_rate": 0.5141037306642402,
+        "accuracy_when_answered": 0.9327433628318584,
+        "per_class_recall": {
+          "Earnings": 0.6652892561983471,
+          "Leadership Change": 0.25892857142857145,
+          "Macroeconomic": 0.44038155802861684,
+          "Merger/Acquisition": 0.5172413793103449
+        },
+        "ms_per_text": 0.27933830754941386
+      },
+      "embedding": {
+        "accuracy": 0.6205641492265697,
+        "macro_f1": 0.7745587349429981,
+        "answered_rate": 0.9799818016378526,
+        "accuracy_when_answered": 0.6332404828226555,
+        "per_class_recall": {
+          "Earnings": 0.8966942148760331,
+          "Leadership Change": 0.8392857142857143,
+          "Macroeconomic": 0.47058823529411764,
+          "Merger/Acquisition": 0.646551724137931
+        },
+        "ms_per_text": 22.825071337578336
+      },
+      "hybrid": {
+        "accuracy": 0.6833484986351228,
+        "macro_f1": 0.8112814327717468,
+        "answered_rate": 0.9818016378525932,
+        "accuracy_when_answered": 0.696014828544949,
+        "per_class_recall": {
+          "Earnings": 0.9173553719008265,
+          "Leadership Change": 0.8303571428571429,
+          "Macroeconomic": 0.5580286168521462,
+          "Merger/Acquisition": 0.7327586206896551
+        },
+        "ms_per_text": 19.578049044587214
+      }
+    }
+  },
+  "events_all": {
+    "n": 2829,
+    "qualities": [
+      "exact",
+      "approx"
+    ],
+    "gold_distribution": {
+      "Product Launch": 852,
+      "Other": 336,
+      "Earnings": 339,
+      "Macroeconomic": 629,
+      "Regulatory": 119,
+      "Merger/Acquisition": 116,
+      "Leadership Change": 112,
+      "Geopolitical": 249,
+      "Credit Event": 77
+    },
+    "models": {
+      "rules": {
+        "accuracy": 0.3372216330858961,
+        "macro_f1": 0.3977071202039092,
+        "answered_rate": 0.3089430894308943,
+        "accuracy_when_answered": 0.7517162471395881,
+        "per_class_recall": {
+          "Credit Event": 0.05194805194805195,
+          "Earnings": 0.4808259587020649,
+          "Geopolitical": 0.01606425702811245,
+          "Leadership Change": 0.25892857142857145,
+          "Legal": 1.0,
+          "Macroeconomic": 0.44038155802861684,
+          "Merger/Acquisition": 0.5172413793103449,
+          "Other": 0.8839285714285714,
+          "Product Launch": 0.06690140845070422,
+          "Regulatory": 0.391304347826087
+        },
+        "ms_per_text": 0.31612834924091765
+      },
+      "embedding": {
+        "accuracy": 0.46942382467302934,
+        "macro_f1": 0.4746271252794747,
+        "answered_rate": 0.9310710498409331,
+        "accuracy_when_answered": 0.4855732725892179,
+        "per_class_recall": {
+          "Credit Event": 0.5324675324675324,
+          "Earnings": 0.855457227138643,
+          "Geopolitical": 0.23293172690763053,
+          "Leadership Change": 0.8392857142857143,
+          "Legal": 1.0,
+          "Macroeconomic": 0.47058823529411764,
+          "Merger/Acquisition": 0.646551724137931,
+          "Other": 0.14583333333333334,
+          "Product Launch": 0.38615023474178406,
+          "Regulatory": 0.6567164179104478
+        },
+        "ms_per_text": 16.047448320962
+      },
+      "hybrid": {
+        "accuracy": 0.4909862142099682,
+        "macro_f1": 0.48503047464127447,
+        "answered_rate": 0.9381406857546837,
+        "accuracy_when_answered": 0.5067822155237377,
+        "per_class_recall": {
+          "Credit Event": 0.4935064935064935,
+          "Earnings": 0.8672566371681416,
+          "Geopolitical": 0.20481927710843373,
+          "Leadership Change": 0.8303571428571429,
+          "Legal": 1.0,
+          "Macroeconomic": 0.5580286168521462,
+          "Merger/Acquisition": 0.7327586206896551,
+          "Other": 0.13095238095238096,
+          "Product Launch": 0.39436619718309857,
+          "Regulatory": 0.6944444444444444
+        },
+        "ms_per_text": 16.24471587133258
+      }
+    }
+  }
+}
