@@ -12,6 +12,7 @@ Values are floored at zero (no negative market value from a single shock).
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel
 
@@ -19,7 +20,7 @@ from prism.core.contracts import utcnow
 from prism.core.ids import stable_id
 from prism.core.taxonomy import EventType
 from prism.modules.stress.portfolio import Asset, Portfolio
-from prism.modules.stress.scenarios import Scenario, Shock
+from prism.modules.stress.scenarios import HistoricalScenario, Scenario, Shock
 
 
 class AssetImpact(BaseModel):
@@ -46,6 +47,8 @@ class StressResult(BaseModel):
     pnl_pct: float
     by_asset: list[AssetImpact]
     by_type: dict[str, float]
+    source: Literal["matrix", "history", "manual"] = "matrix"
+    history: HistoricalScenario | None = None  # set when the shock was calibrated on past events
 
 
 def asset_pnl(asset: Asset, shock: Shock) -> float:
@@ -68,8 +71,12 @@ class StressEngine:
         shock: Shock | None = None,
         impact_score: float | None = None,
         trigger_signal_id: str | None = None,
+        history: HistoricalScenario | None = None,
     ) -> StressResult:
+        if history is not None:
+            shock = history.shock
         applied = shock or scenario.shock
+        source = "history" if history is not None else ("manual" if shock is not None else "matrix")
         impacts: list[AssetImpact] = []
         by_type: dict[str, float] = {}
         for asset in portfolio.assets:
@@ -93,7 +100,7 @@ class StressEngine:
         return StressResult(
             id=stable_id(scenario.name, trigger_signal_id or "manual", created.isoformat()),
             created_at=created,
-            scenario=scenario.name,
+            scenario=history.name if history is not None else scenario.name,
             event_type=scenario.event_type,
             trigger_signal_id=trigger_signal_id,
             impact_score=impact_score,
@@ -104,4 +111,6 @@ class StressEngine:
             pnl_pct=pnl_total / before if before else 0.0,
             by_asset=impacts,
             by_type=by_type,
+            source=source,
+            history=history,
         )

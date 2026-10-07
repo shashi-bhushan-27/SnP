@@ -6,7 +6,7 @@ register it in `prism/bootstrap.py`; nothing else changes.
 
 from __future__ import annotations
 
-from typing import Protocol, Sequence, runtime_checkable
+from typing import Any, Protocol, Sequence, runtime_checkable
 
 from .contracts import (
     Document,
@@ -82,6 +82,16 @@ class ImpactModel(Protocol):
     name: str
 
     def score(self, inp: ImpactInput) -> ImpactResult: ...
+
+
+@runtime_checkable
+class TextEncoder(Protocol):
+    """Sentence embeddings, L2-normalised, shape (len(texts), dim). Shared by the embedding event
+    classifier and the historical-analog scenario engine."""
+
+    name: str
+
+    def encode(self, texts: Sequence[str], normalize_embeddings: bool = True) -> Any: ...
 
 
 @runtime_checkable

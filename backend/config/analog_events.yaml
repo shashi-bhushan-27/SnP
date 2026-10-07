@@ -1,0 +1,91 @@
+# Curated library of market-moving events for the historical-analog scenario engine.
+#   date        first US trading session that could react (news after the close or on a weekend -> next session)
+#   title       neutral, headline-style description of the EVENT only - never its market outcome ("...and stocks
+#               plunge"), so the back-test cannot read the answer from the question
+#   event_type  PRISM taxonomy
+# Realised market reactions are NOT typed in by hand: scripts/build_analog_library.py computes them from
+# S&P 500 closes (Yahoo Finance), the 10-year Treasury yield (FRED DGS10) and the Baa-Treasury credit spread
+# (FRED BAA10Y), and writes backend/config/analog_library.json.
+events:
+  - {date: 2008-09-15, event_type: Bankruptcy,         title: "Lehman Brothers files for Chapter 11 bankruptcy, the largest in US history"}
+  - {date: 2008-09-17, event_type: Credit Event,       title: "US government takes control of insurer AIG in an $85 billion rescue"}
+  - {date: 2008-09-29, event_type: Market Shock,       title: "House rejects the $700 billion bank bailout plan"}
+  - {date: 2008-10-13, event_type: Macroeconomic,      title: "Governments announce coordinated bank rescue plans"}
+  - {date: 2010-04-27, event_type: Credit Event,       title: "S&P downgrades Greece to junk and cuts Portugal as the euro debt crisis spreads"}
+  - {date: 2010-05-06, event_type: Market Shock,       title: "Flash crash hits the US stock market"}
+  - {date: 2011-08-08, event_type: Credit Event,       title: "S&P strips the United States of its AAA credit rating"}
+  - {date: 2012-07-26, event_type: Macroeconomic,      title: "ECB president pledges to do whatever it takes to preserve the euro"}
+  - {date: 2013-06-19, event_type: Macroeconomic,      title: "Fed signals it may start tapering bond purchases this year"}
+  - {date: 2014-03-03, event_type: Geopolitical,       title: "Russian forces take control of Crimea as the Ukraine crisis escalates"}
+  - {date: 2014-10-15, event_type: Market Shock,       title: "Treasury market flash rally amid global growth fears"}
+  - {date: 2015-08-11, event_type: Macroeconomic,      title: "China devalues the yuan in a surprise move"}
+  - {date: 2015-08-24, event_type: Market Shock,       title: "Chinese stock market crash spreads to global markets"}
+  - {date: 2015-12-16, event_type: Macroeconomic,      title: "Fed raises interest rates for the first time in nearly a decade"}
+  - {date: 2016-06-24, event_type: Geopolitical,       title: "UK votes to leave the European Union in the Brexit referendum"}
+  - {date: 2016-11-09, event_type: Geopolitical,       title: "Donald Trump wins the US presidential election"}
+  - {date: 2017-09-08, event_type: Cybersecurity,      title: "Equifax discloses a data breach exposing 143 million consumers"}
+  - {date: 2018-02-05, event_type: Market Shock,       title: "Volatility spike hits stocks as VIX-linked products collapse"}
+  - {date: 2018-03-22, event_type: Geopolitical,       title: "US announces tariffs on up to $60 billion of Chinese imports"}
+  - {date: 2018-10-10, event_type: Market Shock,       title: "Rising bond yields trigger a stock market sell-off"}
+  - {date: 2018-12-19, event_type: Macroeconomic,      title: "Fed raises rates and signals further hikes despite market turmoil"}
+  - {date: 2019-05-13, event_type: Geopolitical,       title: "China retaliates with tariffs on $60 billion of US goods as the trade war escalates"}
+  - {date: 2019-08-05, event_type: Geopolitical,       title: "China lets the yuan fall below 7 per dollar as the trade war escalates"}
+  - {date: 2019-08-14, event_type: Macroeconomic,      title: "US yield curve inverts, flashing a recession warning"}
+  - {date: 2019-09-16, event_type: Geopolitical,       title: "Drone attack on Saudi oil facilities knocks out half of the kingdom's output"}
+  - {date: 2020-01-03, event_type: Geopolitical,       title: "US strike kills Iranian general Qassem Soleimani"}
+  - {date: 2020-02-24, event_type: Market Shock,       title: "Coronavirus outbreak spreads in Italy and South Korea"}
+  - {date: 2020-03-09, event_type: Market Shock,       title: "Saudi-Russia oil price war erupts as coronavirus fears grow"}
+  - {date: 2020-03-16, event_type: Macroeconomic,      title: "Fed cuts rates to zero in an emergency move"}
+  - {date: 2020-04-20, event_type: Market Shock,       title: "US oil futures turn negative for the first time in history"}
+  - {date: 2020-11-09, event_type: Macroeconomic,      title: "Pfizer says its Covid-19 vaccine is more than 90% effective"}
+  - {date: 2021-03-29, event_type: Credit Event,       title: "Archegos Capital collapse leaves banks facing billions in losses"}
+  - {date: 2021-05-10, event_type: Cybersecurity,      title: "Ransomware attack shuts down Colonial Pipeline, the largest US fuel pipeline"}
+  - {date: 2021-07-27, event_type: Regulatory,         title: "China cracks down on private education and technology companies"}
+  - {date: 2021-11-26, event_type: Market Shock,       title: "New Omicron Covid variant discovered"}
+  - {date: 2022-02-24, event_type: Geopolitical,       title: "Russia launches a full-scale invasion of Ukraine"}
+  - {date: 2022-06-10, event_type: Macroeconomic,      title: "US inflation hits 8.6%, a 40-year high, beating forecasts"}
+  - {date: 2022-09-13, event_type: Macroeconomic,      title: "US inflation report comes in hotter than expected"}
+  - {date: 2022-09-23, event_type: Macroeconomic,      title: "UK mini-budget announces large unfunded tax cuts"}
+  - {date: 2022-11-10, event_type: Macroeconomic,      title: "US inflation cools more than expected"}
+  - {date: 2022-11-11, event_type: Bankruptcy,         title: "Crypto exchange FTX files for bankruptcy"}
+  - {date: 2023-03-10, event_type: Bankruptcy,         title: "Silicon Valley Bank collapses and is seized by regulators"}
+  - {date: 2023-03-20, event_type: Credit Event,       title: "UBS agrees an emergency takeover of Credit Suisse and its AT1 bonds are wiped out"}
+  - {date: 2023-05-01, event_type: Bankruptcy,         title: "First Republic Bank is seized by regulators and sold to JPMorgan"}
+  - {date: 2023-08-02, event_type: Credit Event,       title: "Fitch downgrades the US credit rating to AA+"}
+  - {date: 2023-10-09, event_type: Geopolitical,       title: "Hamas attack on Israel raises fears of a wider Middle East conflict"}
+  - {date: 2024-07-19, event_type: Cybersecurity,      title: "Faulty CrowdStrike software update causes a global IT outage"}
+  - {date: 2024-08-05, event_type: Market Shock,       title: "Yen carry trade unwinds after a Bank of Japan rate hike"}
+  - {date: 2025-04-03, event_type: Geopolitical,       title: "US announces sweeping reciprocal tariffs on its trading partners"}
+  - {date: 2025-04-09, event_type: Geopolitical,       title: "US pauses most new tariffs for 90 days"}
+  # --- added to widen the sample (dates checked against the price reaction by the build script)
+  - {date: 2008-01-22, event_type: Macroeconomic,      title: "Fed makes an emergency three-quarter-point rate cut as global markets slide"}
+  - {date: 2008-03-17, event_type: Credit Event,       title: "Bear Stearns is rescued by JPMorgan in a Fed-backed fire sale"}
+  - {date: 2008-09-08, event_type: Credit Event,       title: "Fannie Mae and Freddie Mac are taken into government conservatorship"}
+  - {date: 2008-09-26, event_type: Bankruptcy,         title: "Washington Mutual is seized by regulators in the largest US bank failure"}
+  - {date: 2011-03-11, event_type: Market Shock,       title: "Massive earthquake and tsunami hit Japan, triggering a nuclear crisis"}
+  - {date: 2011-11-01, event_type: Credit Event,       title: "Greek prime minister calls a referendum on the euro-zone bailout deal"}
+  - {date: 2013-10-01, event_type: Macroeconomic,      title: "US federal government shuts down after Congress fails to agree a budget"}
+  - {date: 2014-11-28, event_type: Macroeconomic,      title: "OPEC declines to cut oil output despite a global supply glut"}
+  - {date: 2015-01-15, event_type: Macroeconomic,      title: "Swiss National Bank abandons its cap on the franc"}
+  - {date: 2015-06-29, event_type: Credit Event,       title: "Greece closes its banks and imposes capital controls after bailout talks collapse"}
+  - {date: 2016-01-07, event_type: Market Shock,       title: "China halts stock trading after circuit breakers trip for the second time this week"}
+  - {date: 2017-04-07, event_type: Geopolitical,       title: "US launches missile strikes on a Syrian air base"}
+  - {date: 2017-08-08, event_type: Geopolitical,       title: "US president warns North Korea of fire and fury as nuclear tensions rise"}
+  - {date: 2018-07-06, event_type: Geopolitical,       title: "US imposes tariffs on $34 billion of Chinese goods and China retaliates"}
+  - {date: 2018-08-10, event_type: Macroeconomic,      title: "Turkish lira crisis deepens as the US doubles tariffs on Turkish steel"}
+  - {date: 2019-07-31, event_type: Macroeconomic,      title: "Fed cuts interest rates for the first time since 2008"}
+  - {date: 2019-12-13, event_type: Geopolitical,       title: "US and China agree a phase one trade deal"}
+  - {date: 2020-06-11, event_type: Macroeconomic,      title: "Fed issues a bleak economic outlook as fears of a second coronavirus wave grow"}
+  - {date: 2021-01-27, event_type: Market Shock,       title: "GameStop short squeeze inflicts heavy losses on hedge funds"}
+  - {date: 2021-02-25, event_type: Market Shock,       title: "Bond market tantrum as the 10-year Treasury yield spikes"}
+  - {date: 2021-09-20, event_type: Credit Event,       title: "China Evergrande debt crisis raises fears of contagion"}
+  - {date: 2022-01-05, event_type: Macroeconomic,      title: "Fed minutes signal faster rate hikes and balance sheet reduction"}
+  - {date: 2022-03-16, event_type: Macroeconomic,      title: "Fed raises interest rates for the first time since 2018"}
+  - {date: 2022-08-26, event_type: Macroeconomic,      title: "Fed chair warns of economic pain from rate hikes in Jackson Hole speech"}
+  - {date: 2023-10-03, event_type: Macroeconomic,      title: "Treasury yields hit a 16-year high on higher-for-longer rate fears"}
+  - {date: 2023-11-14, event_type: Macroeconomic,      title: "US inflation comes in cooler than expected"}
+  - {date: 2024-04-10, event_type: Macroeconomic,      title: "US consumer prices rise more than expected for a third straight month"}
+  - {date: 2024-08-02, event_type: Macroeconomic,      title: "Weak US jobs report raises recession fears"}
+  - {date: 2024-09-18, event_type: Macroeconomic,      title: "Fed cuts interest rates by half a percentage point"}
+  - {date: 2024-12-18, event_type: Macroeconomic,      title: "Fed signals fewer rate cuts next year as inflation proves sticky"}
+  - {date: 2025-01-27, event_type: Product Launch,     title: "Chinese start-up DeepSeek releases a low-cost AI model that rivals US leaders"}

@@ -106,11 +106,12 @@ def test_portfolio_and_scenarios(client) -> None:
     assert {s["event_type"] for s in client.get("/api/scenarios").json()} >= {"Geopolitical", "Credit Event"}
 
 
-def test_manual_stress_test(client) -> None:
-    response = client.post("/api/stress-test", json={"event_type": "Geopolitical", "impact_score": 9})
+def test_manual_stress_test_with_the_hand_written_matrix(client) -> None:
+    response = client.post("/api/stress-test", json={"event_type": "Geopolitical", "impact_score": 9, "source": "matrix"})
     assert response.status_code == 200
     body = response.json()
     assert body["pnl"] == pytest.approx(-5_200_000) and body["impact_score"] == 9
+    assert body["source"] == "matrix" and body["history"] is None
     assert len(body["by_asset"]) == 7
     assert len(client.get("/api/stress-runs").json()) == 1  # persisted
 
@@ -121,6 +122,45 @@ def test_manual_stress_test_with_shock_override_and_no_persist(client) -> None:
     ).json()
     assert body["shock"]["equity_pct"] == -0.2 and body["shock"]["rate_bps"] == 0
     assert client.get("/api/stress-runs").json() == []
+
+
+def test_stress_test_defaults_to_history_calibrated_scenarios(client) -> None:
+    body = client.post(
+        "/api/stress-test",
+        json={"event_type": "Bankruptcy", "headline": "Regional lender collapses after a run on deposits", "persist": False},
+    ).json()
+    history = body["history"]
+    assert body["source"] == "history"
+    assert history["pool_size"] >= 5 and history["pool_same_type"]
+    assert history["basis"]["event_type"] == "Bankruptcy"
+    assert body["shock"] == history["basis"]["shock"]  # the stress IS a real historical reaction
+    assert body["pnl"] == pytest.approx(history["basis"]["pnl"])
+    assert len(history["analogs"]) == 5 and history["distribution"]
+    assert history["expected_pnl"] >= body["pnl"]  # the 1-in-10 outcome is worse than the average one
+
+
+def test_history_quantile_controls_severity(client) -> None:
+    def pnl(q):
+        body = {"event_type": "Geopolitical", "quantile": q, "persist": False}
+        return client.post("/api/stress-test", json=body).json()["pnl"]
+
+    assert pnl(0.05) <= pnl(0.25) <= pnl(0.5)
+
+
+def test_analogs_endpoint(client) -> None:
+    analogs = client.get("/api/analogs", params={"text": "Bank collapses after a run on deposits", "k": 3}).json()
+    assert len(analogs) == 3
+    assert {"title", "date", "similarity", "shock", "pnl"} <= set(analogs[0])
+    assert analogs[0]["similarity"] >= analogs[-1]["similarity"]
+
+
+def test_history_summary_shows_the_evidence(client) -> None:
+    summary = client.get("/api/history/summary").json()
+    assert summary["events"] >= 80 and summary["scenario_source"] == "history"
+    rows = {r["event_type"]: r for r in summary["by_type"]}
+    # flight to safety: in the library the 10y yield fell after every bankruptcy; the matrix assumes it rises
+    assert rows["Bankruptcy"]["share_rate_down"] == 1.0
+    assert rows["Bankruptcy"]["matrix_shock"]["rate_bps"] > 0
 
 
 def test_stress_test_errors(client) -> None:

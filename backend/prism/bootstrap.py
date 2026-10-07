@@ -13,12 +13,20 @@ from typing import Mapping
 import yaml
 
 from prism.config import REPO_ROOT, Settings, get_settings
-from prism.core.interfaces import EntityLinker, EventClassifier, SentimentModel, SignalConsumer, Source
+from prism.core.interfaces import EntityLinker, EventClassifier, SentimentModel, SignalConsumer, Source, TextEncoder
 from prism.etl.extract import GdeltSource, NewsApiSource, QuotaGuard, ReplaySource
 from prism.etl.load import JsonlSignalSink
 from prism.etl.pipeline import EtlPipeline
 from prism.etl.scheduler import PollingScheduler
-from prism.modules.stress import Portfolio, ScenarioBook, StressEngine, StressTrigger
+from prism.modules.stress import (
+    AnalogLibrary,
+    HistoricalScenarioBuilder,
+    Portfolio,
+    ScenarioBook,
+    StressEngine,
+    StressTrigger,
+)
+from prism.nlp.embeddings import HashingEncoder, SentenceEncoder
 from prism.nlp.engine import RiskEngine
 from prism.nlp.entities import DictionaryEntityLinker, SpacyEntityLinker
 from prism.nlp.events import EmbeddingEventClassifier, HybridEventClassifier, RuleEventClassifier
@@ -38,10 +46,22 @@ class Container:
     portfolio: Portfolio
     scenarios: ScenarioBook
     stress_engine: StressEngine
+    analogs: AnalogLibrary | None = None
+    history: HistoricalScenarioBuilder | None = None
     scheduler: PollingScheduler | None = None
 
 
 # ---------------------------------------------------------------------- NLP slots
+_SENTENCE_ENCODERS: dict[str, SentenceEncoder] = {}
+
+
+def sentence_encoder(settings: Settings) -> SentenceEncoder:
+    """One sentence-transformer per model name, shared by the event classifier and the analog library."""
+    if settings.embedding_model not in _SENTENCE_ENCODERS:
+        _SENTENCE_ENCODERS[settings.embedding_model] = SentenceEncoder(settings.embedding_model)
+    return _SENTENCE_ENCODERS[settings.embedding_model]
+
+
 def build_sentiment(settings: Settings) -> SentimentModel:
     factories = {
         "lexicon": lambda: LexiconSentiment(),
@@ -55,7 +75,9 @@ def build_events(settings: Settings) -> EventClassifier:
     if settings.event_backend == "rules":
         return rules
     embedding = EmbeddingEventClassifier.from_yaml(
-        settings.config_dir / "event_prototypes.yaml", model_name=settings.embedding_model
+        settings.config_dir / "event_prototypes.yaml",
+        model_name=settings.embedding_model,
+        encoder=sentence_encoder(settings),
     )
     if settings.event_backend == "embedding":
         return embedding
@@ -111,6 +133,17 @@ def build_sources(settings: Settings, store: SqlStore) -> dict[str, Source]:
     return {name: factories[name]() for name in settings.source_names}
 
 
+# ---------------------------------------------------------------------- Module B slots
+def build_analogs(settings: Settings) -> AnalogLibrary | None:
+    path = settings.config_dir / "analog_library.json"
+    if not path.exists():
+        return None
+    encoder: TextEncoder = sentence_encoder(settings) if settings.analog_encoder == "embedding" else HashingEncoder()
+    # the bag-of-words encoder scores far lower similarities than sentence embeddings
+    min_similarity = 0.55 if settings.analog_encoder == "embedding" else 0.05
+    return AnalogLibrary.from_json(path, encoder, horizon=settings.stress_horizon, min_similarity=min_similarity)
+
+
 def build_container(
     settings: Settings | None = None,
     *,
@@ -125,6 +158,10 @@ def build_container(
     portfolio = Portfolio.from_yaml(settings.config_dir / "portfolio.yaml")
     scenarios = ScenarioBook.from_yaml(settings.config_dir / "scenarios.yaml")
     stress_engine = StressEngine()
+    analogs = build_analogs(settings)
+    history = None
+    if analogs is not None and settings.scenario_source == "history":
+        history = HistoricalScenarioBuilder(analogs, portfolio, stress_engine, quantile=settings.stress_quantile)
 
     consumers: list[SignalConsumer] = []
     if settings.write_signals_jsonl:
@@ -132,7 +169,11 @@ def build_container(
     if settings.stress_auto_trigger:
         consumers.append(
             StressTrigger(
-                portfolio, scenarios, stress_engine, on_result=lambda r: store.save_stress_run(r.model_dump(mode="json"))
+                portfolio,
+                scenarios,
+                stress_engine,
+                on_result=lambda r: store.save_stress_run(r.model_dump(mode="json")),
+                history=history,
             )
         )
 
@@ -164,5 +205,7 @@ def build_container(
         portfolio=portfolio,
         scenarios=scenarios,
         stress_engine=stress_engine,
+        analogs=analogs,
+        history=history,
         scheduler=scheduler,
     )

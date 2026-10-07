@@ -1,0 +1,2040 @@
+{
+ "generated_at": "2026-10-07T19:56:30+00:00",
+ "sources": {
+  "equity": "S&P 500 index (^GSPC) daily close, Yahoo Finance",
+  "rates": "10-Year Treasury Constant Maturity Rate (DGS10), FRED",
+  "credit": "Moody's Seasoned Baa Corporate Bond Yield Relative to 10-Year Treasury (BAA10Y), FRED"
+ },
+ "horizons_trading_days": {
+  "1d": 1,
+  "5d": 5,
+  "trough": "lowest S&P close within 5 sessions"
+ },
+ "events": [
+  {
+   "id": "2008-09-15-lehman-brothers-files-for",
+   "date": "2008-09-15",
+   "reaction_date": "2008-09-15",
+   "title": "Lehman Brothers files for Chapter 11 bankruptcy, the largest in US history",
+   "event_type": "Bankruptcy",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.04714,
+     "rate_bps": -27.0,
+     "credit_spread_bps": 23.0
+    },
+    "5d": {
+     "equity_pct": 0.0027,
+     "rate_bps": 4.0,
+     "credit_spread_bps": 34.0
+    },
+    "trough": {
+     "equity_pct": -0.07614,
+     "rate_bps": -33.0,
+     "credit_spread_bps": 41.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2008-09-17-us-government-takes-control",
+   "date": "2008-09-17",
+   "reaction_date": "2008-09-17",
+   "title": "US government takes control of insurer AIG in an $85 billion rescue",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.04714,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 16.0
+    },
+    "5d": {
+     "equity_pct": -0.02091,
+     "rate_bps": 37.0,
+     "credit_spread_bps": 9.0
+    },
+    "trough": {
+     "equity_pct": -0.04714,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 16.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2008-09-29-house-rejects-the-700",
+   "date": "2008-09-29",
+   "reaction_date": "2008-09-29",
+   "title": "House rejects the $700 billion bank bailout plan",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.08807,
+     "rate_bps": -24.0,
+     "credit_spread_bps": 13.0
+    },
+    "5d": {
+     "equity_pct": -0.09399,
+     "rate_bps": -22.0,
+     "credit_spread_bps": 47.0
+    },
+    "trough": {
+     "equity_pct": -0.09399,
+     "rate_bps": -22.0,
+     "credit_spread_bps": 47.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2008-10-13-governments-announce-coordinated-bank",
+   "date": "2008-10-13",
+   "reaction_date": "2008-10-13",
+   "title": "Governments announce coordinated bank rescue plans",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.1158,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": 0.04596,
+     "rate_bps": 9.0,
+     "credit_spread_bps": 59.0
+    },
+    "trough": {
+     "equity_pct": 0.00959,
+     "rate_bps": 15.0,
+     "credit_spread_bps": 8.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2010-04-27-s-p-downgrades-greece",
+   "date": "2010-04-27",
+   "reaction_date": "2010-04-27",
+   "title": "S&P downgrades Greece to junk and cuts Portugal as the euro debt crisis spreads",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02338,
+     "rate_bps": -12.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.00808,
+     "rate_bps": -11.0,
+     "credit_spread_bps": -1.0
+    },
+    "trough": {
+     "equity_pct": -0.02338,
+     "rate_bps": -12.0,
+     "credit_spread_bps": 1.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2010-05-06-flash-crash-hits-the",
+   "date": "2010-05-06",
+   "reaction_date": "2010-05-06",
+   "title": "Flash crash hits the US stock market",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.03235,
+     "rate_bps": -17.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": 0.00497,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 21.0
+    },
+    "trough": {
+     "equity_pct": -0.04717,
+     "rate_bps": -13.0,
+     "credit_spread_bps": 15.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2011-08-08-s-p-strips-the",
+   "date": "2011-08-08",
+   "reaction_date": "2011-08-08",
+   "title": "S&P strips the United States of its AAA credit rating",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.06663,
+     "rate_bps": -18.0,
+     "credit_spread_bps": 11.0
+    },
+    "5d": {
+     "equity_pct": -0.01715,
+     "rate_bps": -34.0,
+     "credit_spread_bps": 37.0
+    },
+    "trough": {
+     "equity_pct": -0.06663,
+     "rate_bps": -18.0,
+     "credit_spread_bps": 11.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2012-07-26-ecb-president-pledges-to",
+   "date": "2012-07-26",
+   "reaction_date": "2012-07-26",
+   "title": "ECB president pledges to do whatever it takes to preserve the euro",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.01654,
+     "rate_bps": 2.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": 0.02798,
+     "rate_bps": 13.0,
+     "credit_spread_bps": -4.0
+    },
+    "trough": {
+     "equity_pct": 0.01654,
+     "rate_bps": 2.0,
+     "credit_spread_bps": 0.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2013-06-19-fed-signals-it-may",
+   "date": "2013-06-19",
+   "reaction_date": "2013-06-19",
+   "title": "Fed signals it may start tapering bond purchases this year",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01385,
+     "rate_bps": 13.0,
+     "credit_spread_bps": -5.0
+    },
+    "5d": {
+     "equity_pct": -0.03861,
+     "rate_bps": 40.0,
+     "credit_spread_bps": -4.0
+    },
+    "trough": {
+     "equity_pct": -0.04766,
+     "rate_bps": 37.0,
+     "credit_spread_bps": -6.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2014-03-03-russian-forces-take-control",
+   "date": "2014-03-03",
+   "reaction_date": "2014-03-03",
+   "title": "Russian forces take control of Crimea as the Ukraine crisis escalates",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00738,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": 0.01,
+     "rate_bps": 14.0,
+     "credit_spread_bps": -1.0
+    },
+    "trough": {
+     "equity_pct": -0.00738,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 2.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2014-10-15-treasury-market-flash-rally",
+   "date": "2014-10-15",
+   "reaction_date": "2014-10-15",
+   "title": "Treasury market flash rally amid global growth fears",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.0081,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": 0.03386,
+     "rate_bps": 2.0,
+     "credit_spread_bps": 4.0
+    },
+    "trough": {
+     "equity_pct": -0.0081,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 5.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2015-08-11-china-devalues-the-yuan",
+   "date": "2015-08-11",
+   "reaction_date": "2015-08-11",
+   "title": "China devalues the yuan in a surprise move",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00956,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.00083,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 4.0
+    },
+    "trough": {
+     "equity_pct": -0.00988,
+     "rate_bps": -5.0,
+     "credit_spread_bps": 5.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2015-08-24-chinese-stock-market-crash",
+   "date": "2015-08-24",
+   "reaction_date": "2015-08-24",
+   "title": "Chinese stock market crash spreads to global markets",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.03941,
+     "rate_bps": -4.0,
+     "credit_spread_bps": 4.0
+    },
+    "5d": {
+     "equity_pct": 0.00912,
+     "rate_bps": 14.0,
+     "credit_spread_bps": 3.0
+    },
+    "trough": {
+     "equity_pct": -0.0524,
+     "rate_bps": 7.0,
+     "credit_spread_bps": 7.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2015-12-16-fed-raises-interest-rates",
+   "date": "2015-12-16",
+   "reaction_date": "2015-12-16",
+   "title": "Fed raises interest rates for the first time in nearly a decade",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.01451,
+     "rate_bps": 2.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": -0.00217,
+     "rate_bps": -4.0,
+     "credit_spread_bps": 5.0
+    },
+    "trough": {
+     "equity_pct": -0.01853,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 4.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2016-06-24-uk-votes-to-leave",
+   "date": "2016-06-24",
+   "reaction_date": "2016-06-24",
+   "title": "UK votes to leave the European Union in the Brexit referendum",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.03592,
+     "rate_bps": -17.0,
+     "credit_spread_bps": 12.0
+    },
+    "5d": {
+     "equity_pct": -0.00684,
+     "rate_bps": -25.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.05337,
+     "rate_bps": -28.0,
+     "credit_spread_bps": 10.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2016-11-09-donald-trump-wins-the",
+   "date": "2016-11-09",
+   "reaction_date": "2016-11-09",
+   "title": "Donald Trump wins the US presidential election",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.01108,
+     "rate_bps": 19.0,
+     "credit_spread_bps": 4.0
+    },
+    "5d": {
+     "equity_pct": 0.01908,
+     "rate_bps": 35.0,
+     "credit_spread_bps": -3.0
+    },
+    "trough": {
+     "equity_pct": 0.01108,
+     "rate_bps": 19.0,
+     "credit_spread_bps": 4.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2017-09-08-equifax-discloses-a-data",
+   "date": "2017-09-08",
+   "reaction_date": "2017-09-08",
+   "title": "Equifax discloses a data breach exposing 143 million consumers",
+   "event_type": "Cybersecurity",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00149,
+     "rate_bps": 1.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": 0.01238,
+     "rate_bps": 15.0,
+     "credit_spread_bps": -6.0
+    },
+    "trough": {
+     "equity_pct": -0.00149,
+     "rate_bps": 1.0,
+     "credit_spread_bps": 0.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2018-02-05-volatility-spike-hits-stocks",
+   "date": "2018-02-05",
+   "reaction_date": "2018-02-05",
+   "title": "Volatility spike hits stocks as VIX-linked products collapse",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.04098,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": -0.05162,
+     "rate_bps": -1.0,
+     "credit_spread_bps": 9.0
+    },
+    "trough": {
+     "equity_pct": -0.06558,
+     "rate_bps": 1.0,
+     "credit_spread_bps": 5.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2018-03-22-us-announces-tariffs-on",
+   "date": "2018-03-22",
+   "reaction_date": "2018-03-22",
+   "title": "US announces tariffs on up to $60 billion of Chinese imports",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02516,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": -0.03943,
+     "rate_bps": -12.0,
+     "credit_spread_bps": 4.0
+    },
+    "trough": {
+     "equity_pct": -0.0456,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 5.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2018-10-10-rising-bond-yields-trigger",
+   "date": "2018-10-10",
+   "reaction_date": "2018-10-10",
+   "title": "Rising bond yields trigger a stock market sell-off",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.03286,
+     "rate_bps": 1.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": -0.02445,
+     "rate_bps": -5.0,
+     "credit_spread_bps": 4.0
+    },
+    "trough": {
+     "equity_pct": -0.05276,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 4.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2018-12-19-fed-raises-rates-and",
+   "date": "2018-12-19",
+   "reaction_date": "2018-12-19",
+   "title": "Fed raises rates and signals further hikes despite market turmoil",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.0154,
+     "rate_bps": -5.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.03082,
+     "rate_bps": -1.0,
+     "credit_spread_bps": 7.0
+    },
+    "trough": {
+     "equity_pct": -0.07661,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 9.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2019-05-13-china-retaliates-with-tariffs",
+   "date": "2019-05-13",
+   "reaction_date": "2019-05-13",
+   "title": "China retaliates with tariffs on $60 billion of US goods as the trade war escalates",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02413,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": -0.00759,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 4.0
+    },
+    "trough": {
+     "equity_pct": -0.02413,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 5.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2019-08-05-china-lets-the-yuan",
+   "date": "2019-08-05",
+   "reaction_date": "2019-08-05",
+   "title": "China lets the yuan fall below 7 per dollar as the trade war escalates",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02978,
+     "rate_bps": -11.0,
+     "credit_spread_bps": 6.0
+    },
+    "5d": {
+     "equity_pct": -0.00457,
+     "rate_bps": -12.0,
+     "credit_spread_bps": 5.0
+    },
+    "trough": {
+     "equity_pct": -0.02978,
+     "rate_bps": -11.0,
+     "credit_spread_bps": 6.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2019-08-14-us-yield-curve-inverts",
+   "date": "2019-08-14",
+   "reaction_date": "2019-08-14",
+   "title": "US yield curve inverts, flashing a recession warning",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02929,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.00882,
+     "rate_bps": -13.0,
+     "credit_spread_bps": 8.0
+    },
+    "trough": {
+     "equity_pct": -0.02929,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 1.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2019-09-16-drone-attack-on-saudi",
+   "date": "2019-09-16",
+   "reaction_date": "2019-09-16",
+   "title": "Drone attack on Saudi oil facilities knocks out half of the kingdom's output",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00314,
+     "rate_bps": -6.0,
+     "credit_spread_bps": -1.0
+    },
+    "5d": {
+     "equity_pct": -0.00509,
+     "rate_bps": -16.0,
+     "credit_spread_bps": -2.0
+    },
+    "trough": {
+     "equity_pct": -0.00509,
+     "rate_bps": -16.0,
+     "credit_spread_bps": -2.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2020-01-03-us-strike-kills-iranian",
+   "date": "2020-01-03",
+   "reaction_date": "2020-01-03",
+   "title": "US strike kills Iranian general Qassem Soleimani",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00706,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": 0.00517,
+     "rate_bps": -3.0,
+     "credit_spread_bps": 5.0
+    },
+    "trough": {
+     "equity_pct": -0.00706,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 1.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2020-02-24-coronavirus-outbreak-spreads-in",
+   "date": "2020-02-24",
+   "reaction_date": "2020-02-24",
+   "title": "Coronavirus outbreak spreads in Italy and South Korea",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.03351,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 4.0
+    },
+    "5d": {
+     "equity_pct": -0.11491,
+     "rate_bps": -33.0,
+     "credit_spread_bps": 29.0
+    },
+    "trough": {
+     "equity_pct": -0.11491,
+     "rate_bps": -33.0,
+     "credit_spread_bps": 29.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2020-03-09-saudi-russia-oil-price",
+   "date": "2020-03-09",
+   "reaction_date": "2020-03-09",
+   "title": "Saudi-Russia oil price war erupts as coronavirus fears grow",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.07597,
+     "rate_bps": -20.0,
+     "credit_spread_bps": 38.0
+    },
+    "5d": {
+     "equity_pct": -0.08793,
+     "rate_bps": 20.0,
+     "credit_spread_bps": 75.0
+    },
+    "trough": {
+     "equity_pct": -0.16543,
+     "rate_bps": 14.0,
+     "credit_spread_bps": 65.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2020-03-16-fed-cuts-rates-to",
+   "date": "2020-03-16",
+   "reaction_date": "2020-03-16",
+   "title": "Fed cuts rates to zero in an emergency move",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.11984,
+     "rate_bps": -21.0,
+     "credit_spread_bps": 8.0
+    },
+    "5d": {
+     "equity_pct": -0.1498,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 93.0
+    },
+    "trough": {
+     "equity_pct": -0.1498,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 93.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2020-04-20-us-oil-futures-turn",
+   "date": "2020-04-20",
+   "reaction_date": "2020-04-20",
+   "title": "US oil futures turn negative for the first time in history",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01788,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.01316,
+     "rate_bps": -5.0,
+     "credit_spread_bps": -2.0
+    },
+    "trough": {
+     "equity_pct": -0.04801,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 2.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2020-11-09-pfizer-says-its-covid",
+   "date": "2020-11-09",
+   "reaction_date": "2020-11-09",
+   "title": "Pfizer says its Covid-19 vaccine is more than 90% effective",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.0117,
+     "rate_bps": 13.0,
+     "credit_spread_bps": -4.0
+    },
+    "5d": {
+     "equity_pct": 0.02157,
+     "rate_bps": 6.0,
+     "credit_spread_bps": -7.0
+    },
+    "trough": {
+     "equity_pct": 0.00786,
+     "rate_bps": 5.0,
+     "credit_spread_bps": -6.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2021-03-29-archegos-capital-collapse-leaves",
+   "date": "2021-03-29",
+   "reaction_date": "2021-03-29",
+   "title": "Archegos Capital collapse leaves banks facing billions in losses",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00087,
+     "rate_bps": 6.0,
+     "credit_spread_bps": -1.0
+    },
+    "5d": {
+     "equity_pct": 0.02601,
+     "rate_bps": 6.0,
+     "credit_spread_bps": -16.0
+    },
+    "trough": {
+     "equity_pct": -0.00402,
+     "rate_bps": 6.0,
+     "credit_spread_bps": -5.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2021-05-10-ransomware-attack-shuts-down",
+   "date": "2021-05-10",
+   "reaction_date": "2021-05-10",
+   "title": "Ransomware attack shuts down Colonial Pipeline, the largest US fuel pipeline",
+   "event_type": "Cybersecurity",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01044,
+     "rate_bps": 3.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.01388,
+     "rate_bps": 3.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.04006,
+     "rate_bps": 9.0,
+     "credit_spread_bps": 5.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2021-07-27-china-cracks-down-on",
+   "date": "2021-07-27",
+   "reaction_date": "2021-07-27",
+   "title": "China cracks down on private education and technology companies",
+   "event_type": "Regulatory",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00471,
+     "rate_bps": -4.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.00795,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 1.0
+    },
+    "trough": {
+     "equity_pct": -0.00795,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 1.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2021-11-26-new-omicron-covid-variant",
+   "date": "2021-11-26",
+   "reaction_date": "2021-11-26",
+   "title": "New Omicron Covid variant discovered",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02272,
+     "rate_bps": -16.0,
+     "credit_spread_bps": 10.0
+    },
+    "5d": {
+     "equity_pct": -0.02645,
+     "rate_bps": -20.0,
+     "credit_spread_bps": 8.0
+    },
+    "trough": {
+     "equity_pct": -0.04008,
+     "rate_bps": -21.0,
+     "credit_spread_bps": 9.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2022-02-24-russia-launches-a-full",
+   "date": "2022-02-24",
+   "reaction_date": "2022-02-24",
+   "title": "Russia launches a full-scale invasion of Ukraine",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.01496,
+     "rate_bps": -3.0,
+     "credit_spread_bps": 14.0
+    },
+    "5d": {
+     "equity_pct": 0.03811,
+     "rate_bps": -13.0,
+     "credit_spread_bps": 14.0
+    },
+    "trough": {
+     "equity_pct": 0.01496,
+     "rate_bps": -3.0,
+     "credit_spread_bps": 14.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2022-06-10-us-inflation-hits-8",
+   "date": "2022-06-10",
+   "reaction_date": "2022-06-10",
+   "title": "US inflation hits 8.6%, a 40-year high, beating forecasts",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02911,
+     "rate_bps": 11.0,
+     "credit_spread_bps": -3.0
+    },
+    "5d": {
+     "equity_pct": -0.08737,
+     "rate_bps": 24.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.08737,
+     "rate_bps": 24.0,
+     "credit_spread_bps": 6.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2022-09-13-us-inflation-report-comes",
+   "date": "2022-09-13",
+   "reaction_date": "2022-09-13",
+   "title": "US inflation report comes in hotter than expected",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.04324,
+     "rate_bps": 5.0,
+     "credit_spread_bps": -2.0
+    },
+    "5d": {
+     "equity_pct": -0.05122,
+     "rate_bps": 12.0,
+     "credit_spread_bps": -5.0
+    },
+    "trough": {
+     "equity_pct": -0.05768,
+     "rate_bps": 8.0,
+     "credit_spread_bps": -2.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2022-09-23-uk-mini-budget-announces",
+   "date": "2022-09-23",
+   "reaction_date": "2022-09-23",
+   "title": "UK mini-budget announces large unfunded tax cuts",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01723,
+     "rate_bps": -1.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.03127,
+     "rate_bps": 6.0,
+     "credit_spread_bps": 19.0
+    },
+    "trough": {
+     "equity_pct": -0.03127,
+     "rate_bps": 6.0,
+     "credit_spread_bps": 19.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2022-11-10-us-inflation-cools-more",
+   "date": "2022-11-10",
+   "reaction_date": "2022-11-10",
+   "title": "US inflation cools more than expected",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.05543,
+     "rate_bps": -30.0,
+     "credit_spread_bps": 3.0
+    },
+    "5d": {
+     "equity_pct": 0.05608,
+     "rate_bps": -45.0,
+     "credit_spread_bps": -9.0
+    },
+    "trough": {
+     "equity_pct": 0.05543,
+     "rate_bps": -30.0,
+     "credit_spread_bps": 3.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2022-11-11-crypto-exchange-ftx-files",
+   "date": "2022-11-11",
+   "reaction_date": "2022-11-11",
+   "title": "Crypto exchange FTX files for bankruptcy",
+   "event_type": "Bankruptcy",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.00924,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": -0.00248,
+     "rate_bps": -5.0,
+     "credit_spread_bps": -18.0
+    },
+    "trough": {
+     "equity_pct": -0.00248,
+     "rate_bps": -5.0,
+     "credit_spread_bps": -18.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2023-03-10-silicon-valley-bank-collapses",
+   "date": "2023-03-10",
+   "reaction_date": "2023-03-10",
+   "title": "Silicon Valley Bank collapses and is seized by regulators",
+   "event_type": "Bankruptcy",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01448,
+     "rate_bps": -23.0,
+     "credit_spread_bps": 11.0
+    },
+    "5d": {
+     "equity_pct": 0.01071,
+     "rate_bps": -37.0,
+     "credit_spread_bps": 31.0
+    },
+    "trough": {
+     "equity_pct": -0.01597,
+     "rate_bps": -38.0,
+     "credit_spread_bps": 29.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2023-03-20-ubs-agrees-an-emergency",
+   "date": "2023-03-20",
+   "reaction_date": "2023-03-20",
+   "title": "UBS agrees an emergency takeover of Credit Suisse and its AT1 bonds are wiped out",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.00892,
+     "rate_bps": 8.0,
+     "credit_spread_bps": -2.0
+    },
+    "5d": {
+     "equity_pct": 0.01388,
+     "rate_bps": -1.0,
+     "credit_spread_bps": 3.0
+    },
+    "trough": {
+     "equity_pct": 0.00519,
+     "rate_bps": 9.0,
+     "credit_spread_bps": -5.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2023-05-01-first-republic-bank-is",
+   "date": "2023-05-01",
+   "reaction_date": "2023-05-01",
+   "title": "First Republic Bank is seized by regulators and sold to JPMorgan",
+   "event_type": "Bankruptcy",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00039,
+     "rate_bps": 15.0,
+     "credit_spread_bps": -2.0
+    },
+    "5d": {
+     "equity_pct": -0.00797,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 12.0
+    },
+    "trough": {
+     "equity_pct": -0.02596,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 16.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2023-08-02-fitch-downgrades-the-us",
+   "date": "2023-08-02",
+   "reaction_date": "2023-08-02",
+   "title": "Fitch downgrades the US credit rating to AA+",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01384,
+     "rate_bps": 3.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": -0.0169,
+     "rate_bps": -3.0,
+     "credit_spread_bps": 16.0
+    },
+    "trough": {
+     "equity_pct": -0.02157,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 13.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2023-10-09-hamas-attack-on-israel",
+   "date": "2023-10-09",
+   "reaction_date": "2023-10-09",
+   "title": "Hamas attack on Israel raises fears of a wider Middle East conflict",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.0063,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": 0.00447,
+     "rate_bps": -15.0,
+     "credit_spread_bps": -2.0
+    },
+    "trough": {
+     "equity_pct": 0.00447,
+     "rate_bps": -15.0,
+     "credit_spread_bps": -2.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2024-07-19-faulty-crowdstrike-software-update",
+   "date": "2024-07-19",
+   "reaction_date": "2024-07-19",
+   "title": "Faulty CrowdStrike software update causes a global IT outage",
+   "event_type": "Cybersecurity",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00714,
+     "rate_bps": 5.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": -0.02622,
+     "rate_bps": 7.0,
+     "credit_spread_bps": 5.0
+    },
+    "trough": {
+     "equity_pct": -0.02622,
+     "rate_bps": 7.0,
+     "credit_spread_bps": 5.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2024-08-05-yen-carry-trade-unwinds",
+   "date": "2024-08-05",
+   "reaction_date": "2024-08-05",
+   "title": "Yen carry trade unwinds after a Bank of Japan rate hike",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02997,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": -0.00045,
+     "rate_bps": 14.0,
+     "credit_spread_bps": -3.0
+    },
+    "trough": {
+     "equity_pct": -0.02997,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 5.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2025-04-03-us-announces-sweeping-reciprocal",
+   "date": "2025-04-03",
+   "reaction_date": "2025-04-03",
+   "title": "US announces sweeping reciprocal tariffs on its trading partners",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.0484,
+     "rate_bps": -14.0,
+     "credit_spread_bps": 16.0
+    },
+    "5d": {
+     "equity_pct": -0.03775,
+     "rate_bps": 14.0,
+     "credit_spread_bps": 29.0
+    },
+    "trough": {
+     "equity_pct": -0.12135,
+     "rate_bps": 6.0,
+     "credit_spread_bps": 27.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2025-04-09-us-pauses-most-new",
+   "date": "2025-04-09",
+   "reaction_date": "2025-04-09",
+   "title": "US pauses most new tariffs for 90 days",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.09515,
+     "rate_bps": 8.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": 0.08306,
+     "rate_bps": 9.0,
+     "credit_spread_bps": -10.0
+    },
+    "trough": {
+     "equity_pct": 0.05725,
+     "rate_bps": 14.0,
+     "credit_spread_bps": -3.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2008-01-22-fed-makes-an-emergency",
+   "date": "2008-01-22",
+   "reaction_date": "2008-01-22",
+   "title": "Fed makes an emergency three-quarter-point rate cut as global markets slide",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01109,
+     "rate_bps": -14.0,
+     "credit_spread_bps": 11.0
+    },
+    "5d": {
+     "equity_pct": 0.02171,
+     "rate_bps": -5.0,
+     "credit_spread_bps": 10.0
+    },
+    "trough": {
+     "equity_pct": -0.01109,
+     "rate_bps": -14.0,
+     "credit_spread_bps": 11.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2008-03-17-bear-stearns-is-rescued",
+   "date": "2008-03-17",
+   "reaction_date": "2008-03-17",
+   "title": "Bear Stearns is rescued by JPMorgan in a Fed-backed fire sale",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00896,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 8.0
+    },
+    "5d": {
+     "equity_pct": 0.04793,
+     "rate_bps": 12.0,
+     "credit_spread_bps": -8.0
+    },
+    "trough": {
+     "equity_pct": -0.00896,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 8.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2008-09-08-fannie-mae-and-freddie",
+   "date": "2008-09-08",
+   "reaction_date": "2008-09-08",
+   "title": "Fannie Mae and Freddie Mac are taken into government conservatorship",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.02051,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": 0.00756,
+     "rate_bps": 8.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.01433,
+     "rate_bps": -4.0,
+     "credit_spread_bps": -2.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2008-09-26-washington-mutual-is-seized",
+   "date": "2008-09-26",
+   "reaction_date": "2008-09-26",
+   "title": "Washington Mutual is seized by regulators in the largest US bank failure",
+   "event_type": "Bankruptcy",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.00338,
+     "rate_bps": -3.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": -0.07848,
+     "rate_bps": -22.0,
+     "credit_spread_bps": 45.0
+    },
+    "trough": {
+     "equity_pct": -0.08498,
+     "rate_bps": -27.0,
+     "credit_spread_bps": 15.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2011-03-11-massive-earthquake-and-tsunami",
+   "date": "2011-03-11",
+   "reaction_date": "2011-03-11",
+   "title": "Massive earthquake and tsunami hit Japan, triggering a nuclear crisis",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.00708,
+     "rate_bps": 3.0,
+     "credit_spread_bps": -3.0
+    },
+    "5d": {
+     "equity_pct": -0.01652,
+     "rate_bps": -12.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.02952,
+     "rate_bps": -15.0,
+     "credit_spread_bps": 5.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2011-11-01-greek-prime-minister-calls",
+   "date": "2011-11-01",
+   "reaction_date": "2011-11-01",
+   "title": "Greek prime minister calls a referendum on the euro-zone bailout deal",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02794,
+     "rate_bps": -16.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": 0.00624,
+     "rate_bps": -13.0,
+     "credit_spread_bps": 0.0
+    },
+    "trough": {
+     "equity_pct": -0.02794,
+     "rate_bps": -16.0,
+     "credit_spread_bps": 1.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2013-10-01-us-federal-government-shuts",
+   "date": "2013-10-01",
+   "reaction_date": "2013-10-01",
+   "title": "US federal government shuts down after Congress fails to agree a budget",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.008,
+     "rate_bps": 2.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.00323,
+     "rate_bps": 1.0,
+     "credit_spread_bps": -1.0
+    },
+    "trough": {
+     "equity_pct": -0.00323,
+     "rate_bps": 1.0,
+     "credit_spread_bps": -1.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2014-11-28-opec-declines-to-cut",
+   "date": "2014-11-28",
+   "reaction_date": "2014-11-28",
+   "title": "OPEC declines to cut oil output despite a global supply glut",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00254,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": -0.00044,
+     "rate_bps": 1.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.00935,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 7.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2015-01-15-swiss-national-bank-abandons",
+   "date": "2015-01-15",
+   "reaction_date": "2015-01-15",
+   "title": "Swiss National Bank abandons its cap on the franc",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00925,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 7.0
+    },
+    "5d": {
+     "equity_pct": 0.02579,
+     "rate_bps": 4.0,
+     "credit_spread_bps": 1.0
+    },
+    "trough": {
+     "equity_pct": -0.00925,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 7.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2015-06-29-greece-closes-its-banks",
+   "date": "2015-06-29",
+   "reaction_date": "2015-06-29",
+   "title": "Greece closes its banks and imposes capital controls after bailout talks collapse",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02087,
+     "rate_bps": -16.0,
+     "credit_spread_bps": 3.0
+    },
+    "5d": {
+     "equity_pct": -0.01557,
+     "rate_bps": -19.0,
+     "credit_spread_bps": 3.0
+    },
+    "trough": {
+     "equity_pct": -0.02087,
+     "rate_bps": -16.0,
+     "credit_spread_bps": 3.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2016-01-07-china-halts-stock-trading",
+   "date": "2016-01-07",
+   "reaction_date": "2016-01-07",
+   "title": "China halts stock trading after circuit breakers trip for the second time this week",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.0237,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": -0.05023,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 2.0
+    },
+    "trough": {
+     "equity_pct": -0.05023,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 2.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2017-04-07-us-launches-missile-strikes",
+   "date": "2017-04-07",
+   "reaction_date": "2017-04-07",
+   "title": "US launches missile strikes on a Syrian air base",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00083,
+     "rate_bps": 4.0,
+     "credit_spread_bps": -3.0
+    },
+    "5d": {
+     "equity_pct": -0.01211,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 1.0
+    },
+    "trough": {
+     "equity_pct": -0.01211,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 1.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2017-08-08-us-president-warns-north",
+   "date": "2017-08-08",
+   "reaction_date": "2017-08-08",
+   "title": "US president warns North Korea of fire and fury as nuclear tensions rise",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00241,
+     "rate_bps": 3.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": -0.00607,
+     "rate_bps": -4.0,
+     "credit_spread_bps": 5.0
+    },
+    "trough": {
+     "equity_pct": -0.01721,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 5.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2018-07-06-us-imposes-tariffs-on",
+   "date": "2018-07-06",
+   "reaction_date": "2018-07-06",
+   "title": "US imposes tariffs on $34 billion of Chinese goods and China retaliates",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.00848,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": 0.02254,
+     "rate_bps": 1.0,
+     "credit_spread_bps": -5.0
+    },
+    "trough": {
+     "equity_pct": 0.00848,
+     "rate_bps": -2.0,
+     "credit_spread_bps": 1.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2018-08-10-turkish-lira-crisis-deepens",
+   "date": "2018-08-10",
+   "reaction_date": "2018-08-10",
+   "title": "Turkish lira crisis deepens as the US doubles tariffs on Turkish steel",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00711,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": -0.00452,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 4.0
+    },
+    "trough": {
+     "equity_pct": -0.01234,
+     "rate_bps": -7.0,
+     "credit_spread_bps": 5.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2019-07-31-fed-cuts-interest-rates",
+   "date": "2019-07-31",
+   "reaction_date": "2019-07-31",
+   "title": "Fed cuts interest rates for the first time since 2008",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01089,
+     "rate_bps": -4.0,
+     "credit_spread_bps": -1.0
+    },
+    "5d": {
+     "equity_pct": -0.04361,
+     "rate_bps": -33.0,
+     "credit_spread_bps": 11.0
+    },
+    "trough": {
+     "equity_pct": -0.0559,
+     "rate_bps": -31.0,
+     "credit_spread_bps": 10.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2019-12-13-us-and-china-agree",
+   "date": "2019-12-13",
+   "reaction_date": "2019-12-13",
+   "title": "US and China agree a phase one trade deal",
+   "event_type": "Geopolitical",
+   "moves": {
+    "1d": {
+     "equity_pct": 7e-05,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": 0.01161,
+     "rate_bps": 2.0,
+     "credit_spread_bps": -6.0
+    },
+    "trough": {
+     "equity_pct": 7e-05,
+     "rate_bps": -8.0,
+     "credit_spread_bps": 0.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2020-06-11-fed-issues-a-bleak",
+   "date": "2020-06-11",
+   "reaction_date": "2020-06-11",
+   "title": "Fed issues a bleak economic outlook as fears of a second coronavirus wave grow",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.05894,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 5.0
+    },
+    "5d": {
+     "equity_pct": -0.02403,
+     "rate_bps": -1.0,
+     "credit_spread_bps": 1.0
+    },
+    "trough": {
+     "equity_pct": -0.05894,
+     "rate_bps": -9.0,
+     "credit_spread_bps": 5.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2021-01-27-gamestop-short-squeeze-inflicts",
+   "date": "2021-01-27",
+   "reaction_date": "2021-01-27",
+   "title": "GameStop short squeeze inflicts heavy losses on hedge funds",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02568,
+     "rate_bps": -1.0,
+     "credit_spread_bps": 0.0
+    },
+    "5d": {
+     "equity_pct": -0.00606,
+     "rate_bps": 7.0,
+     "credit_spread_bps": 2.0
+    },
+    "trough": {
+     "equity_pct": -0.03517,
+     "rate_bps": 6.0,
+     "credit_spread_bps": 1.0,
+     "days": 3
+    }
+   }
+  },
+  {
+   "id": "2021-02-25-bond-market-tantrum-as",
+   "date": "2021-02-25",
+   "reaction_date": "2021-02-25",
+   "title": "Bond market tantrum as the 10-year Treasury yield spikes",
+   "event_type": "Market Shock",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02448,
+     "rate_bps": 16.0,
+     "credit_spread_bps": -10.0
+    },
+    "5d": {
+     "equity_pct": -0.02693,
+     "rate_bps": 9.0,
+     "credit_spread_bps": -8.0
+    },
+    "trough": {
+     "equity_pct": -0.02911,
+     "rate_bps": 6.0,
+     "credit_spread_bps": -10.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2021-09-20-china-evergrande-debt-crisis",
+   "date": "2021-09-20",
+   "reaction_date": "2021-09-20",
+   "title": "China Evergrande debt crisis raises fears of contagion",
+   "event_type": "Credit Event",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01698,
+     "rate_bps": -6.0,
+     "credit_spread_bps": 1.0
+    },
+    "5d": {
+     "equity_pct": 0.00507,
+     "rate_bps": 10.0,
+     "credit_spread_bps": -3.0
+    },
+    "trough": {
+     "equity_pct": -0.01778,
+     "rate_bps": -4.0,
+     "credit_spread_bps": 0.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2022-01-05-fed-minutes-signal-faster",
+   "date": "2022-01-05",
+   "reaction_date": "2022-01-05",
+   "title": "Fed minutes signal faster rate hikes and balance sheet reduction",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01939,
+     "rate_bps": 5.0,
+     "credit_spread_bps": -4.0
+    },
+    "5d": {
+     "equity_pct": -0.01679,
+     "rate_bps": 9.0,
+     "credit_spread_bps": -8.0
+    },
+    "trough": {
+     "equity_pct": -0.02571,
+     "rate_bps": 12.0,
+     "credit_spread_bps": -8.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2022-03-16-fed-raises-interest-rates",
+   "date": "2022-03-16",
+   "reaction_date": "2022-03-16",
+   "title": "Fed raises interest rates for the first time since 2018",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.02238,
+     "rate_bps": 4.0,
+     "credit_spread_bps": -13.0
+    },
+    "5d": {
+     "equity_pct": 0.05845,
+     "rate_bps": 23.0,
+     "credit_spread_bps": -31.0
+    },
+    "trough": {
+     "equity_pct": 0.02238,
+     "rate_bps": 4.0,
+     "credit_spread_bps": -13.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2022-08-26-fed-chair-warns-of",
+   "date": "2022-08-26",
+   "reaction_date": "2022-08-26",
+   "title": "Fed chair warns of economic pain from rate hikes in Jackson Hole speech",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.03369,
+     "rate_bps": 1.0,
+     "credit_spread_bps": -2.0
+    },
+    "5d": {
+     "equity_pct": -0.05531,
+     "rate_bps": 23.0,
+     "credit_spread_bps": 1.0
+    },
+    "trough": {
+     "equity_pct": -0.05814,
+     "rate_bps": 12.0,
+     "credit_spread_bps": -3.0,
+     "days": 4
+    }
+   }
+  },
+  {
+   "id": "2023-10-03-treasury-yields-hit-a",
+   "date": "2023-10-03",
+   "reaction_date": "2023-10-03",
+   "title": "Treasury yields hit a 16-year high on higher-for-longer rate fears",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01374,
+     "rate_bps": 12.0,
+     "credit_spread_bps": 4.0
+    },
+    "5d": {
+     "equity_pct": 0.01102,
+     "rate_bps": 9.0,
+     "credit_spread_bps": 6.0
+    },
+    "trough": {
+     "equity_pct": -0.01374,
+     "rate_bps": 12.0,
+     "credit_spread_bps": 4.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2023-11-14-us-inflation-comes-in",
+   "date": "2023-11-14",
+   "reaction_date": "2023-11-14",
+   "title": "US inflation comes in cooler than expected",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": 0.01908,
+     "rate_bps": -19.0,
+     "credit_spread_bps": 4.0
+    },
+    "5d": {
+     "equity_pct": 0.03079,
+     "rate_bps": -21.0,
+     "credit_spread_bps": -3.0
+    },
+    "trough": {
+     "equity_pct": 0.01908,
+     "rate_bps": -19.0,
+     "credit_spread_bps": 4.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2024-04-10-us-consumer-prices-rise",
+   "date": "2024-04-10",
+   "reaction_date": "2024-04-10",
+   "title": "US consumer prices rise more than expected for a third straight month",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.00946,
+     "rate_bps": 19.0,
+     "credit_spread_bps": -4.0
+    },
+    "5d": {
+     "equity_pct": -0.03042,
+     "rate_bps": 31.0,
+     "credit_spread_bps": 2.0
+    },
+    "trough": {
+     "equity_pct": -0.03042,
+     "rate_bps": 31.0,
+     "credit_spread_bps": 2.0,
+     "days": 5
+    }
+   }
+  },
+  {
+   "id": "2024-08-02-weak-us-jobs-report",
+   "date": "2024-08-02",
+   "reaction_date": "2024-08-02",
+   "title": "Weak US jobs report raises recession fears",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01838,
+     "rate_bps": -19.0,
+     "credit_spread_bps": 9.0
+    },
+    "5d": {
+     "equity_pct": -0.02338,
+     "rate_bps": 0.0,
+     "credit_spread_bps": 7.0
+    },
+    "trough": {
+     "equity_pct": -0.0478,
+     "rate_bps": -21.0,
+     "credit_spread_bps": 14.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2024-09-18-fed-cuts-interest-rates",
+   "date": "2024-09-18",
+   "reaction_date": "2024-09-18",
+   "title": "Fed cuts interest rates by half a percentage point",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.0029,
+     "rate_bps": 5.0,
+     "credit_spread_bps": -1.0
+    },
+    "5d": {
+     "equity_pct": 0.01745,
+     "rate_bps": 9.0,
+     "credit_spread_bps": -2.0
+    },
+    "trough": {
+     "equity_pct": -0.0029,
+     "rate_bps": 5.0,
+     "credit_spread_bps": -1.0,
+     "days": 1
+    }
+   }
+  },
+  {
+   "id": "2024-12-18-fed-signals-fewer-rate",
+   "date": "2024-12-18",
+   "reaction_date": "2024-12-18",
+   "title": "Fed signals fewer rate cuts next year as inflation proves sticky",
+   "event_type": "Macroeconomic",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.02949,
+     "rate_bps": 10.0,
+     "credit_spread_bps": -2.0
+    },
+    "5d": {
+     "equity_pct": -0.00175,
+     "rate_bps": 19.0,
+     "credit_spread_bps": 0.0
+    },
+    "trough": {
+     "equity_pct": -0.03033,
+     "rate_bps": 17.0,
+     "credit_spread_bps": 1.0,
+     "days": 2
+    }
+   }
+  },
+  {
+   "id": "2025-01-27-chinese-start-up-deepseek",
+   "date": "2025-01-27",
+   "reaction_date": "2025-01-27",
+   "title": "Chinese start-up DeepSeek releases a low-cost AI model that rivals US leaders",
+   "event_type": "Product Launch",
+   "moves": {
+    "1d": {
+     "equity_pct": -0.01458,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 2.0
+    },
+    "5d": {
+     "equity_pct": -0.00995,
+     "rate_bps": -5.0,
+     "credit_spread_bps": 2.0
+    },
+    "trough": {
+     "equity_pct": -0.01458,
+     "rate_bps": -10.0,
+     "credit_spread_bps": 2.0,
+     "days": 1
+    }
+   }
+  }
+ ]
+}

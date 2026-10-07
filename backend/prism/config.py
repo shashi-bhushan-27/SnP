@@ -42,6 +42,12 @@ class Settings(BaseSettings):
     newsapi_poll_seconds: int = 1200
     replay_poll_seconds: int = 5
 
+    # --- Module B scenarios
+    scenario_source: Literal["history", "matrix"] = "history"  # history-calibrated (default) or scenarios.yaml shocks
+    stress_quantile: float = 0.10  # 1-in-10 bad outcome among past events of the same kind
+    stress_horizon: Literal["trough", "1d", "5d"] = "trough"
+    analog_encoder: Literal["hashing", "embedding"] = "hashing"  # embedding = EMBEDDING_MODEL (shared with events)
+
     # --- downstream / API
     stress_auto_trigger: bool = True
     write_signals_jsonl: bool = True

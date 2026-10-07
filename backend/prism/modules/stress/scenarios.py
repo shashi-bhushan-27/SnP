@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 from typing import Iterable
 
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from prism.core.contracts import RiskSignal
 from prism.core.taxonomy import EventType
@@ -14,6 +15,32 @@ class Shock(BaseModel):
     equity_pct: float = 0.0  # -0.10 = equity prices -10%
     rate_bps: float = 0.0  # +200 = rates +2.00 percentage points
     credit_spread_bps: float = 0.0  # +150 = spreads +1.50 percentage points
+
+
+class HistoricalOutcome(BaseModel):
+    id: str
+    date: date
+    title: str
+    event_type: EventType
+    shock: Shock
+    pnl: float  # P&L this historical reaction would cause on today's book
+    similarity: float | None = None
+
+
+class HistoricalScenario(BaseModel):
+    name: str
+    event_type: EventType | None
+    horizon: str
+    quantile: float
+    shock: Shock
+    basis: HistoricalOutcome  # the historical event the stress shock is taken from
+    pool_size: int
+    pool_same_type: bool
+    expected_shock: Shock
+    expected_pnl: float
+    distribution: list[HistoricalOutcome] = Field(default_factory=list)  # every pool event, worst first
+    analogs: list[HistoricalOutcome] = Field(default_factory=list)  # most similar by meaning
+
 
 
 class Trigger(BaseModel):

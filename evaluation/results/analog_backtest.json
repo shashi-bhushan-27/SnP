@@ -1,0 +1,478 @@
+[
+  {
+    "horizon": "trough",
+    "n_events": 81,
+    "protocols": {
+      "leave_one_out": {
+        "n_scored": 81,
+        "results": {
+          "static_matrix": {
+            "equity_mae_pp": 6.10741975308642,
+            "rate_mae_bp": 206.69135802469137,
+            "credit_mae_bp": 149.30864197530863,
+            "rate_sign_accuracy": 0.3088235294117647,
+            "pnl_mae_usd": 4748919.475308642,
+            "pnl_spearman": 0.3121951219512195
+          },
+          "global_mean": {
+            "equity_mae_pp": 2.817305119597156,
+            "rate_mae_bp": 10.924191320868536,
+            "credit_mae_bp": 9.12859006063999,
+            "rate_sign_accuracy": 0.6617647058823529,
+            "pnl_mae_usd": 388698.4906316429,
+            "pnl_spearman": null
+          },
+          "type_mean": {
+            "equity_mae_pp": 2.7440188361421387,
+            "rate_mae_bp": 10.637758018159252,
+            "credit_mae_bp": 9.205856848912404,
+            "rate_sign_accuracy": 0.6323529411764706,
+            "pnl_mae_usd": 383631.7945880661,
+            "pnl_spearman": 0.09460252935862691
+          },
+          "analog_hashing": {
+            "equity_mae_pp": 3.292794390123457,
+            "rate_mae_bp": 13.464988888888888,
+            "credit_mae_bp": 10.609917283950619,
+            "rate_sign_accuracy": 0.5294117647058824,
+            "pnl_mae_usd": 461808.01821163186,
+            "pnl_spearman": 0.06467931345980127
+          },
+          "analog": {
+            "equity_mae_pp": 3.07442847654321,
+            "rate_mae_bp": 12.024769135802467,
+            "credit_mae_bp": 10.543435802469137,
+            "rate_sign_accuracy": 0.5147058823529411,
+            "pnl_mae_usd": 429831.09963893594,
+            "pnl_spearman": 0.14896115627822945
+          },
+          "analog_soft": {
+            "equity_mae_pp": 2.774235760493827,
+            "rate_mae_bp": 10.936709876543208,
+            "credit_mae_bp": 8.782775308641973,
+            "rate_sign_accuracy": 0.6470588235294118,
+            "pnl_mae_usd": 381936.2547020733,
+            "pnl_spearman": 0.16476964769647695
+          }
+        },
+        "coverage": {
+          "history q20 (same type)": {
+            "coverage": 0.7654320987654321,
+            "mean_excess_usd": 260759.41975308643
+          },
+          "history q10 (same type)": {
+            "coverage": 0.8518518518518519,
+            "mean_excess_usd": 437925.77777777775
+          },
+          "history q10 (all events)": {
+            "coverage": 0.8888888888888888,
+            "mean_excess_usd": 486682.3209876543
+          },
+          "hand-written matrix": {
+            "coverage": 0.9506172839506173,
+            "mean_excess_usd": 4720995.864197531
+          }
+        }
+      },
+      "time_respecting": {
+        "n_scored": 66,
+        "results": {
+          "static_matrix": {
+            "equity_mae_pp": 6.363348484848486,
+            "rate_mae_bp": 213.71212121212122,
+            "credit_mae_bp": 138.86363636363637,
+            "rate_sign_accuracy": 0.34545454545454546,
+            "pnl_mae_usd": 4727233.465909091,
+            "pnl_spearman": 0.43801273353512166
+          },
+          "global_mean": {
+            "equity_mae_pp": 2.870643250486272,
+            "rate_mae_bp": 10.148694880788302,
+            "credit_mae_bp": 9.557422182323364,
+            "rate_sign_accuracy": 0.6181818181818182,
+            "pnl_mae_usd": 392394.5060400656,
+            "pnl_spearman": null
+          },
+          "type_mean": {
+            "equity_mae_pp": 2.878483915207177,
+            "rate_mae_bp": 11.438315998888042,
+            "credit_mae_bp": 10.04535166849809,
+            "rate_sign_accuracy": 0.5272727272727272,
+            "pnl_mae_usd": 384530.2010930601,
+            "pnl_spearman": 0.2255923181296316
+          },
+          "analog_hashing": {
+            "equity_mae_pp": 3.2650707893939392,
+            "rate_mae_bp": 13.820792424242425,
+            "credit_mae_bp": 10.92428484848485,
+            "rate_sign_accuracy": 0.6,
+            "pnl_mae_usd": 453699.2669036638,
+            "pnl_spearman": 0.15649723410917443
+          },
+          "analog": {
+            "equity_mae_pp": 3.099461901243201,
+            "rate_mae_bp": 12.210776534576533,
+            "credit_mae_bp": 9.778554506604507,
+            "rate_sign_accuracy": 0.6181818181818182,
+            "pnl_mae_usd": 420164.310659925,
+            "pnl_spearman": 0.15820895522388062
+          },
+          "analog_soft": {
+            "equity_mae_pp": 2.8172597166666664,
+            "rate_mae_bp": 10.91351818181818,
+            "credit_mae_bp": 9.22058181818182,
+            "rate_sign_accuracy": 0.6,
+            "pnl_mae_usd": 381438.7827215114,
+            "pnl_spearman": 0.22513307587934459
+          }
+        },
+        "coverage": {
+          "history q20 (same type)": {
+            "coverage": 0.7727272727272727,
+            "mean_excess_usd": 229246.46212121213
+          },
+          "history q10 (same type)": {
+            "coverage": 0.8939393939393939,
+            "mean_excess_usd": 432394.4791666667
+          },
+          "history q10 (all events)": {
+            "coverage": 0.8939393939393939,
+            "mean_excess_usd": 497417.92234848486
+          },
+          "hand-written matrix": {
+            "coverage": 0.9393939393939394,
+            "mean_excess_usd": 4692963.579545454
+          }
+        }
+      }
+    },
+    "by_type": {
+      "Bankruptcy": {
+        "n": 5,
+        "median_equity_pct": -0.02596,
+        "median_rate_bps": -27.0,
+        "share_rate_down": 1.0,
+        "median_credit_bps": 16.0,
+        "matrix": {
+          "equity_pct": -0.09,
+          "rate_bps": 50.0,
+          "credit_spread_bps": 300.0
+        }
+      },
+      "Credit Event": {
+        "n": 11,
+        "median_equity_pct": -0.02087,
+        "median_rate_bps": -7.0,
+        "share_rate_down": 0.7272727272727273,
+        "median_credit_bps": 1.0,
+        "matrix": {
+          "equity_pct": -0.08,
+          "rate_bps": 100.0,
+          "credit_spread_bps": 250.0
+        }
+      },
+      "Cybersecurity": {
+        "n": 3,
+        "median_equity_pct": -0.02622,
+        "median_rate_bps": 7.0,
+        "share_rate_down": 0.0,
+        "median_credit_bps": 5.0,
+        "matrix": null
+      },
+      "Geopolitical": {
+        "n": 16,
+        "median_equity_pct": -0.007220000000000001,
+        "median_rate_bps": -7.0,
+        "share_rate_down": 0.8125,
+        "median_credit_bps": 3.0,
+        "matrix": {
+          "equity_pct": -0.1,
+          "rate_bps": 200.0,
+          "credit_spread_bps": 150.0
+        }
+      },
+      "Macroeconomic": {
+        "n": 29,
+        "median_equity_pct": -0.01853,
+        "median_rate_bps": 1.0,
+        "share_rate_down": 0.4827586206896552,
+        "median_credit_bps": 4.0,
+        "matrix": {
+          "equity_pct": -0.07,
+          "rate_bps": 300.0,
+          "credit_spread_bps": 100.0
+        }
+      },
+      "Market Shock": {
+        "n": 15,
+        "median_equity_pct": -0.04801,
+        "median_rate_bps": -7.0,
+        "share_rate_down": 0.6666666666666666,
+        "median_credit_bps": 5.0,
+        "matrix": {
+          "equity_pct": -0.12,
+          "rate_bps": 200.0,
+          "credit_spread_bps": 200.0
+        }
+      },
+      "Product Launch": {
+        "n": 1,
+        "median_equity_pct": -0.01458,
+        "median_rate_bps": -10.0,
+        "share_rate_down": 1.0,
+        "median_credit_bps": 2.0,
+        "matrix": null
+      },
+      "Regulatory": {
+        "n": 1,
+        "median_equity_pct": -0.00795,
+        "median_rate_bps": -9.0,
+        "share_rate_down": 1.0,
+        "median_credit_bps": 1.0,
+        "matrix": {
+          "equity_pct": -0.06,
+          "rate_bps": 100.0,
+          "credit_spread_bps": 100.0
+        }
+      }
+    }
+  },
+  {
+    "horizon": "1d",
+    "n_events": 81,
+    "protocols": {
+      "leave_one_out": {
+        "n_scored": 81,
+        "results": {
+          "static_matrix": {
+            "equity_mae_pp": 7.313987654320988,
+            "rate_mae_bp": 205.91358024691357,
+            "credit_mae_bp": 153.25925925925927,
+            "rate_sign_accuracy": 0.2777777777777778,
+            "pnl_mae_usd": 4946820.601851852,
+            "pnl_spearman": 0.27777777777777773
+          },
+          "global_mean": {
+            "equity_mae_pp": 2.1187202228138586,
+            "rate_mae_bp": 8.41083644503124,
+            "credit_mae_bp": 4.607434162831491,
+            "rate_sign_accuracy": 0.7037037037037037,
+            "pnl_mae_usd": 233677.99781974324,
+            "pnl_spearman": null
+          },
+          "type_mean": {
+            "equity_mae_pp": 1.9968384308250047,
+            "rate_mae_bp": 8.660546084002874,
+            "credit_mae_bp": 4.735986184597295,
+            "rate_sign_accuracy": 0.7222222222222222,
+            "pnl_mae_usd": 229295.5765469958,
+            "pnl_spearman": 0.017208672086720864
+          },
+          "analog_hashing": {
+            "equity_mae_pp": 2.4801495901234567,
+            "rate_mae_bp": 9.96809012345679,
+            "credit_mae_bp": 5.969211111111111,
+            "rate_sign_accuracy": 0.6111111111111112,
+            "pnl_mae_usd": 293502.87447583716,
+            "pnl_spearman": 0.07267389340560072
+          },
+          "analog": {
+            "equity_mae_pp": 2.4139107469135803,
+            "rate_mae_bp": 9.19342962962963,
+            "credit_mae_bp": 5.931458024691358,
+            "rate_sign_accuracy": 0.6481481481481481,
+            "pnl_mae_usd": 272134.49586421764,
+            "pnl_spearman": 0.19010840108401084
+          },
+          "analog_soft": {
+            "equity_mae_pp": 2.0272122037037037,
+            "rate_mae_bp": 8.585988888888888,
+            "credit_mae_bp": 4.871576543209876,
+            "rate_sign_accuracy": 0.6666666666666666,
+            "pnl_mae_usd": 229738.94543326157,
+            "pnl_spearman": 0.20490063233965675
+          }
+        },
+        "coverage": {
+          "history q20 (same type)": {
+            "coverage": 0.7654320987654321,
+            "mean_excess_usd": 203545.17592592593
+          },
+          "history q10 (same type)": {
+            "coverage": 0.8888888888888888,
+            "mean_excess_usd": 336736.7546296296
+          },
+          "history q10 (all events)": {
+            "coverage": 0.9012345679012346,
+            "mean_excess_usd": 319855.13580246916
+          },
+          "hand-written matrix": {
+            "coverage": 0.9506172839506173,
+            "mean_excess_usd": 4937220.447530864
+          }
+        }
+      },
+      "time_respecting": {
+        "n_scored": 66,
+        "results": {
+          "static_matrix": {
+            "equity_mae_pp": 7.314500000000001,
+            "rate_mae_bp": 212.86363636363637,
+            "credit_mae_bp": 142.3181818181818,
+            "rate_sign_accuracy": 0.3181818181818182,
+            "pnl_mae_usd": 4898189.715909091,
+            "pnl_spearman": 0.44485961799394647
+          },
+          "global_mean": {
+            "equity_mae_pp": 1.843778962788104,
+            "rate_mae_bp": 8.161449242579932,
+            "credit_mae_bp": 4.456379579323282,
+            "rate_sign_accuracy": 0.6590909090909091,
+            "pnl_mae_usd": 210127.84219136694,
+            "pnl_spearman": null
+          },
+          "type_mean": {
+            "equity_mae_pp": 2.0167957125189,
+            "rate_mae_bp": 8.8333754786961,
+            "credit_mae_bp": 4.5078981400548255,
+            "rate_sign_accuracy": 0.6363636363636364,
+            "pnl_mae_usd": 223742.79350106211,
+            "pnl_spearman": 0.14451518630623109
+          },
+          "analog_hashing": {
+            "equity_mae_pp": 2.162532433333333,
+            "rate_mae_bp": 9.801712121212121,
+            "credit_mae_bp": 5.149727272727273,
+            "rate_sign_accuracy": 0.6590909090909091,
+            "pnl_mae_usd": 240930.56146190528,
+            "pnl_spearman": 0.17344744807431375
+          },
+          "analog": {
+            "equity_mae_pp": 1.973555491142191,
+            "rate_mae_bp": 8.544111849261848,
+            "credit_mae_bp": 4.492308391608392,
+            "rate_sign_accuracy": 0.6590909090909091,
+            "pnl_mae_usd": 223741.89688047755,
+            "pnl_spearman": 0.2672581150193091
+          },
+          "analog_soft": {
+            "equity_mae_pp": 1.8055573696969698,
+            "rate_mae_bp": 8.321621212121212,
+            "credit_mae_bp": 4.31954696969697,
+            "rate_sign_accuracy": 0.6363636363636364,
+            "pnl_mae_usd": 201380.62990522347,
+            "pnl_spearman": 0.2964826218557562
+          }
+        },
+        "coverage": {
+          "history q20 (same type)": {
+            "coverage": 0.7272727272727273,
+            "mean_excess_usd": 156394.85984848486
+          },
+          "history q10 (same type)": {
+            "coverage": 0.8787878787878788,
+            "mean_excess_usd": 298477.98863636365
+          },
+          "history q10 (all events)": {
+            "coverage": 0.9090909090909091,
+            "mean_excess_usd": 351151.2234848485
+          },
+          "hand-written matrix": {
+            "coverage": 0.9393939393939394,
+            "mean_excess_usd": 4886407.708333333
+          }
+        }
+      }
+    },
+    "by_type": {
+      "Bankruptcy": {
+        "n": 5,
+        "median_equity_pct": -0.00039,
+        "median_rate_bps": -3.0,
+        "share_rate_down": 0.6,
+        "median_credit_bps": 2.0,
+        "matrix": {
+          "equity_pct": -0.09,
+          "rate_bps": 50.0,
+          "credit_spread_bps": 300.0
+        }
+      },
+      "Credit Event": {
+        "n": 11,
+        "median_equity_pct": -0.01698,
+        "median_rate_bps": -7.0,
+        "share_rate_down": 0.6363636363636364,
+        "median_credit_bps": 1.0,
+        "matrix": {
+          "equity_pct": -0.08,
+          "rate_bps": 100.0,
+          "credit_spread_bps": 250.0
+        }
+      },
+      "Cybersecurity": {
+        "n": 3,
+        "median_equity_pct": -0.00714,
+        "median_rate_bps": 3.0,
+        "share_rate_down": 0.0,
+        "median_credit_bps": 0.0,
+        "matrix": null
+      },
+      "Geopolitical": {
+        "n": 16,
+        "median_equity_pct": -0.0027749999999999997,
+        "median_rate_bps": -6.0,
+        "share_rate_down": 0.6875,
+        "median_credit_bps": 2.0,
+        "matrix": {
+          "equity_pct": -0.1,
+          "rate_bps": 200.0,
+          "credit_spread_bps": 150.0
+        }
+      },
+      "Macroeconomic": {
+        "n": 29,
+        "median_equity_pct": -0.01089,
+        "median_rate_bps": 0.0,
+        "share_rate_down": 0.4827586206896552,
+        "median_credit_bps": 1.0,
+        "matrix": {
+          "equity_pct": -0.07,
+          "rate_bps": 300.0,
+          "credit_spread_bps": 100.0
+        }
+      },
+      "Market Shock": {
+        "n": 15,
+        "median_equity_pct": -0.02997,
+        "median_rate_bps": -4.0,
+        "share_rate_down": 0.8,
+        "median_credit_bps": 4.0,
+        "matrix": {
+          "equity_pct": -0.12,
+          "rate_bps": 200.0,
+          "credit_spread_bps": 200.0
+        }
+      },
+      "Product Launch": {
+        "n": 1,
+        "median_equity_pct": -0.01458,
+        "median_rate_bps": -10.0,
+        "share_rate_down": 1.0,
+        "median_credit_bps": 2.0,
+        "matrix": null
+      },
+      "Regulatory": {
+        "n": 1,
+        "median_equity_pct": -0.00471,
+        "median_rate_bps": -4.0,
+        "share_rate_down": 1.0,
+        "median_credit_bps": 1.0,
+        "matrix": {
+          "equity_pct": -0.06,
+          "rate_bps": 100.0,
+          "credit_spread_bps": 100.0
+        }
+      }
+    }
+  }
+]
