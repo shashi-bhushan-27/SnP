@@ -1,0 +1,25 @@
+# Market-direction rules applied on top of the sentiment model (MacroDirectionSentiment).
+# FinBERT reads macro headlines literally: "US inflation hits a 40-year high, beating forecasts" scores +0.90
+# because "high" and "beating" sound good. For markets that is bad news. When a pattern below matches, the score's
+# direction is set by the rule (the model's magnitude is kept, with a floor of 0.5).
+# Patterns are case-insensitive regular expressions.
+bearish:
+  # inflation running hot
+  - '\b(inflation|cpi|consumer prices|consumer price index|price pressures|core prices)\b.{0,40}\b(rises?|rose|jumps?|surges?|accelerates?|hotter|hits? .{0,20}high|beats? (forecasts|expectations|estimates)|above (forecasts|expectations|estimates)|higher than expected|sticky)'
+  - '\b(hotter|higher)[- ]than[- ]expected (inflation|cpi|consumer prices)'
+  # hawkish central banks
+  - '\b(raises?|hikes?) (interest )?rates\b'
+  - '\brate hikes?\b'
+  - '\b(hawkish|tightening|higher for longer|fewer rate cuts|taper(ing)?)\b'
+  # yields jumping
+  - '\b(treasury |bond )?yields?\b.{0,20}\b(jump|surge|spike|soar|climb|hit .{0,20}high)'
+  # growth weakening
+  - '\b(unemployment|jobless claims)\b.{0,20}\b(rises?|rose|jumps?|climbs?|edges? up)'
+  - '\b(weak|disappointing)( \w+)? (jobs|payrolls|employment) (report|data)\b'
+  - '\brecession (fears|warnings?)\b'   # not "risk": "lowers recession risk" is good news
+  - '\b(gdp|economy|growth)\b.{0,20}\b(shrinks|contracts|slows|stalls)\b'
+  - '\byield curve inverts?\b'
+bullish:
+  # inflation cooling
+  - '\b(inflation|cpi|consumer prices|consumer price index)\b.{0,30}\b(cools?|eases?|slows?|falls?|softens?|lower than expected|below (forecasts|expectations)|less than expected)'
+  - '\b(cooler|lower|softer)[- ]than[- ]expected (inflation|cpi)'

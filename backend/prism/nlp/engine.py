@@ -171,6 +171,7 @@ class RiskEngine:
                 "event_method": event.method,
                 "evidence": evidence,
                 "sentiment_probabilities": {k: round(v, 4) for k, v in sentiment.probabilities.items()},
+                "sentiment_adjustment": sentiment.adjustment,
                 "entity_match": mention.matched_text,
                 "corroboration": doc.corroboration,
                 "models": {"sentiment": self.sentiment.name, "event": self.events.name, "impact": self.impact.name},

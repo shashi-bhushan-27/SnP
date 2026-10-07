@@ -31,7 +31,7 @@ from prism.nlp.engine import RiskEngine
 from prism.nlp.entities import DictionaryEntityLinker, SpacyEntityLinker
 from prism.nlp.events import EmbeddingEventClassifier, HybridEventClassifier, RuleEventClassifier
 from prism.nlp.impact import WeightedImpactModel
-from prism.nlp.sentiment import FinBertSentiment, LexiconSentiment
+from prism.nlp.sentiment import FinBertSentiment, LexiconSentiment, MacroDirectionSentiment
 from prism.storage import SqlStore
 
 log = logging.getLogger(__name__)
@@ -67,7 +67,11 @@ def build_sentiment(settings: Settings) -> SentimentModel:
         "lexicon": lambda: LexiconSentiment(),
         "finbert": lambda: FinBertSentiment(settings.finbert_model),
     }
-    return factories[settings.sentiment_backend]()
+    model = factories[settings.sentiment_backend]()
+    rules = settings.config_dir / "macro_direction.yaml"
+    if settings.macro_direction_rules and rules.exists():
+        model = MacroDirectionSentiment.from_yaml(model, rules)
+    return model
 
 
 def build_events(settings: Settings) -> EventClassifier:

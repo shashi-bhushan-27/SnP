@@ -73,6 +73,7 @@ class SentimentResult(BaseModel):
     score: float = Field(ge=-1.0, le=1.0)  # P(positive) - P(negative)
     probabilities: dict[str, float] = Field(default_factory=dict)
     confidence: float = Field(ge=0.0, le=1.0)
+    adjustment: str | None = None  # set when a rule layer changed the model's direction (e.g. "macro-bearish")
 
 
 class EventResult(BaseModel):
