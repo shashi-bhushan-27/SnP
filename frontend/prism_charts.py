@@ -129,3 +129,23 @@ def risk_timeline_figure(df: pd.DataFrame) -> go.Figure:
     )
     fig.update_yaxes(title_text="impact score", range=[0.5, 10.5])
     return _style(fig, height=320)
+
+
+def distribution_figure(outcomes: pd.DataFrame, basis_id: str, expected_pnl: float) -> go.Figure:
+    """P&L today of every past event of this kind (worst left); the stress basis in red, the average as a line."""
+    colors = [RED if i == basis_id else NEUTRAL for i in outcomes["id"]]
+    fig = go.Figure(
+        go.Bar(
+            x=list(range(1, len(outcomes) + 1)),
+            y=outcomes["P&L today"] / 1e6,
+            marker=dict(color=colors, cornerradius=3),
+            customdata=outcomes[["date", "event"]].values,
+            hovertemplate="%{customdata[1]}<br>%{customdata[0]}<br>P&L today: $%{y:.2f}M<extra></extra>",
+        )
+    )
+    fig.add_hline(y=expected_pnl / 1e6, line=dict(color=INK_2, width=1))
+    fig.add_annotation(xref="paper", x=1, y=expected_pnl / 1e6, yshift=10, xanchor="right", showarrow=False,
+                       text="average past outcome", font=dict(color=MUTED, size=11))
+    fig.update_xaxes(title_text="past events of this kind, worst to best", showticklabels=False, showgrid=False)
+    fig.update_yaxes(title_text="P&L on today's book (USD M)")
+    return _style(fig, height=280)

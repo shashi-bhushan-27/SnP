@@ -11,14 +11,22 @@ import os
 import pandas as pd
 import streamlit as st
 
-from prism_charts import events_figure, impact_breakdown_figure, risk_timeline_figure, waterfall_figure
+from prism_charts import (
+    distribution_figure,
+    events_figure,
+    impact_breakdown_figure,
+    risk_timeline_figure,
+    waterfall_figure,
+)
 from prism_client import (
     HIGH_IMPACT,
     ApiError,
     PrismClient,
     asset_table,
     impact_breakdown,
+    evidence_frame,
     money,
+    outcomes_frame,
     signals_frame,
     waterfall_rows,
 )
@@ -71,10 +79,19 @@ with st.sidebar:
     except ApiError:
         scenario_names = []
     whatif_event = st.selectbox("Event type", scenario_names)
+    whatif_headline = st.text_input("Headline (finds similar past events)", placeholder="Regional lender collapses after a deposit run")
+    coverage_labels = {"1-in-5 (q20)": 0.20, "1-in-10 (q10)": 0.10, "1-in-20 (q05)": 0.05}
+    whatif_coverage = st.select_slider("Severity", list(coverage_labels), value="1-in-10 (q10)")
+    whatif_source = st.radio("Shock source", ["history", "matrix"], horizontal=True,
+                             help="history = what markets actually did after past events of this kind; matrix = scenarios.yaml")
     whatif_impact = st.slider("Impact score", 1.0, 10.0, 9.0, 0.5)
     if st.button("Run what-if", use_container_width=True, disabled=not scenario_names):
         try:
-            st.session_state["whatif"] = client.stress_test(whatif_event, whatif_impact, persist=False)
+            st.session_state["whatif"] = client.stress_test(
+                whatif_event, whatif_impact, persist=False, source=whatif_source,
+                quantile=coverage_labels[whatif_coverage] if whatif_source == "history" else None,
+                headline=whatif_headline,
+            )
         except ApiError as exc:
             st.error(str(exc))
     if st.session_state.get("whatif") and st.button("Clear what-if", use_container_width=True):
@@ -117,11 +134,57 @@ def render_stress(result: dict, label: str) -> None:
         f"Shock applied: equities {shock['equity_pct']:+.0%} · rates {shock['rate_bps']:+.0f} bp · "
         f"credit spreads {shock['credit_spread_bps']:+.0f} bp"
     )
-    m1, m2, m3 = st.columns(3)
+    history = result.get("history")
+    m1, m2, m3, m4 = st.columns(4)
     m1.metric("Portfolio before", money(result["value_before"]))
     m2.metric("Portfolio after", money(result["value_after"]))
     m3.metric("Stress P&L", money(result["pnl"]), f"{result['pnl_pct']:+.2%}")
+    if history:
+        m4.metric("Average past outcome", money(history["expected_pnl"]), help="mean reaction of the past events in the pool")
+    else:
+        m4.metric("Shock source", "hand-written")
+    if history:
+        basis = history["basis"]
+        pool = "past " + (f"{history['event_type']} events" if history["pool_same_type"] else "events of all types")
+        st.info(
+            f"**Shock taken from history:** what markets did after *{basis['title']}* ({basis['date']}) - "
+            f"the {round(100 * history['quantile'])}th-percentile outcome for this book among {history['pool_size']} {pool}."
+        )
     st.plotly_chart(waterfall_figure(waterfall_rows(result)), use_container_width=True, theme=None, key=f"waterfall_{label}")
+    if history:
+        left, right = st.columns([2, 3])
+        with left:
+            st.markdown("**Every past event of this kind, priced on today's book**")
+            dist = outcomes_frame(history["distribution"])
+            st.plotly_chart(distribution_figure(dist, history["basis"]["id"], history["expected_pnl"]),
+                            use_container_width=True, theme=None, key=f"dist_{label}")
+        with right:
+            st.markdown("**Most similar past events** (by meaning of the headline)")
+            st.dataframe(
+                outcomes_frame(history["analogs"]).drop(columns=["id", "type"]),
+                hide_index=True,
+                use_container_width=True,
+                column_config={
+                    "event": st.column_config.TextColumn("Event", width="large"),
+                    "similarity": st.column_config.ProgressColumn("Similarity", min_value=0, max_value=1, format="%.2f"),
+                    "S&P 500": st.column_config.NumberColumn(format="%.3f"),
+                    "10y (bp)": st.column_config.NumberColumn(format="%+.0f"),
+                    "Baa spread (bp)": st.column_config.NumberColumn(format="%+.0f"),
+                    "P&L today": st.column_config.NumberColumn(format="$%.0f"),
+                },
+            )
+        with st.expander("Compare with the hand-written scenario matrix"):
+            try:
+                matrix = client.stress_test(result["event_type"], result.get("impact_score"), persist=False, source="matrix")
+                ms = matrix["shock"]
+                st.markdown(
+                    f"Hand-written shock: equities {ms['equity_pct']:+.0%}, rates {ms['rate_bps']:+.0f} bp, "
+                    f"spreads {ms['credit_spread_bps']:+.0f} bp -> P&L **{money(matrix['pnl'])}** vs **{money(result['pnl'])}** "
+                    f"from history. Back-test (81 events): the matrix was on average ~$4.7M more severe than what "
+                    f"actually happened and assumed rising yields where yields usually fell."
+                )
+            except ApiError as exc:
+                st.caption(str(exc))
     with st.expander("Asset-level table"):
         table = asset_table(result)
         st.dataframe(
@@ -170,7 +233,7 @@ def live_view() -> None:
     k[2].metric("High-risk signals", f"{stats['high_risk_signals']:,}",
                 help=f"impact ≥ {HIGH_IMPACT:g} and negative sentiment")
     k[3].metric("Average impact", f"{stats['avg_impact']:.2f}" if stats["avg_impact"] is not None else "–")
-    k[4].metric("Portfolio value", money(total_value, 1))
+    k[4].metric("Portfolio value", money(total_value, 0))
     k[5].metric("Latest stress P&L", money(latest["pnl"], 1) if latest else "–",
                 f"{latest['pnl_pct']:+.2%}" if latest else None)
 
@@ -229,6 +292,25 @@ def live_view() -> None:
                 )
     else:
         st.info("No stress test yet. One runs automatically when a high-impact negative event arrives, or use What-if.")
+
+    with st.expander("What history says vs the hand-written matrix (evidence behind the scenarios)"):
+        try:
+            summary = client.history_summary()
+            st.caption(
+                f"{summary['events']} market-moving events, {summary['first']} to {summary['last']}; reaction measured to "
+                f"the S&P 500 trough within 5 sessions (S&P 500 from Yahoo Finance; 10y Treasury and Baa spread from FRED)."
+            )
+            st.dataframe(
+                evidence_frame(summary),
+                hide_index=True,
+                use_container_width=True,
+                column_config={
+                    "median S&P 500": st.column_config.NumberColumn(format="%.3f"),
+                    "10y fell": st.column_config.ProgressColumn("10y yield fell", min_value=0, max_value=100, format="%d%%"),
+                },
+            )
+        except ApiError as exc:
+            st.caption(str(exc))
 
     # ------------------------------------------------------------------ charts
     if not signals.empty:

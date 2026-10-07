@@ -73,9 +73,28 @@ class PrismClient:
     def run_pipeline(self, sources: Sequence[str] | None = None, limit: int | None = None) -> dict:
         return self._call("POST", "/api/pipeline/run", json={"sources": list(sources) if sources else None, "limit": limit})
 
-    def stress_test(self, event_type: str, impact_score: float | None = None, persist: bool = False) -> dict:
-        body = {"event_type": event_type, "impact_score": impact_score, "persist": persist}
+    def stress_test(
+        self,
+        event_type: str,
+        impact_score: float | None = None,
+        persist: bool = False,
+        *,
+        source: str | None = None,
+        quantile: float | None = None,
+        headline: str = "",
+    ) -> dict:
+        body = {
+            "event_type": event_type, "impact_score": impact_score, "persist": persist,
+            "source": source, "quantile": quantile, "headline": headline,
+        }
         return self._call("POST", "/api/stress-test", json=body)
+
+    def analogs(self, text: str, event_type: str | None = None, k: int = 5) -> list[dict]:
+        params = {"text": text, "k": k, "event_type": event_type}
+        return self._call("GET", "/api/analogs", params={k: v for k, v in params.items() if v})
+
+    def history_summary(self) -> dict:
+        return self._call("GET", "/api/history/summary")
 
     def analyze(self, texts: Sequence[str], persist: bool = False) -> dict:
         return self._call("POST", "/api/analyze", json={"texts": list(texts), "persist": persist})
@@ -128,6 +147,45 @@ def asset_table(result: dict) -> pd.DataFrame:
         return df
     df["asset_type"] = df["asset_type"].map(ASSET_TYPE_LABELS).fillna(df["asset_type"])
     return df[["name", "asset_type", "value_before", "pnl", "pnl_pct", "value_after"]].sort_values("pnl")
+
+
+def outcomes_frame(outcomes: Sequence[dict]) -> pd.DataFrame:
+    """Historical outcomes (distribution or analogs) -> one row per past event."""
+    rows = [
+        {
+            "date": o["date"],
+            "event": o["title"],
+            "type": o["event_type"],
+            "similarity": o.get("similarity"),
+            "S&P 500": o["shock"]["equity_pct"],
+            "10y (bp)": o["shock"]["rate_bps"],
+            "Baa spread (bp)": o["shock"]["credit_spread_bps"],
+            "P&L today": o["pnl"],
+            "id": o["id"],
+        }
+        for o in outcomes
+    ]
+    return pd.DataFrame(rows)
+
+
+def evidence_frame(summary: dict) -> pd.DataFrame:
+    rows = []
+    for r in summary.get("by_type", []):
+        m = r.get("matrix_shock")
+        rows.append(
+            {
+                "event type": r["event_type"],
+                "past events": r["events"],
+                "median S&P 500": r["median_equity_pct"],
+                "median 10y (bp)": r["median_rate_bps"],
+                "10y fell": round(100 * r["share_rate_down"]),
+                "median Baa spread (bp)": r["median_credit_spread_bps"],
+                "hand-written matrix": (
+                    f"{100 * m['equity_pct']:+.0f}% / {m['rate_bps']:+.0f} bp / {m['credit_spread_bps']:+.0f} bp" if m else "none"
+                ),
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 def money(value: float, digits: int = 2) -> str:

@@ -32,8 +32,10 @@ from prism_client import (  # noqa: E402
     PrismClient,
     asset_table,
     direction,
+    evidence_frame,
     impact_breakdown,
     money,
+    outcomes_frame,
     signals_frame,
     waterfall_rows,
 )
@@ -141,6 +143,24 @@ def test_chart_builders_use_the_validated_palette(loaded) -> None:
     assert list(breakdown.data[0].y)[0] == "Base"
 
 
+def test_history_views(client) -> None:
+    result = client.stress_test("Bankruptcy", 9, headline="Lender collapses after a deposit run", quantile=0.1)
+    history = result["history"]
+    dist = outcomes_frame(history["distribution"])
+    assert dist["P&L today"].is_monotonic_increasing and history["basis"]["id"] in set(dist["id"])
+    fig = prism_charts.distribution_figure(dist, history["basis"]["id"], history["expected_pnl"])
+    colors = list(fig.data[0].marker.color)
+    assert colors.count(prism_charts.RED) == 1  # exactly one highlighted basis event
+    assert len(outcomes_frame(history["analogs"])) == 5
+
+    evidence = evidence_frame(client.history_summary())
+    bankruptcy = evidence.set_index("event type").loc["Bankruptcy"]
+    assert bankruptcy["10y fell"] == 100 and bankruptcy["hand-written matrix"].startswith("-9%")
+
+    analogs = client.analogs("Bank collapses after a run on deposits", k=2)
+    assert len(analogs) == 2
+
+
 # ---------------------------------------------------------------- the Streamlit page, headless
 def run_app(client: PrismClient) -> AppTest:
     app = AppTest.from_file(str(FRONTEND / "app.py"), default_timeout=60)
@@ -173,3 +193,13 @@ def test_dashboard_what_if_button(loaded) -> None:
     next(b for b in app.sidebar.button if b.label == "Run what-if").click().run()
     assert not app.exception
     assert any("What-if" in md.value for md in app.markdown)
+    assert any("Shock taken from history" in info.value for info in app.info)
+    assert "Average past outcome" in [m.label for m in app.metric]
+
+
+def test_dashboard_what_if_with_the_matrix(loaded) -> None:
+    app = run_app(loaded)
+    app.sidebar.radio[0].set_value("matrix")
+    next(b for b in app.sidebar.button if b.label == "Run what-if").click().run()
+    assert not app.exception
+    assert not any("Shock taken from history" in info.value for info in app.info)
