@@ -83,7 +83,7 @@ against the live page, API or a real call; anything I could not check is listed 
 | GDELT raw GKG files: `lastupdate.txt` lists slots up to ~1 h before the file is downloadable (404); http redirects to https; 27 columns, title in `<PAGE_TITLE>`; ~1,400 articles per 15 min, ~140 with finance themes. | live downloads | `GdeltGkgSource` walks slots and treats 404 as "not yet". |
 | spaCy `en_core_web_sm` mis-tags Title-Case headlines ("Circle Stock Falls", "Cornell", "Trump" as ORG). | 119 live GDELT articles | Untracked ORGs need a corporate suffix; untracked companies weigh 0.5 exposure. |
 | Without abstention the embedding classifier labels 86% of non-event tweets as events; min confidence 0.3 halves that with macro-F1 ~unchanged. | 4,117 labelled tweets | `HybridEventClassifier(embedding_min_confidence=0.3)`. |
-| Evaluation on labelled tweets: events macro-F1 0.81 hybrid / 0.78 embeddings / 0.62 rules (rules 93% precise but answer 51%); sentiment macro-F1 0.66 FinBERT vs 0.60 lexicon. | `evaluation/results/latest.md` | Hybrid + FinBERT are the defaults for real runs. |
+| Evaluation on labelled tweets: events macro-F1 0.77 hybrid with abstention (right 83% of the time it answers, answers 73%) / 0.78 embeddings (63%, answers 98%) / 0.62 rules (93%, answers 51%); before abstention the hybrid scored 0.81 but was right only 70% of the time. Sentiment macro-F1 0.66 FinBERT vs 0.60 lexicon. | `evaluation/results/latest.md` | Hybrid + FinBERT are the defaults for real runs; precision is preferred because event labels decide which stress scenarios run. |
 
 ## 8. Not verified yet
 

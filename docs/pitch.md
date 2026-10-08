@@ -17,7 +17,7 @@ enforces the module boundaries. 220+ tests, CI on every push.
 
 **4. The NLP Risk Engine.** FinBERT sentiment; rules + sentence-embedding event classifier with calibrated
 abstention; dictionary + spaCy entities; explainable impact (every point accounted for); confidence on every
-signal. Measured: event macro-F1 0.81 (hybrid) vs 0.62 (rules) on 1,099 labelled tweets; sentiment macro-F1
+signal. Measured: event macro-F1 0.77 (hybrid, right 83% of the time it answers) vs 0.78 embeddings (63%) vs 0.62 rules on 1,099 labelled tweets; sentiment macro-F1
 0.66 (FinBERT) vs 0.60 (lexicon) on 2,388. Real-data error analysis: 130 -> 64 signals on 119 live GDELT
 articles after the relevance fixes; 0 false stress triggers on 50 live NewsAPI articles (was 1).
 

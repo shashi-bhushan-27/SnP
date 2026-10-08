@@ -27,7 +27,7 @@ Details, including what did *not* work: [docs/history-calibrated-stress.md](docs
 
 | What | Result | Source |
 |---|---|---|
-| Event classification (1,099 labelled finance tweets) | macro-F1 **0.81** hybrid vs 0.78 embeddings vs 0.62 rules | `evaluation/results/latest.md` |
+| Event classification (1,099 labelled finance tweets) | hybrid macro-F1 **0.77**, right **83%** of the time it answers (embeddings 0.78 / 63%; rules 0.62 / 93% but answer half) | `evaluation/results/latest.md` |
 | Sentiment (2,388 labelled finance tweets) | macro-F1 **0.66** FinBERT vs 0.60 lexicon baseline | `evaluation/results/latest.md` |
 | Stress scenarios (81 events, 2008-2025) | 85-89% coverage at 1/10 the over-reserving of the hand-written matrix | `evaluation/results/analog_backtest.md` |
 | Live NewsAPI (50 articles) | false stress triggers 1 -> 0 after the relevance rules | `docs/research.md` |

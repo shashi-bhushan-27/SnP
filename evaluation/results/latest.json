@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T19:41:41+00:00",
+  "generated_at": "2026-10-08T15:43:05+00:00",
   "sentiment": {
     "n": 2388,
     "gold_distribution": {
@@ -61,7 +61,7 @@
             213
           ]
         ],
-        "ms_per_text": 0.009889489111953285,
+        "ms_per_text": 0.018647654936863406,
         "mean_confidence": 0.461641541038526
       },
       "finbert": {
@@ -117,7 +117,7 @@
             312
           ]
         ],
-        "ms_per_text": 43.39744388609925,
+        "ms_per_text": 43.58915984087021,
         "mean_confidence": 0.8218583470612915,
         "argmax_accuracy": 0.7173366834170855,
         "argmax_macro_f1": 0.6628522454214262
@@ -147,7 +147,7 @@
           "Macroeconomic": 0.44038155802861684,
           "Merger/Acquisition": 0.5172413793103449
         },
-        "ms_per_text": 0.27933830754941386
+        "ms_per_text": 0.25838544129671953
       },
       "embedding": {
         "accuracy": 0.6205641492265697,
@@ -160,20 +160,20 @@
           "Macroeconomic": 0.47058823529411764,
           "Merger/Acquisition": 0.646551724137931
         },
-        "ms_per_text": 22.825071337578336
+        "ms_per_text": 22.26071528662136
       },
       "hybrid": {
-        "accuracy": 0.6833484986351228,
-        "macro_f1": 0.8112814327717468,
-        "answered_rate": 0.9818016378525932,
-        "accuracy_when_answered": 0.696014828544949,
+        "accuracy": 0.6041856232939036,
+        "macro_f1": 0.7720352757026209,
+        "answered_rate": 0.7315741583257507,
+        "accuracy_when_answered": 0.8258706467661692,
         "per_class_recall": {
-          "Earnings": 0.9173553719008265,
-          "Leadership Change": 0.8303571428571429,
-          "Macroeconomic": 0.5580286168521462,
-          "Merger/Acquisition": 0.7327586206896551
+          "Earnings": 0.8264462809917356,
+          "Leadership Change": 0.7053571428571429,
+          "Macroeconomic": 0.4944356120826709,
+          "Merger/Acquisition": 0.6379310344827587
         },
-        "ms_per_text": 19.578049044587214
+        "ms_per_text": 18.023423930856563
       }
     }
   },
@@ -212,7 +212,7 @@
           "Product Launch": 0.06690140845070422,
           "Regulatory": 0.391304347826087
         },
-        "ms_per_text": 0.31612834924091765
+        "ms_per_text": 0.33493708024037155
       },
       "embedding": {
         "accuracy": 0.46942382467302934,
@@ -231,26 +231,26 @@
           "Product Launch": 0.38615023474178406,
           "Regulatory": 0.6567164179104478
         },
-        "ms_per_text": 16.047448320962
+        "ms_per_text": 14.465412124425594
       },
       "hybrid": {
-        "accuracy": 0.4909862142099682,
-        "macro_f1": 0.48503047464127447,
-        "answered_rate": 0.9381406857546837,
-        "accuracy_when_answered": 0.5067822155237377,
+        "accuracy": 0.43442912689996466,
+        "macro_f1": 0.486424289044238,
+        "answered_rate": 0.5708731000353482,
+        "accuracy_when_answered": 0.6352941176470588,
         "per_class_recall": {
-          "Credit Event": 0.4935064935064935,
-          "Earnings": 0.8672566371681416,
-          "Geopolitical": 0.20481927710843373,
-          "Leadership Change": 0.8303571428571429,
+          "Credit Event": 0.24675324675324675,
+          "Earnings": 0.6548672566371682,
+          "Geopolitical": 0.07228915662650602,
+          "Leadership Change": 0.7053571428571429,
           "Legal": 1.0,
-          "Macroeconomic": 0.5580286168521462,
-          "Merger/Acquisition": 0.7327586206896551,
-          "Other": 0.13095238095238096,
-          "Product Launch": 0.39436619718309857,
-          "Regulatory": 0.6944444444444444
+          "Macroeconomic": 0.4944356120826709,
+          "Merger/Acquisition": 0.6379310344827587,
+          "Other": 0.6041666666666666,
+          "Product Launch": 0.2605633802816901,
+          "Regulatory": 0.5128205128205128
         },
-        "ms_per_text": 16.24471587133258
+        "ms_per_text": 14.16132311771371
       }
     }
   }
